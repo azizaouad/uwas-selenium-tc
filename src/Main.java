@@ -6,7 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class Main {
     public static void main(String[] args) {
         try {
-            System.setProperty("webdriver.chrome.driver", "C:\\Users\\Coralio software\\Downloads\\chromedriver_win32 (4)\\chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver", "C:\\Users\\DELL\\Downloads\\chromedriver.exe");
             WebDriver driver = new ChromeDriver();
             driver.get("https://recette.uwas.fr/login");
             Thread.sleep(20000);
@@ -32,11 +32,18 @@ public class Main {
             Thread.sleep(8000);
             driver.findElement(By.xpath("/html/body/div/div/div[2]/main/section[1]/div/div/div[1]/h1/button/span")).click();
             Thread.sleep(5000);
-            driver.findElement(By.id("name")).sendKeys("selenium java");
+            driver.findElement(By.id("name")).sendKeys("party 04 event");
             Thread.sleep(5000);
-            driver.findElement(By.id("location")).sendKeys("lac 1 ");
+            driver.findElement(By.id("location")).sendKeys("hammamet ");
             Thread.sleep(5000);
+            driver.findElement(By.id("date")).click();
+            driver.findElement(By.id("date")).sendKeys("2022-11-24");
             driver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[3]/button[2]/span")).click();
+            Thread.sleep(5000);
+            driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/header/a/div/div[2]/span")).click();
+            Thread.sleep(2000);
+            driver.findElement(By.className("w-full ")).click();
+
 
 
 

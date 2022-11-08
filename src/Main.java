@@ -32,17 +32,19 @@ public class Main {
             Thread.sleep(8000);
             driver.findElement(By.xpath("/html/body/div/div/div[2]/main/section[1]/div/div/div[1]/h1/button/span")).click();
             Thread.sleep(5000);
-            driver.findElement(By.id("name")).sendKeys("party 04 event");
+            driver.findElement(By.id("name")).sendKeys("party 25 event");
             Thread.sleep(5000);
-            driver.findElement(By.id("location")).sendKeys("hammamet ");
+            driver.findElement(By.id("location")).sendKeys("sousse ");
             Thread.sleep(5000);
+            driver.findElement(By.id("date")).click();
             driver.findElement(By.id("date")).click();
             driver.findElement(By.id("date")).sendKeys("2022-11-24");
             driver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[3]/button[2]/span")).click();
             Thread.sleep(5000);
-            driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/header/a/div/div[2]/span")).click();
-            Thread.sleep(2000);
-            driver.findElement(By.className("w-full ")).click();
+            driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/header/a/div/div[1]")).click();
+            Thread.sleep(5000);
+            driver.findElement(By.xpath("/html/body/div[3]/div/div/ul/li[6]/span/div ")).click();
+
 
 
 

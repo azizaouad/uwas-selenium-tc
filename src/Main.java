@@ -17,7 +17,7 @@ public class Main {
             driver.navigate().forward();
             driver.navigate().to("https://recette.uwas.fr/login");
             Thread.sleep(2000);
-            driver.findElement(By.id("normal_login_email")).sendKeys("ph@gmail.com");
+            driver.findElement(By.id("normal_login_email")).sendKeys("qaautomation@gmail.com");
             driver.findElement(By.id("normal_login_password")).sendKeys("Aziz1996@");
             driver.findElement(By.className("login-form-button")).click();
             Thread.sleep(7000);
@@ -34,7 +34,7 @@ public class Main {
             Thread.sleep(5000);
             driver.findElement(By.id("name")).sendKeys("party 25 event");
             Thread.sleep(5000);
-            driver.findElement(By.id("location")).sendKeys("sousse ");
+            driver.findElement(By.id("location")).sendKeys("paris ");
             Thread.sleep(5000);
             driver.findElement(By.id("date")).click();
             driver.findElement(By.id("date")).click();

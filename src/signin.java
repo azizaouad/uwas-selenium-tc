@@ -22,7 +22,7 @@ public class signin {
         if (current_url.contentEquals("https://recette.uwas.fr/login")) {
             System.out.println("fail to login");
         } else {
-            System.out.println("succes to login");
+            System.out.println("success to login");
         }
     }
 }

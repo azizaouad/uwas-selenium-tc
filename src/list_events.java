@@ -56,7 +56,7 @@ public class list_events {
             System.out.println("event: "+ event_text + Newligne +"location: "+ event_location);
 
         }
-        driver.findElement(By.className("ant-card-cover"))
+        driver.findElement(By.className("ant-card-cover"));
 
     }
 }

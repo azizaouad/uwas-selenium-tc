@@ -5,12 +5,11 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+
 public class loginsteps {
     WebDriver driver ;
 
@@ -25,6 +24,9 @@ public class loginsteps {
             Thread.sleep(10000);
             String title = driver.getTitle();
             System.out.println(title);
+
+
+
 
 
         } catch (InterruptedException e) {
@@ -54,14 +56,11 @@ public class loginsteps {
         try {
 
             Thread.sleep(5000);
-
-
-
-
+            Assert.assertTrue(driver.findElement(By.cssSelector("#root > div > div > header > div.header__logo-wrapper > span > div")).isDisplayed());
             }
 
 
-        }
+
         catch (InterruptedException e) {
             throw new RuntimeException(e);
 
@@ -71,7 +70,8 @@ public class loginsteps {
     public void error_message_should_appear() {
         try {
             Thread.sleep(2000);
-            System.out.println("error message");
+            Assert.assertTrue(driver.findElement(By.id("normal_login_email")).isDisplayed());
+
 
         }catch (InterruptedException e) {
             throw new RuntimeException(e);

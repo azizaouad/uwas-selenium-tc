@@ -43,8 +43,6 @@ public class sign_up_steps {
 
 
 
-
-
     @And("user fill last_name as {string}")
     public void user_fill_last_name(String last_name) {
         try {

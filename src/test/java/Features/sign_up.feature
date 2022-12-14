@@ -23,22 +23,23 @@ Feature: test the sign up functionality
     Then user fail to create an account
 
     Examples:
-      | first_name | last_name | email                  | password  | confirm_password |
-      | 3li        | ali       | l@gmail.com            | Admin123! | Admin123!        |
-      | li@        | ali       | l@gmail.com            | Admin123! | Admin123!        |
-      | 3@l        | ali       | l@gmail.com            | Admin123! | Admin123!        |
-      |            | ali       | l@gmail.com            | Admin123! | Admin123!        |
-      | ali        | 3li       | l@gmail.com            | Admin123! | Admin123!        |
-      | ali        | li@       | l@gmail.com            | Admin123! | Admin123!        |
-      | ali        | 3@l       | l@gmail.com            | Admin123! | Admin123!        |
-      | ali        |           | l@gmail.com            | Admin123! | Admin123!        |
-      | ali        | ali       | lqsklqk@lqm            | Admin123! | Admin123!        |
-      | ali        | ali       | azizaouadi12@gmail.com | Admin123! | Admin123!        |
-      | ali        | ali       | l@gmail.com            | admin123! | admin123!        |
-      | ali        | ali       | l@gmail.com            | Admin1234 | Admin1234        |
-      | ali        | ali       | l@gmail.com            | Admin!!!! | Admin!!!!        |
-      | ali        | ali       | l@gmail.com            | ADMIN123! | ADMIN123!        |
-      | ali        | ali       | l@gmail.com            | Admin12!  | admin12!         |
-      | ali        | ali       | l@gmail.com            |           | Admin123!        |
-      | ali        | ali       | l@gmail.com            | Admin123! | Admin12345!      |
-      | ali        | ali       |                        | Admin123! | Admin123!        |
+      | first_name | last_name | email        | password  | confirm_password |
+      | 3li        | ali       | l@gmail.com  | Admin123! | Admin123!        |
+      | li@        | ali       | l@gmail.com  | Admin123! | Admin123!        |
+      | 3@l        | ali       | l@gmail.com  | Admin123! | Admin123!        |
+      |            | ali       | l@gmail.com  | Admin123! | Admin123!        |
+      | ali        | 3li       | l@gmail.com  | Admin123! | Admin123!        |
+      | ali        | li@       | l@gmail.com  | Admin123! | Admin123!        |
+      | ali        | 3@l       | l@gmail.com  | Admin123! | Admin123!        |
+      | ali        |           | l@gmail.com  | Admin123! | Admin123!        |
+      | ali        | ali       | lqsklqk@lqm  | Admin123! | Admin123!        |
+      | ali        | ali       | qa@gmail.com | Admin123! | Admin123!        |
+      | ali        | ali       | l@gmail.com  | admin123! | admin123!        |
+      | ali        | ali       | l@gmail.com  | Admin1234 | Admin1234        |
+      | ali        | ali       | l@gmail.com  | Admin!!!! | Admin!!!!        |
+      | ali        | ali       | l@gmail.com  | ADMIN123! | ADMIN123!        |
+      | ali        | ali       | l@gmail.com  | Admin12!  | admin12!         |
+      | ali        | ali       | l@gmail.com  |           | Admin123!        |
+      | ali        | ali       | l@gmail.com  | Admin123! | Admin12345!      |
+      | ali        | ali       |              | Admin123! | Admin123!        |
+      | ali        | ali       | l@gmail.com  | Admin123! |                  |

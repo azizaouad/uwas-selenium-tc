@@ -90,6 +90,7 @@ public class sign_up_steps {
         try {
             Thread.sleep(2000);
             driver.findElement(By.name("captcha")).click();
+            Thread.sleep(10000);
         }catch (InterruptedException e) {
             throw new RuntimeException(e);
 

@@ -13,11 +13,11 @@ Feature: test the sign up functionality
 
   Scenario Outline: fill in all the mandatory fields without respecting the conditions of each field
     Given user open the website and click on sign up now
-    When user fill "<first_name>"
-    And user fill "<last_name>"
-    And user fill "<email>"
-    And user fill "<password>"
-    And user fill "<confirm_password>"
+    When user fill first_name as "<first_name>"
+    And user fill last_name as "<last_name>"
+    And user fill email as "<email>"
+    And user fill password as "<password>"
+    And user fill confirm_password as "<confirm_password>"
     And user click on the captcha
     And user click on sign up
     Then user fail to create an account
@@ -38,7 +38,7 @@ Feature: test the sign up functionality
       | ali        | ali       | l@gmail.com  | Admin1234 | Admin1234        |
       | ali        | ali       | l@gmail.com  | Admin!!!! | Admin!!!!        |
       | ali        | ali       | l@gmail.com  | ADMIN123! | ADMIN123!        |
-      | ali        | ali       | l@gmail.com  | Admin12!  | admin12!         |
+      | ali        | ali       | l@gmail.com  | Admin12!  | Admin12!         |
       | ali        | ali       | l@gmail.com  |           | Admin123!        |
       | ali        | ali       | l@gmail.com  | Admin123! | Admin12345!      |
       | ali        | ali       |              | Admin123! | Admin123!        |

@@ -57,6 +57,8 @@ public class loginsteps {
 
             Thread.sleep(5000);
             Assert.assertTrue(driver.findElement(By.cssSelector("#root > div > div > header > div.header__logo-wrapper > span > div")).isDisplayed());
+            Thread.sleep(2000);
+            driver.quit();
             }
 
 
@@ -71,6 +73,8 @@ public class loginsteps {
         try {
             Thread.sleep(2000);
             Assert.assertTrue(driver.findElement(By.id("normal_login_email")).isDisplayed());
+            Thread.sleep(2000);
+            driver.quit();
 
 
         }catch (InterruptedException e) {

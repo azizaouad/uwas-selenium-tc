@@ -30,7 +30,7 @@ Feature: test forget password functionality
       | Admin1234 | Admin1234        |
       | Admin!!!! | Admin!!!!        |
       | ADMIN123! | ADMIN123!        |
-      | Admin12!  | Admin12!         |
+      | Admin1!   | Admin1!          |
       |           | Admin123!        |
       | Admin123! | Admin12345!      |
       | Admin123! |                  |

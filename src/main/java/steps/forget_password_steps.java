@@ -122,6 +122,8 @@ public class forget_password_steps {
             driver.findElement(By.xpath("/html/body/div/div/div[2]/div/div/form/div[6]/div/div/div/div/button/span")).click();
             Thread.sleep(3000);
             Assert.assertTrue("test ok", driver.findElement(By.xpath("/html/body/div/div/div/header/div[2]/span/div")).isDisplayed());
+            Thread.sleep(2000);
+            driver.quit();
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -134,6 +136,8 @@ public class forget_password_steps {
         try {
             Thread.sleep(2000);
             Assert.assertTrue(driver.findElement(By.id("normal_login_email")).isDisplayed());
+            Thread.sleep(2000);
+            driver.quit();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -146,6 +150,8 @@ public class forget_password_steps {
             Assert.assertTrue(driver.findElement(By.id("normal_login_password")).isDisplayed());
             Assert.assertTrue(driver.findElement(By.id("normal_login_confirmPassword")).isDisplayed());
             Assert.assertTrue(driver.findElement(By.className("changePassword__formContainer-imageContainer-image")).isDisplayed());
+            Thread.sleep(2000);
+            driver.quit();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
 

@@ -14,7 +14,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import javax.swing.*;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -31,7 +33,7 @@ public class add_event {
             driver = new ChromeDriver();
             driver.manage().window().maximize();
             driver.get("https://recette.uwas.fr/login");
-            Thread.sleep(20000);
+            Thread.sleep(10000);
             driver.findElement(By.id("normal_login_email")).sendKeys("azizaouadi12@gmail.com");
             Thread.sleep(3000);
             driver.findElement(By.id("normal_login_password")).sendKeys("Aziz1996@");
@@ -60,7 +62,6 @@ public class add_event {
         try {
             Thread.sleep(3000);
             driver.findElement(By.id("name")).sendKeys(title_of_event);
-            System.out.println("ggg");
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -72,7 +73,6 @@ public class add_event {
         try {
             Thread.sleep(3000);
             driver.findElement(By.id("location")).sendKeys(location_of_event);
-            System.out.println("555");
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -84,9 +84,14 @@ public class add_event {
             Thread.sleep(3000);
             WebElement dateInput = driver.findElement(By.id("date"));
             Thread.sleep(2000);
-            dateInput.click();
+            dateInput.sendKeys(Keys.CONTROL, "a");
+            Thread.sleep(3000);
+            dateInput.sendKeys(Keys.DELETE);
             Thread.sleep(2000);
-            dateInput.findElement(By.xpath("/html/body/div[3]/div/div/div/div/div[1]/div[2]/table/tbody/tr[5]/td[1]/div")).click();
+            dateInput.sendKeys(date_of_event);
+            Thread.sleep(2000);
+            dateInput.sendKeys(Keys.ENTER);
+
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -118,57 +123,48 @@ public class add_event {
         }
     }
 
-    @Then("the event is created")
-    public void the_event_is_created() {
-        AtomicBoolean found = new AtomicBoolean(false);
-        List<WebElement> eventNames = driver.findElements(By.className("eventDetails__name"));
-        List<WebElement> eventLocation = driver.findElements(By.className("eventDetails__location"));
-        List<WebElement> eventDate = driver.findElements(By.className("eventDetails__footer-date"));
-        List<WebElement> eventStatus = driver.findElements(By.className("eventDetails__status"));
+    @Then("title of event as {string} event in location as {string} at date as {string} is created")
+    public void title_of_event_event_in_location_at_date_as_is_created(String title_of_event , String location_of_event , String date_of_event) {
+        try {
+            AtomicBoolean found = new AtomicBoolean(false);
+            List<WebElement> eventNames = driver.findElements(By.className("eventDetails__name"));
+            List<WebElement> eventLocation = driver.findElements(By.className("eventDetails__location"));
+            List<WebElement> eventDate = driver.findElements(By.className("eventDetails__footer-date"));
+            List<WebElement> eventStatus = driver.findElements(By.className("eventDetails__status"));
 
-        for (int i=0; i< eventNames.size(); i++) {
-            boolean name = eventNames.get(i).getText().equals("noel");
-            boolean location = eventLocation.get(i).getText().equals("paris");
-            boolean date = eventDate.get(i).getText().equals("2022-12-25");
-            boolean status = eventStatus.get(i).getText().equals("In progress");
-            if((name) && (location) && (date) && (status)) {
-                found.set(true);
-                break;
+            for (int i=0; i< eventNames.size(); i++) {
+                boolean name = eventNames.get(i).getText().equals(title_of_event);
+                boolean location = eventLocation.get(i).getText().equals(location_of_event);
+                boolean date = eventDate.get(i).getText().equals(date_of_event);
+                boolean status = eventStatus.get(i).getText().equals("In progress");
+                if((name) && (location) && (date) && (status)) {
+                    found.set(true);
+                    break;
+                }
             }
-        }
-        Assert.assertTrue(found.get());
-        //        Thread.sleep(15000);
-//        ArrayList<WebElement> cards = (ArrayList<WebElement>) driver.findElements(By.className("ant-card-meta"));
-//        boolean event = false;
-//        for (int i = 0; i < cards.size(); i++) {
-//            String event_text = cards.get(i).findElements(By.className("mx-auto")).toString();
-//            System.out.println(event_text);
-//            while (event != true) {
-//                if (event_text.contentEquals("noel")) {
-//                    event = true;
-//                }
-//            }
-//        }
+            Assert.assertTrue(found.get());
+            Thread.sleep(2000);
+            driver.quit();
 
-
-
-
-
-        /*ArrayList<WebElement> cards = (ArrayList<WebElement>) driver.findElements(By.className("ant-card-meta"));
-        name_of_event.getText();
-        for (int i = 0; i < cards.size(); i++) {
-            String title = name_of_event.getText();
-            //String event_text = cards.get(i).findElements(By.xpath("/html/body/div[1]/div/main/section[2]/main/div[1]/div[2]/div/div/div[1]/div[2]/div[2]/div/div/div/div[3]/h1")).toString();
-            System.out.println(title);
-            while (event == false) {
-               if ((title).contentEquals("noel")) {
-                    event = true;
-              }
-           }
+        }catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
 
-        Assert.assertTrue(event == true);*/
-        //throw new PendingException();
+    }
+    @Then("an error message appear under the title field")
+    public void an_error_message_appear_under_the_title_field () {
+        try {
+            Assert.assertTrue(driver.findElement(By.id("name")).isDisplayed());
+            Assert.assertTrue(driver.findElement(By.id("location")).isDisplayed());
+            Assert.assertTrue(driver.findElement(By.id("date")).isDisplayed());
+            Thread.sleep(2000);
+            driver.quit();
+
+        }catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 }
 

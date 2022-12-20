@@ -58,5 +58,5 @@ Feature: test add event functionality
     And photographer should fill the location of event as "rades"
     And photographer should fill the date of event as "2022-06-19"
     And photographer put a file in the image field for the event
-    And photographer should click on the button ok
+    And photographer should click on the button
     Then an error message appear and the event is created without image

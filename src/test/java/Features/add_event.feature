@@ -50,7 +50,7 @@ Feature: test add event functionality
     And photographer put an image for the event
     And photographer should click on the button ok
     Then title of event as "noel" event in location of event as "bruxelle" is created with the date added
-gi
+
   Scenario: photographer can login and can't add event with filling a file not image type in the image field
     Given photographer should login
     When photographer should click on the button of add event
@@ -58,5 +58,5 @@ gi
     And photographer should fill the location of event as "rades"
     And photographer should fill the date of event as "2022-06-19"
     And photographer put a file in the image field for the event
-    And photographer should click on the button
+    And photographer should click on the button ok
     Then an error message appear and the event is created without image

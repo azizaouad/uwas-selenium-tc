@@ -38,7 +38,7 @@ Feature: test the sign up functionality
       | ali        | ali       | l@gmail.com  | Admin1234 | Admin1234        |
       | ali        | ali       | l@gmail.com  | Admin!!!! | Admin!!!!        |
       | ali        | ali       | l@gmail.com  | ADMIN123! | ADMIN123!        |
-      | ali        | ali       | l@gmail.com  | Admin12!  | Admin12!         |
+      | ali        | ali       | l@gmail.com  | Admin2!   | Admin2!          |
       | ali        | ali       | l@gmail.com  |           | Admin123!        |
       | ali        | ali       | l@gmail.com  | Admin123! | Admin12345!      |
       | ali        | ali       |              | Admin123! | Admin123!        |

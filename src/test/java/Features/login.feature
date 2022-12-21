@@ -3,10 +3,10 @@
 
   Feature: test the login functionality
 
-      Scenario: user to login with valid email and valid password
-        Given user should navigate to the website
-        When user write email as "qaautomation@gmail.com" and password as "Aziz1996@" and click on login
-        Then user should navigate to home page
+    Scenario: user to login with valid email and valid password
+      Given user should navigate to the website
+      When user write email as "qaautomation@gmail.com" and password as "Aziz1996@" and click on login
+      Then user should navigate to home page
 
 
     Scenario Outline: login with invalid credentials

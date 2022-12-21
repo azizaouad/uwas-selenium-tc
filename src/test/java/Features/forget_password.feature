@@ -20,7 +20,7 @@ Feature: test forget password functionality
     When user write email as "a.aouadi@coral-io.fr"
     And user confirm the email
     And user visit the mail and click on the link
-    And user write password as "<password>"git
+    And user write password as "<password>"
     And user write confirm_password as "<confirm_password>"
     Then the password is not changed and an error message appear
 

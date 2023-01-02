@@ -105,7 +105,7 @@ public class add_event {
         try {
             Thread.sleep(3000);
             WebElement source = driver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[2]/form/div[5]/div/div[2]/div/div/span/div[1]/span/input"));
-            source.sendKeys("C://Users/DELL/Desktop/cover-showpage-films-tv-de-noel-2022-17ffdf-a9298f-0@1x.jpg");
+            source.sendKeys("C://Users/Lenovo/Desktop/traditions-noel-europe-1024x683.jpg");
 
 
         } catch (InterruptedException e) {

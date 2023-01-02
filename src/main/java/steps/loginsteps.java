@@ -22,8 +22,6 @@ public class loginsteps {
             driver.manage().window().maximize();
             driver.get("https://recette.uwas.fr/login");
             Thread.sleep(10000);
-            String title = driver.getTitle();
-            System.out.println(title);
 
 
 

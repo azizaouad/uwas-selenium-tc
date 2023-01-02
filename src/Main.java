@@ -43,7 +43,7 @@ public class Main {
             Thread.sleep(5000);
             driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/header/a/div/div[1]")).click();
             Thread.sleep(5000);
-            driver.findElement(By.xpath("/html/body/div[3]/div/div/ul/li[6]/span/div ")).click();
+            driver.findElement(By.xpath("/html/body/div[3]/div/div/ul/li[6]/span/div")).click();
 
 
 

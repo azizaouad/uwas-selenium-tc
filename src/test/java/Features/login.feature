@@ -19,6 +19,9 @@
         | qa@gmail.com     | Admin123! |
         | aaaa@outlook.fr  | Aziz1996@ |
         | lllll@outlook.fr | Mo123!!   |
+        |                  | Aziz1996@ |
+        | ph@gmail.com     |           |
+        |                  |           |
 
 
 

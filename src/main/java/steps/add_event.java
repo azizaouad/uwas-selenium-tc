@@ -23,6 +23,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class add_event {
@@ -127,26 +128,31 @@ public class add_event {
     }
 
 
-    @Then("title of event as {string} event in location as {string} at date as {string} is created")
+    @Then("title of event as {string} event in location of event as {string} at the date of event as {string} is created")
     public void title_of_event_event_in_location_at_date_is_created(String title_of_event, String location_of_event, String date_of_event) {
         try {
-            AtomicBoolean found = new AtomicBoolean(false);
-            List<WebElement> eventNames = driver.findElements(By.className("eventDetails__name"));
-            List<WebElement> eventLocation = driver.findElements(By.className("eventDetails__location"));
-            List<WebElement> eventDate = driver.findElements(By.className("eventDetails__footer-date"));
-            List<WebElement> eventStatus = driver.findElements(By.className("eventDetails__status"));
+            Thread.sleep(5000);
+            boolean found = false;
+            List<WebElement> eventNames = driver.findElements(By.className("eventDetails__bottom-name"));
+            List<WebElement> eventLocation = driver.findElements(By.className("eventDetails__bottom-location-text"));
+            List<WebElement> eventDate = driver.findElements(By.className("eventDetails__bottom-date-text"));
+            List<WebElement> eventStatus = driver.findElements(By.className("ant-tag-gold"));
+
 
             for (int i = 0; i < eventNames.size(); i++) {
-                boolean name = eventNames.get(i).getText().equals(title_of_event);
-                boolean location = eventLocation.get(i).getText().equals(location_of_event);
+                String name_string =eventNames.get(i).getText();
+                String location_string = eventLocation.get(i).getText();
+                boolean name = name_string.toUpperCase().equals(title_of_event.toUpperCase());
+                boolean location = location_string.toUpperCase().equals(location_of_event.toUpperCase());
                 boolean date = eventDate.get(i).getText().equals(date_of_event);
                 boolean status = eventStatus.get(i).getText().equals("In progress");
-                if ((name) && (location) && (date) && (status)) {
-                    found.set(true);
+                if ((name) && (location) && (date ) && (status)) {
+                    found = true;
                     break;
                 }
             }
-            Assert.assertTrue(found.get());
+            System.out.println(found);
+            Assert.assertTrue(found);
             Thread.sleep(2000);
             driver.quit();
 
@@ -176,16 +182,18 @@ public class add_event {
     public void title_of_event_in_location_of_event_is_created_with_the_date_added(String title_of_event, String location_of_event) {
         try {
             boolean found = false;
-            List<WebElement> eventNames = driver.findElements(By.className("eventDetails__name"));
-            List<WebElement> eventLocation = driver.findElements(By.className("eventDetails__location"));
-            List<WebElement> eventDate = driver.findElements(By.className("eventDetails__footer-date"));
-            List<WebElement> eventStatus = driver.findElements(By.className("eventDetails__status"));
+            List<WebElement> eventNames = driver.findElements(By.className("eventDetails__bottom-name"));
+            List<WebElement> eventLocation = driver.findElements(By.className("eventDetails__bottom-location-text"));
+            List<WebElement> eventDate = driver.findElements(By.className("eventDetails__bottom-date-text"));
+            List<WebElement> eventStatus = driver.findElements(By.className("ant-tag"));
             LocalDate localDate = LocalDate.now();
             System.out.println("the date of today : " + localDate.toString());
 
             for (int i = 0; i < eventNames.size(); i++) {
-                boolean name = eventNames.get(i).getText().equals(title_of_event);
-                boolean location = eventLocation.get(i).getText().equals(location_of_event);
+                String name_string = eventNames.get(i).getText();
+                String location_string = eventLocation.get(i).getText();
+                boolean name = name_string.toUpperCase().equals(title_of_event.toUpperCase());
+                boolean location = location_string.toUpperCase().equals(location_of_event.toUpperCase());
                 boolean date = eventDate.get(i).getText().equals(localDate.toString());
                 boolean status = eventStatus.get(i).getText().equals("In progress");
                 if ((name) && (location) && (date) && (status)) {
@@ -232,7 +240,7 @@ public class add_event {
         try {
             Thread.sleep(3000);
             WebElement source = driver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[2]/form/div[5]/div/div[2]/div/div/span/div[1]/span/input"));
-            source.sendKeys("C://Users/DELL/Desktop/paiement.docx");
+            source.sendKeys("C://Users/Lenovo/Desktop/Compte photographe.pptx");
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

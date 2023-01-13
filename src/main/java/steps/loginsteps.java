@@ -53,8 +53,15 @@ public class loginsteps {
     public void user_should_navigate_to_home_page() {
         try {
 
-            Thread.sleep(5000);
-            Assert.assertTrue(driver.findElement(By.cssSelector("#root > div > div > header > div.header__logo-wrapper > span > div")).isDisplayed());
+            Thread.sleep(10000);
+            String Current_url = driver.getCurrentUrl() ;
+            boolean login = false ;
+            if (Current_url.contentEquals("https://recette.uwas.fr/login")){
+                login = false ;}
+            else {
+                login = true;
+            }
+            Assert.assertTrue(login);
             Thread.sleep(2000);
             driver.quit();
             }

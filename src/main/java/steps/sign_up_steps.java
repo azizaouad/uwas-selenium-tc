@@ -117,7 +117,7 @@ public class sign_up_steps {
             Thread.sleep(2000);
             driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div/div/form/div[6]/div/div/div/div/button/span")).click();
             Thread.sleep(3000);
-            Assert.assertTrue(driver.findElement(By.cssSelector("#root > div > div > header > div.header__logo-wrapper > span > div")).isDisplayed());
+            Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"root\"]/div/main/section[2]/main/div[1]/div[2]/div/div[1]/h1")).isDisplayed());
             Thread.sleep(2000);
             driver.quit();
 

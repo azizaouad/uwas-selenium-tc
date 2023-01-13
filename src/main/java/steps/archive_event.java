@@ -37,7 +37,7 @@ public class archive_event {
             Thread.sleep(7000);
             driver.findElement(By.xpath("/html/body/div[1]/div/main/section[1]/div/div[1]/h1/button/span")).click();
             Thread.sleep(3000);
-            driver.findElement(By.id("name")).sendKeys("first day of work 2023");
+            driver.findElement(By.id("name")).sendKeys("First day of work");
             Thread.sleep(3000);
             driver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[3]/button[2]/span")).click();
             Thread.sleep(8000);
@@ -48,7 +48,7 @@ public class archive_event {
 
     }
 
-    @When("photographer click on the three buttouns of the event he wants to archive")
+    @When("photographer click on the three buttouns")
     public void photographer_click_on_the_three_buttouns_of_the_event_he_wants_to_archive (){
 
         driver.findElement(By.className("ant-btn-icon-only")).click();
@@ -64,15 +64,12 @@ public class archive_event {
 //            action.moveToElement(ele).build().perform();
             Thread.sleep(5000);
             //driver.findElement(By.xpath("/html/body/div[1]/div/main/section[2]/main/div[1]/div[2]/div/div/div[7]/div[2]/div[1]/button[2]/span/svg")).click();
-            WebElement more= driver.findElement(By.xpath("/html/body/div[1]/div/main/section[2]/main/div[1]/div[2]/div/div/div[2]/div[2]/div[1]/button[2]"));
-            more.click();
-            driver.findElement(By.xpath("/html/body/div[3]/div/div/ul/li[3]/span[2]")).click();
-            Thread.sleep(6000);
-            driver.findElement(By.xpath("/html/body/div[4]/div/div[2]/div/div[2]/div/div/div[2]/button[2]")).click();
-            Thread.sleep(5000);
-
-
-
+           driver.findElement(By.xpath("/html/body/div[1]/div/main/section[2]/main/div[1]/div[2]/div/div/div[1]/div[2]/div/div/div/div/div[1]/div[2]/div/div/button[2]/span/svg")).click();
+           Thread.sleep(2000);
+           driver.findElement(By.xpath("/html/body/div[3]/div/div/ul/li[3]/span[2]")).click();
+           Thread.sleep(2000);
+           driver.findElement(By.xpath("/html/body/div[5]/div/div[2]/div/div[2]/div/div/div[2]/button[2]/span")).click();
+           Thread.sleep(2000);
 
 
 
@@ -85,15 +82,15 @@ public class archive_event {
     @Then("the event is archived")
     public void the_event_is_archived () {
         boolean found = false;
-        List<WebElement> eventNames = driver.findElements(By.className("eventDetails__name"));
-        List<WebElement> eventLocation = driver.findElements(By.className("eventDetails__location"));
+        List<WebElement> eventNames = driver.findElements(By.className("eventDetails__bottom-name"));
+        List<WebElement> eventLocation = driver.findElements(By.className("eventDetails__bottom-location-text"));
         List<WebElement> eventDate = driver.findElements(By.className("eventDetails__footer-date"));
-        List<WebElement> eventStatus = driver.findElements(By.className("eventDetails__status"));
+        List<WebElement> eventStatus = driver.findElements(By.className("ant-tag"));
         LocalDate localDate = LocalDate.now();
         System.out.println("the date of today : " + localDate.toString());
 
         for (int i = 0; i < eventNames.size(); i++) {
-            boolean name = eventNames.get(i).getText().equals("first day of work 2023");
+            boolean name = eventNames.get(i).getText().equals("First day of work");
 
             boolean date = eventDate.get(i).getText().equals(localDate.toString());
 
@@ -105,6 +102,32 @@ public class archive_event {
         System.out.println(found);
         Assert.assertTrue(found);
         driver.quit();
+
+    }
+
+    @When("photographer should go to the archive event")
+    public void photographer_should_go_to_the_archive_event (){
+        try {
+            Thread.sleep(3000);
+            driver.findElement(By.xpath("/html/body/div[1]/div/main/section[1]/div/div[1]/h1/a/div/div[1]")).click();
+            Thread.sleep(3000);
+            driver.findElement(By.xpath("/html/body/div[3]/div/div/ul/li/span[1]")).click();
+
+
+        }catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+
+
+    }
+    @And("Choose restore")
+    public void Choose_restore () {
+
+    }
+    @Then("the event is restored")
+    public void the_event_is_restored () {
+
 
     }
 }

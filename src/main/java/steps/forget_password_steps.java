@@ -19,10 +19,11 @@ import java.util.Set;
 public class forget_password_steps {
     WebDriver driver;
 
+
     @Given("user open the website and click on forget password")
     public void user_open_the_website_and_click_on_forget_password() {
         try {
-            Thread.sleep(10000);
+
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
             driver.manage().window().maximize();
@@ -65,7 +66,7 @@ public class forget_password_steps {
             driver.switchTo().newWindow(WindowType.TAB);
             driver.navigate().to("https://www.google.com/search?q=gmail&oq=gmail&aqs=chrome..69i57j0i131i433j0i131i433i512l5j69i60.2112j0j7&sourceid=chrome&ie=UTF-8");
             Thread.sleep(2000);
-            driver.findElement(By.xpath("/html/body/div[7]/div/div[11]/div[1]/div[2]/div[2]/div/div/div[1]/div/div/div[1]/div/a/h3")).click();
+            driver.findElement(By.xpath("//*[@id=\"rso\"]/div[1]/div/div/div/div[1]/div/a/h3")).click();
             Thread.sleep(3000);
             driver.findElement(By.xpath("/html/body/header/div/div/div/a[2]")).click();
             driver.findElement(By.id("identifierId")).sendKeys("a.aouadi@coral-io.fr");
@@ -114,7 +115,7 @@ public class forget_password_steps {
     @Then("the password is changed user can login with new password as {string} and email as {string}")
     public void the_password_is_changed_user_can_login_with_new_password_and_email(String password, String email) {
         try {
-            Thread.sleep(5000);
+            Thread.sleep(10000);
             driver.findElement(By.id("normal_login_email")).sendKeys(email);
             Thread.sleep(3000);
             driver.findElement(By.id("normal_login_password")).sendKeys(password);

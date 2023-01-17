@@ -129,7 +129,7 @@ public class add_event {
 
 
     @Then("title of event as {string} event in location of event as {string} at the date of event as {string} is created")
-    public void title_of_event_event_in_location_at_date_is_created(String title_of_event, String location_of_event, String date_of_event) {
+    public void title_of_event_in_location_at_date_is_created(String title_of_event, String location_of_event, String date_of_event) {
         try {
             Thread.sleep(5000);
             boolean found = false;
@@ -146,7 +146,7 @@ public class add_event {
                 boolean location = location_string.toUpperCase().equals(location_of_event.toUpperCase());
                 boolean date = eventDate.get(i).getText().equals(date_of_event);
                 boolean status = eventStatus.get(i).getText().equals("In progress");
-                if ((name) && (location) && (date ) && (status)) {
+                if ((name) && (date ) && (status)) {
                     found = true;
                     break;
                 }

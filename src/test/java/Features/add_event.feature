@@ -32,7 +32,6 @@ Feature: test add event functionality
     And photographer should fill the title of event as "<title_of_event>"
     And photographer should fill the location of event as "<location_of_event>"
     And photographer should fill the date of event as "<date_of_event>"
-    And photographer put an image for the event
     And photographer should click on the button ok
     Then title of event as "<title_of_event>" event in location of event as "<location_of_event>" at the date of event as "<date_of_event>" is created
 

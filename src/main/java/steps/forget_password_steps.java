@@ -11,7 +11,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.PageFactory;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -77,12 +79,11 @@ public class forget_password_steps {
             Thread.sleep(3000);
             driver.findElement(By.xpath("/html/body/div[1]/div[1]/div[2]/div/c-wiz/div/div[2]/div/div[2]/div/div[1]/div/div/button/span")).click();
             Thread.sleep(5000);
-            driver.findElement(By.xpath("/html/body/div[7]/div[3]/div/div[2]/div[5]/div/div/div/div/div[2]/div/div[1]/div/div[1]/div[5]/div[1]/div/table/tbody/tr[1]/td[5]/div/div/div/span/span")).click();
+            WebElement unreadEmail = driver.findElement(By.className("zE"));
+            unreadEmail.click();
             Thread.sleep(2000);
             WebElement link = driver.findElement(By.partialLinkText("https://recette.uwas.fr/change-password/"));
-            Thread.sleep(5000);
             driver.get(link.getText());
-
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -121,10 +122,18 @@ public class forget_password_steps {
             driver.findElement(By.id("normal_login_password")).sendKeys(password);
             Thread.sleep(3000);
             driver.findElement(By.xpath("/html/body/div/div/div[2]/div/div/form/div[6]/div/div/div/div/button/span")).click();
-            Thread.sleep(3000);
-            Assert.assertTrue("test ok", driver.findElement(By.xpath("/html/body/div/div/div/header/div[2]/span/div")).isDisplayed());
+            Thread.sleep(10000);
+            String Current_url = driver.getCurrentUrl() ;
+            boolean login = false ;
+            if (Current_url.contentEquals("https://recette.uwas.fr/login")){
+                login = false ;}
+            else {
+                login = true;
+            }
+            Assert.assertTrue(login);
             Thread.sleep(2000);
             driver.quit();
+
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);

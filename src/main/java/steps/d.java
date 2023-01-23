@@ -6,6 +6,7 @@ import org.openqa.selenium.WindowType;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
+import java.util.ArrayList;
 
 //package steps;
 //
@@ -24,12 +25,12 @@ import java.time.Duration;
 //import java.util.logging.Logger;
 //
 public class d {
-   public static void main(String[] args) {
-       try {
-           WebDriverManager.chromedriver().setup();
-           WebDriver driver = new ChromeDriver();
-           driver.manage().window().maximize();
-           Thread.sleep(5000);
+    public static void main(String[] args) {
+        try {
+            WebDriverManager.chromedriver().setup();
+            WebDriver driver = new ChromeDriver();
+            driver.manage().window().maximize();
+          /* Thread.sleep(5000);
            driver.switchTo().newWindow(WindowType.TAB);
            driver.navigate().to("https://www.google.com/search?q=gmail&oq=gmail&aqs=chrome..69i57j0i131i433j0i131i433i512l5j69i60.2112j0j7&sourceid=chrome&ie=UTF-8");
            Thread.sleep(2000);
@@ -54,7 +55,7 @@ public class d {
            driver.get(link.getText());
            /*driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
            driver.get(link.getText());*/
-       } catch (InterruptedException e) {
+     /*  } catch (InterruptedException e) {
             throw new RuntimeException(e);
        }
 
@@ -115,7 +116,33 @@ public class d {
 //
 //        }catch (InterruptedException e) {
 //            throw new RuntimeException(e);
+
+
+            Thread.sleep(5000);
+            driver.switchTo().newWindow(WindowType.TAB);
+            driver.navigate().to("https://www.google.com/intl/fr/gmail/about/");
+            Thread.sleep(3000);
+            driver.findElement(By.xpath("/html/body/header/div/div/div/a[2]")).click();
+            driver.findElement(By.id("identifierId")).sendKeys("a.aouadi@coral-io.fr");
+            Thread.sleep(2000);
+            driver.findElement(By.xpath("/html/body/div[1]/div[1]/div[2]/div/c-wiz/div/div[2]/div/div[2]/div/div[1]/div/div/button/span")).click();
+            Thread.sleep(3000);
+            driver.findElement(By.name("Passwd")).sendKeys("Aziz1996@");
+            Thread.sleep(3000);
+            driver.findElement(By.xpath("/html/body/div[1]/div[1]/div[2]/div/c-wiz/div/div[2]/div/div[2]/div/div[1]/div/div/button/span")).click();
+            Thread.sleep(5000);
+            WebElement unreadEmail = driver.findElement(By.className("zE"));
+            unreadEmail.click();
+            Thread.sleep(2000);
+            WebElement link = driver.findElement(By.partialLinkText("https://recette.uwas.fr/change-password/"));
+            Thread.sleep(5000);
+            driver.navigate().to(link.getText());
+
+        }
+     catch(InterruptedException e){
+        throw new RuntimeException(e);
     }
+}
 //
 //
 //

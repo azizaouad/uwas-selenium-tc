@@ -66,9 +66,7 @@ public class forget_password_steps {
         try {
             Thread.sleep(5000);
             driver.switchTo().newWindow(WindowType.TAB);
-            driver.navigate().to("https://www.google.com/search?q=gmail&oq=gmail&aqs=chrome..69i57j0i131i433j0i131i433i512l5j69i60.2112j0j7&sourceid=chrome&ie=UTF-8");
-            Thread.sleep(2000);
-            driver.findElement(By.xpath("//*[@id=\"rso\"]/div[1]/div/div/div/div[1]/div/a/h3")).click();
+            driver.navigate().to("https://www.google.com/intl/fr/gmail/about/");
             Thread.sleep(3000);
             driver.findElement(By.xpath("/html/body/header/div/div/div/a[2]")).click();
             driver.findElement(By.id("identifierId")).sendKeys("a.aouadi@coral-io.fr");

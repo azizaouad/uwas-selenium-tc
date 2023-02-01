@@ -34,13 +34,13 @@ public class archive_event {
             Thread.sleep(3000);
             driver.findElement(By.id("normal_login_password")).sendKeys(password);
             Thread.sleep(3000);
-            driver.findElement(By.xpath("/html/body/div/div/div[2]/div/div/form/div[6]/div/div/div/div/button/span")).click();
+            driver.findElement(By.id("testLogin")).click();
             Thread.sleep(7000);
-            driver.findElement(By.xpath("/html/body/div[1]/div/main/section[1]/div/div[1]/h1/button/span")).click();
+            driver.findElement(By.id("testAddEvent")).click();
             Thread.sleep(3000);
             driver.findElement(By.id("name")).sendKeys(title);
             Thread.sleep(3000);
-            driver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[3]/button[2]/span")).click();
+            driver.findElement(By.id("test123")).click();
             Thread.sleep(8000);
     }catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -68,9 +68,9 @@ public class archive_event {
            WebElement points=driver.findElement(By.className("ant-btn-icon-only"));
            points.click();
            Thread.sleep(2000);
-           driver.findElement(By.xpath("/html/body/div[3]/div/div/ul/li[3]/span[2]")).click();
+           driver.findElement(By.id("testArchive")).click();
            Thread.sleep(2000);
-           driver.findElement(By.xpath("/html/body/div[4]/div/div[2]/div/div[2]/div/div/div[2]/button[2]")).click();
+           driver.findElement(By.id("testOKArchive")).click();
            Thread.sleep(2000);
 
 
@@ -221,7 +221,7 @@ public class archive_event {
             Thread.sleep(3000);
             driver.findElement(By.id("normal_login_password")).sendKeys(password);
             Thread.sleep(3000);
-            driver.findElement(By.xpath("/html/body/div/div/div[2]/div/div/form/div[6]/div/div/div/div/button/span")).click();
+            driver.findElement(By.id("testLogin")).click();
             Thread.sleep(5000);
         }catch (InterruptedException e) {
             throw new RuntimeException(e);

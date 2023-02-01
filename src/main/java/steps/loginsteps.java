@@ -41,7 +41,7 @@ public class loginsteps {
             Thread.sleep(2000);
             driver.findElement(By.id("normal_login_password")).sendKeys(password);
             Thread.sleep(2000);
-            driver.findElement(By.xpath("/html/body/div/div/div[2]/div/div/form/div[6]/div/div/div/div/button/span")).click();
+            driver.findElement(By.id("testLogin")).click();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

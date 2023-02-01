@@ -42,7 +42,7 @@ public class add_event {
             Thread.sleep(3000);
             driver.findElement(By.id("normal_login_password")).sendKeys("Aziz1996@");
             Thread.sleep(3000);
-            driver.findElement(By.xpath("/html/body/div/div/div[2]/div/div/form/div[6]/div/div/div/div/button/span")).click();
+            driver.findElement(By.id("testLogin")).click();
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -52,8 +52,8 @@ public class add_event {
     @When("photographer should click on the button of add event")
     public void photographer_should_click_on_the_button_of_add_event() {
         try {
-            Thread.sleep(7000);
-            driver.findElement(By.xpath("/html/body/div[1]/div/main/section[1]/div/div[1]/h1/button/span")).click();
+            Thread.sleep(10000);
+            driver.findElement(By.id("testAddEvent")).click();
 
 
         } catch (InterruptedException e) {
@@ -105,7 +105,7 @@ public class add_event {
     public void photographer_put_an_image_for_the_event() {
         try {
             Thread.sleep(3000);
-            WebElement source = driver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[2]/form/div[5]/div/div[2]/div/div/span/div[1]/span/input"));
+            WebElement source = driver.findElement(By.id("testUploadImg"));
             source.sendKeys("C://Users/Lenovo/Desktop/traditions-noel-europe-1024x683.jpg");
 
 
@@ -120,7 +120,7 @@ public class add_event {
     public void photographer_should_click_on_the_button_ok() {
         try {
             Thread.sleep(3000);
-            driver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[3]/button[2]/span")).click();
+            driver.findElement(By.id("test123")).click();
             Thread.sleep(10000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -239,7 +239,7 @@ public class add_event {
     public void photographer_put_a_file_in_the_image_field_for_the_event() {
         try {
             Thread.sleep(3000);
-            WebElement source = driver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[2]/form/div[5]/div/div[2]/div/div/span/div[1]/span/input"));
+            WebElement source = driver.findElement(By.id("testUploadImg"));
             source.sendKeys("C://Users/Lenovo/Desktop/Compte photographe.pptx");
         } catch (InterruptedException e) {
             throw new RuntimeException(e);

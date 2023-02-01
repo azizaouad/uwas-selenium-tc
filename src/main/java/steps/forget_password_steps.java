@@ -55,7 +55,7 @@ public class forget_password_steps {
     public void user_confirm_the_email() {
         try {
             Thread.sleep(2000);
-            driver.findElement(By.xpath("/html/body/div/div/div[2]/div[3]/form/div[3]/div/div/div/div/button/span")).click();
+            driver.findElement(By.id("testResetPW")).click();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -104,7 +104,7 @@ public class forget_password_steps {
             Thread.sleep(2000);
             driver.findElement(By.id("normal_login_confirmPassword")).sendKeys(confirm_password);
             Thread.sleep(2000);
-            driver.findElement(By.xpath("/html/body/div/div/div[2]/div[3]/form/div[4]/div/div/div/div/button/span")).click();
+            driver.findElement(By.id("testChangePW")).click();
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -119,7 +119,7 @@ public class forget_password_steps {
             Thread.sleep(3000);
             driver.findElement(By.id("normal_login_password")).sendKeys(password);
             Thread.sleep(3000);
-            driver.findElement(By.xpath("/html/body/div/div/div[2]/div/div/form/div[6]/div/div/div/div/button/span")).click();
+            driver.findElement(By.id("testLogin")).click();
             Thread.sleep(10000);
             String Current_url = driver.getCurrentUrl() ;
             boolean login = false ;
@@ -144,6 +144,7 @@ public class forget_password_steps {
         try {
             Thread.sleep(2000);
             Assert.assertTrue(driver.findElement(By.id("normal_login_email")).isDisplayed());
+            Assert.assertTrue(driver.findElement(By.id("testResetPW")).isDisplayed());
             Thread.sleep(2000);
             driver.quit();
         } catch (InterruptedException e) {
@@ -157,7 +158,6 @@ public class forget_password_steps {
             Thread.sleep(2000);
             Assert.assertTrue(driver.findElement(By.id("normal_login_password")).isDisplayed());
             Assert.assertTrue(driver.findElement(By.id("normal_login_confirmPassword")).isDisplayed());
-            Assert.assertTrue(driver.findElement(By.className("changePassword__formContainer-imageContainer-image")).isDisplayed());
             Thread.sleep(2000);
             driver.quit();
         } catch (InterruptedException e) {

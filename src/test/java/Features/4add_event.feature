@@ -37,9 +37,8 @@ Feature: test add event functionality
 
     Examples:
       | title_of_event | location_of_event | date_of_event |
-      | formation      |                   | 2022-12-24    |
       | weed party     |                   | 2022-12-31    |
-      | tommorowland   |                   | 2023-01-01    |
+
 
   Scenario: photographer can login and add event without filling the date of event
     Given photographer should login

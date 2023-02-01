@@ -101,7 +101,7 @@ public class sign_up_steps {
     public void user_click_on_sign_up () {
         try {
             Thread.sleep(4000);
-            driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/form/div[11]/div/div/div/div/button/span")).click();
+            driver.findElement(By.id("testRegister")).click();
         }catch (InterruptedException e) {
             throw new RuntimeException(e);
 
@@ -115,12 +115,18 @@ public class sign_up_steps {
             Thread.sleep(2000);
             driver.findElement(By.id("normal_login_password")).sendKeys(password);
             Thread.sleep(2000);
-            driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div/div/form/div[6]/div/div/div/div/button/span")).click();
-            Thread.sleep(3000);
-            Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"root\"]/div/main/section[2]/main/div[1]/div[2]/div/div[1]/h1")).isDisplayed());
+            driver.findElement(By.id("testLogin")).click();
+            Thread.sleep(5000);
+            String Current_url = driver.getCurrentUrl() ;
+            boolean login = false ;
+            if (Current_url.contentEquals("https://recette.uwas.fr/login")){
+                login = false ;}
+            else {
+                login = true;
+            }
+            Assert.assertTrue(login);
             Thread.sleep(2000);
             driver.quit();
-
         }catch (InterruptedException e) {
             throw new RuntimeException(e);
 

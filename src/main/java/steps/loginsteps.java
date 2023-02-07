@@ -5,22 +5,30 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.checkerframework.checker.units.qual.C;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import shared.Controller;
 
 public class loginsteps {
     WebDriver driver ;
+    Controller controller;
+
+    public loginsteps(Controller controller) {
+        this.controller = controller;
+        this.controller.setupController();
+        this.driver = this.controller.getDriver();
+    }
 
     @Given("user should navigate to the website")
     public void user_should_navigate_to_the_website() {
         try {
-
             WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
-            driver.manage().window().maximize();
-            driver.get("https://recette.uwas.fr/login");
+            /*this.driver = new ChromeDriver();
+            this.driver.manage().window().maximize();*/
+            this.driver.get("https://recette.uwas.fr/login");
             Thread.sleep(10000);
 
 
@@ -37,11 +45,11 @@ public class loginsteps {
     public void user_write_email_and_password_and_click_on_login(String email , String password) {
         try {
 
-            driver.findElement(By.id("normal_login_email")).sendKeys(email);
+            this.driver.findElement(By.id("normal_login_email")).sendKeys(email);
             Thread.sleep(2000);
-            driver.findElement(By.id("normal_login_password")).sendKeys(password);
+            this.driver.findElement(By.id("normal_login_password")).sendKeys(password);
             Thread.sleep(2000);
-            driver.findElement(By.id("testLogin")).click();
+            this.driver.findElement(By.id("testLogin")).click();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -54,7 +62,7 @@ public class loginsteps {
         try {
 
             Thread.sleep(10000);
-            String Current_url = driver.getCurrentUrl() ;
+            String Current_url = this.driver.getCurrentUrl() ;
             boolean login = false ;
             if (Current_url.contentEquals("https://recette.uwas.fr/login")){
                 login = false ;}
@@ -63,7 +71,7 @@ public class loginsteps {
             }
             Assert.assertTrue(login);
             Thread.sleep(2000);
-            driver.quit();
+            this.driver.quit();
             }
 
 
@@ -77,9 +85,9 @@ public class loginsteps {
     public void error_message_should_appear() {
         try {
             Thread.sleep(2000);
-            Assert.assertTrue(driver.findElement(By.id("normal_login_email")).isDisplayed());
+            Assert.assertTrue(this.driver.findElement(By.id("normal_login_email")).isDisplayed());
             Thread.sleep(2000);
-            driver.quit();
+            this.driver.quit();
 
 
         }catch (InterruptedException e) {

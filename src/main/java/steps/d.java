@@ -1,14 +1,21 @@
 package steps;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.WindowType;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.time.Duration;
+import javax.swing.*;
+import java.security.Key;
+import java.text.DateFormatSymbols;
+import java.text.SimpleDateFormat;
+import java.time.*;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
+import static java.time.temporal.TemporalAdjusters.firstDayOfYear;
+import static java.time.temporal.TemporalAdjusters.lastDayOfYear;
 
 //package steps;
 //
@@ -29,16 +36,103 @@ import java.util.ArrayList;
 public class d {
     public static void main(String[] args) {
         try {
-            WebDriverManager.chromedriver().setup();
-            WebDriver driver = new ChromeDriver();
-            driver.manage().window().maximize();
-            driver.get("https://recette.uwas.fr/login");
-            Thread.sleep(20000);
-            driver.findElement(By.linkText("Sign up now!")).click();
-            System.out.println("1");
-            Thread.sleep(5000);
-            driver.findElement(By.id("test123")).click();
-            System.out.println("2");
+//           WebDriverManager.chromedriver().setup();
+//            WebDriver driver = new ChromeDriver();
+//           driver.manage().window().maximize();
+//            driver.get("https://recette.uwas.fr/login");
+//            Thread.sleep(20000);
+//            String email = "qa@gmail.com";
+//            String password = "Aziz1996@";
+//            driver.findElement(By.id("normal_login_email")).sendKeys(email);
+//            Thread.sleep(2000);
+//            driver.findElement(By.id("normal_login_password")).sendKeys(password);
+//            Thread.sleep(2000);
+//            driver.findElement(By.id("testLogin")).click();
+//            LocalDate startDate = LocalDate.of(2015, 2, 20);
+//           LocalDate endDate = LocalDate.of(2017, 1, 15);
+
+
+
+
+
+//            Thread.sleep(1000);
+//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//
+//            String input = "2022-06-30";
+//            LocalDate date = LocalDate.parse(input);
+//            System.out.println(date.plusDays(2));
+//            System.out.println(date.minusDays(2));
+//            LocalDate localDate = LocalDate.now();
+//            String input = localDate.toString();
+//            String format = "yyyy-MM-dd";
+//
+//            SimpleDateFormat df = new SimpleDateFormat(format);
+//            Date date = df.parse(input);
+//
+//            Calendar cal = Calendar.getInstance();
+//            cal.setTime(date);
+//            int week = cal.get(Calendar.WEEK_OF_YEAR);
+//            System.out.println(week);
+//
+//            String[] days = new DateFormatSymbols().getWeekdays();
+//            if (localDate.toString().contentEquals("lundi")){
+//                System.out.println(1);
+//            }
+//            else {
+//                System.out.println(2);
+//            }
+//            for (int i = 0; i < days.length; i++) {
+//                String weekday = days[i];
+//                System.out.println(weekday);
+//            }
+//
+//
+//
+//            Calendar c = Calendar.getInstance();
+//            c.setTime(new Date());
+//            System.out.println(c.get(Calendar.DAY_OF_MONTH));
+//            System.out.println(c.get(Calendar.DAY_OF_WEEK));
+//            int mondayNo = c.get(Calendar.DAY_OF_MONTH)-c.get(Calendar.DAY_OF_WEEK)+2;
+//            c.set(Calendar.DAY_OF_MONTH,mondayNo);
+//            System.out.println("Date "+c.getFirstDayOfWeek());
+//            int sundayNo = mondayNo+6;
+//            System.out.println(sundayNo);
+//            SimpleDateFormat f = new SimpleDateFormat("EEEE");
+//            String dateset = "2023-02-12";
+//            String dayname = f.format(new Date());
+//            System.out.println(dayname);
+
+//            Date startInterval = sdf.parse("2022-06-01");
+//            Date endInterval = sdf.parse("2022-06-30");
+//            if ((date.after(startInterval)) && (date.before(endInterval))) {
+//                System.out.println("Date is  in the interval");
+//            } else {
+//                System.out.println("Date is not in the interval");
+//            }
+//            System.out.println("startdate : "+ startInterval);
+//            System.out.println("enddate : "+ endInterval);
+//            System.out.println("thedate : "+ date);
+//            String ch1  = "https://recette.uwas.fr/register?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTBmZWZjNzRkYjc5YWU3Nzk1MThiNiIsImlhdCI6MTY3NTY5MDc5MiwiZXhwIjoxNjc2Mjk1NTkyfQ.qcgq6My1wXpOgcbJDitsyV8JWUXlFpLCHHtH0QPd11g";
+//            String ch2  = "https://recette.uwas.fr/register?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTBmZWZjNzRkYjc5YWU3Nzk1MThiNiIsImlhdCI6MTY3NTY5MDc0NywiZXhwIjoxNjc2Mjk1NTQ3fQ.rWRjntZfAsuj0xXlxMn19Kkgo-9BzhLWUYyBQZCGAIk";
+//            if (ch2.contentEquals(ch2)){
+//                boolean find ;
+//                find = true ;
+//                System.out.println(find);
+//            }
+
+//            Thread.sleep(10000);
+//            driver.findElement(By.className("ant-collapse-header")).click();
+//            Thread.sleep(5000);
+//            driver.findElement(By.id("eventDateFilter")).sendKeys("2023-01-01");
+//            Thread.sleep(5000);
+//            driver.findElement(By.xpath("/html/body/div[1]/div/main/section[2]/main/div[1]/div[1]/div/div/div[2]/div/form/div/div[3]/div/div[3]/input")).sendKeys("2023-02-01");
+//            Thread.sleep(5000);
+//            driver.findElement(By.xpath("/html/body/div[1]/div/main/section[2]/main/div[1]/div[1]/div/div/div[2]/div/form/div/div[3]/div/div[3]/input")).sendKeys(Keys.ENTER);
+//            Thread.sleep(5000);
+//            driver.findElement(By.xpath("/html/body/div[1]/div/main/section[2]/main/div[1]/div[1]/div/div/div[2]/div/form/div/div[5]/button")).click();
+//            Thread.sleep(8000);
+
+
 
 
           /* Thread.sleep(5000);
@@ -149,9 +243,49 @@ public class d {
 //            Thread.sleep(5000);
 //            driver.navigate().to(link.getText());
 
+           // driver.findElement(By.xpath("/html/body/div[1]/div/main/section[2]/main/div[1]/div[2]/div/div/div[1]/div[2]/div/div/div/div/div[1]/div[2]/div/div/button[2]")).click();
+//
+//
+//            LocalDate date = LocalDate.now();
+//            System.out.println("Date = " + date);
+//            LocalDate start = date;
+//            while (start.getDayOfWeek() != DayOfWeek.MONDAY) {
+//                start = start.minusDays(1);
+//            }
+//            System.out.println("Start of the Week = " + start);
+//            LocalDate end = date;
+//            while (end.getDayOfWeek() != DayOfWeek.SUNDAY) {
+//                end = end.plusDays(1);
+//            }
+//            System.out.println("End of the Week = " + end);
+//
+//            Date d=new Date();
+//            int numofthemonth = d.getMonth()+1;
+//            System.out.println("Month of the year is  : "+numofthemonth);
+//            Month currentMonth = date.getMonth();
+//            System.out.println("Current month: "+currentMonth);
+//            LocalDate today = LocalDate.now();
+//            System.out.println("First day: " + today.withDayOfMonth(1));
+//            System.out.println("Last day: " + today.withDayOfMonth(today.lengthOfMonth()));
+//            LocalDate firstday = LocalDate.parse(today.withDayOfMonth(1).toString());
+//            LocalDate lastday = LocalDate.parse(today.withDayOfMonth(today.lengthOfMonth()).toString());
+//            if ( today.isBefore(firstday.minusDays(1))||today.isAfter(lastday.plusDays(1))){
+//                System.out.println("not");
+//
+//            }
+//            else {
+//                System.out.println("on the month");
+//
+//            }
+            LocalDate today = LocalDate.now();
+            LocalDate firstDay = today.with(firstDayOfYear());
+            LocalDate lastDay = today.with(lastDayOfYear());
+            System.out.println(today);
+            System.out.println(firstDay);
+            System.out.println(lastDay);
+        } catch (Exception e) {
+            System.out.println("Erreur format");
         }
-     catch(InterruptedException e){
-        throw new RuntimeException(e);
     }
 }
 //
@@ -159,7 +293,7 @@ public class d {
 //
 //
 //
-}
+
 
 
 

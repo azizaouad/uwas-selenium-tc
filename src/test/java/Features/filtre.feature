@@ -3,8 +3,8 @@ Feature: filter test
   Scenario: photographer should choose two date the first is the start date and the second is the finish date
     Given  user should navigate to the website
     When user write email as "azizaouadi12@gmail.com" and password as "Aziz1996@" and click on login
-    And user click on all filters and should choose the start date as "2023-01-31" and the finish date as "2023-02-21"
-    Then the user must find the events in the period from start date as "2023-01-31" to finish date as "2023-02-21"
+    And user click on all filters and should choose the start date as "2023-02-10" and the finish date as "2023-02-16"
+    Then the user must find the events in the period from start date as "2023-02-10" to finish date as "2023-02-16"
 
   Scenario: photographer can filter by the name of event
     Given  user should navigate to the website
@@ -51,8 +51,8 @@ Feature: filter test
   Scenario: photographer can filter the events according to their names, locations, status and dates simultaneously
     Given  user should navigate to the website
     When user write email as "azizaouadi12@gmail.com" and password as "Aziz1996@" and click on login
-    And user click on all filters and fill the name of event as "koura" , the location of event "tunis", and the status of event as "In progress" and the date of event
-    Then The user must find the events whoose name of event as "koura" , location of event as "tunis", status of event as "In progress" and the date of event as
+    And user click on all filters and fill the name of event as "koura" , the location of event as "tunis", and the status of event as "In progress" and the date of event today
+    Then The user must find the events whoose name of event as "koura" , location of event as "tunis", status of event as "In progress" and the date of event today
 
 
 

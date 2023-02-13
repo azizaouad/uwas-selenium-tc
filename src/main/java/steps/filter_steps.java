@@ -65,7 +65,7 @@ public class filter_steps {
             List<WebElement> eventDate = this.driver.findElements(By.className("eventDetails__bottom-date-text"));
             boolean find = false;
             int no_event = eventNames.size();
-            System.out.println("number of filtred events" + no_event);
+            System.out.println("number of filtred events " + no_event);
             if (no_event==0) {
                 find = true;
                 System.out.println("no event in this period");
@@ -77,7 +77,7 @@ public class filter_steps {
                     System.out.println(names);
                     System.out.println(date);
                     if (date.isBefore(startInterval.minusDays(1)) || date.isAfter(endInterval.plusDays(1))) {
-                        System.out.println("Date is not in the interval");
+                        System.out.println("Date is not in the interval ==> test fail");
                         find = false;
                         break;
                     }else {
@@ -120,7 +120,7 @@ public class filter_steps {
             List<WebElement> eventNames = this.driver.findElements(By.className("eventDetails__bottom-name"));
             boolean find = false;
             int no_event = eventNames.size();
-            System.out.println("number of filtred events" + no_event);
+            System.out.println("number of filtred events " + no_event);
             if (no_event==0) {
                 find = true;
                 System.out.println("no event with this name");
@@ -133,6 +133,7 @@ public class filter_steps {
                     if (find) {
                         find = true ;
                     } else {
+                        System.out.println("test fail");
                         find = false;
                         break;
 
@@ -172,7 +173,7 @@ public class filter_steps {
             List<WebElement> eventlocation = this.driver.findElements(By.className("eventDetails__bottom-location-text"));
             boolean find = false;
             int no_event = eventNames.size();
-            System.out.println("number of filtred events" + no_event);
+            System.out.println("number of filtred events " + no_event);
             if (no_event==0) {
                 find = true;
                 System.out.println("no event with this location");
@@ -187,6 +188,7 @@ public class filter_steps {
                     if (find) {
                         find = true;
                     } else {
+                        System.out.println("test fail");
                         find = false;
                         break;
 
@@ -225,7 +227,7 @@ public class filter_steps {
             List<WebElement> eventstatus = this.driver.findElements(By.className("ant-tag-gold"));
             boolean find = false;
             int no_event = eventNames.size();
-            System.out.println("number of filtred events" + no_event);
+            System.out.println("number of filtred events " + no_event);
             if (no_event==0) {
                 find = true;
                 System.out.println("no event with this status");
@@ -240,12 +242,12 @@ public class filter_steps {
                     if (find) {
                         find = true ;
                     } else {
+                        System.out.println("test fail");
                         find = false;
                         break;
                     }
                 }
             }
-
             Assert.assertTrue(find);
             Thread.sleep(3000);
             this.driver.quit();
@@ -284,7 +286,7 @@ public class filter_steps {
             LocalDate localDate = LocalDate.now();
             boolean find = false;
             int no_event = eventNames.size();
-            System.out.println("number of filtred events" + no_event);
+            System.out.println("number of filtred events " + no_event);
             if (no_event==0) {
                 find = true;
                 System.out.println("no event today");
@@ -299,6 +301,7 @@ public class filter_steps {
                     if (find) {
                         find = true ;
                     } else {
+                        System.out.println("test fail");
                         find = false;
                         break;
                     }
@@ -356,7 +359,7 @@ public class filter_steps {
 
             boolean find = false;
             int no_event = eventNames.size();
-            System.out.println("number of filtred events" + no_event);
+            System.out.println("number of filtred events " + no_event);
             if (no_event==0) {
                 find = true;
                 System.out.println("no event this week");
@@ -370,6 +373,7 @@ public class filter_steps {
                     LocalDate today = LocalDate.parse(dateevent);
 
                     if ((today.isBefore(startweek.minusDays(1))) || (today.isAfter(endweek.plusDays(1)))) {
+                        System.out.println("test fail");
                         find = false;
                         break;
                     }else {
@@ -417,7 +421,7 @@ public class filter_steps {
             LocalDate date = LocalDate.now();
             boolean find = false;
             int no_event = eventNames.size();
-            System.out.println("number of filtred events" + no_event);
+            System.out.println("number of filtred events " + no_event);
             if (no_event==0) {
                 find = true;
                 System.out.println("no event this month");
@@ -432,6 +436,7 @@ public class filter_steps {
                     LocalDate firstday = LocalDate.parse(today.withDayOfMonth(1).toString());
                     LocalDate lastday = LocalDate.parse(today.withDayOfMonth(today.lengthOfMonth()).toString());
                     if (today.isBefore(firstday.minusDays(1)) || today.isAfter(lastday.plusDays(1))) {
+                        System.out.println("test fail");
                         find = false;
                         break;
                     }
@@ -481,7 +486,7 @@ public class filter_steps {
             LocalDate date = LocalDate.now();
             boolean find = false;
             int no_event = eventNames.size();
-            System.out.println("number of filtred events" + no_event);
+            System.out.println("number of filtred events " + no_event);
             if (no_event==0) {
                 find = true;
                 System.out.println("no event this year");
@@ -496,6 +501,7 @@ public class filter_steps {
                     LocalDate firstDay = today.with(firstDayOfYear());
                     LocalDate lastDay = today.with(lastDayOfYear());
                     if (date.isBefore(firstDay.minusDays(1)) || today.isAfter(lastDay.plusDays(1))) {
+                        System.out.println("test fail");
                         find = false;
                         break;
                     }
@@ -547,7 +553,7 @@ public class filter_steps {
             LocalDate date = LocalDate.now();
             boolean find = false;
             int no_event = eventNames.size();
-            System.out.println("number of filtred events" + no_event);
+            System.out.println("number of filtred events " + no_event);
             if (no_event==0) {
                 find = true;
                 System.out.println("no event with this filter");
@@ -570,6 +576,7 @@ public class filter_steps {
                         System.out.println("filter is okay");
                         find = true ;
                     } else {
+                        System.out.println("test fail");
                         find = false;
                         break;
                     }
@@ -583,5 +590,98 @@ public class filter_steps {
 
         }
     }
+    @And("user click on all filters and should click on viewed events")
+    public void user_click_on_all_filters_and_should_click_on_viewed_events (){
+        try {
+            Thread.sleep(10000);
+            this.driver.findElement(By.className("ant-collapse-item")).click();
+            Thread.sleep(5000);
+            this.driver.findElement(By.id("eventFilterViewed")).click();
+            Thread.sleep(3000);
+            List<WebElement> evnetViewed = this.driver.findElements(By.className("viewed"));
+            System.out.println("the events viewed " + evnetViewed.size());
+            this.driver.findElement(By.id("eventFilterEventsBTN")).click();
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Then("the user must find the events he has consulted")
+    public void the_user_must_find_the_events_he_has_consulted (){
+        try {
+            Thread.sleep(5000);
+            List<WebElement> eventNames = this.driver.findElements(By.className("eventDetails__bottom-name"));
+            List<WebElement> evnetViewed = this.driver.findElements(By.className("viewed"));
+            System.out.println("the events viewed " + evnetViewed.size());
+            boolean find = false;
+            int no_event = eventNames.size();
+            System.out.println("number of filtred events " + no_event);
+            if (no_event==0) {
+                find = true;
+                System.out.println("no event consulted");
+            }
+            else {
+                if (no_event==evnetViewed.size()){
+                    find=true ;
+                }
+            }
+
+            Assert.assertTrue(find);
+            Thread.sleep(2000);
+            this.driver.quit();
+
+        }catch (InterruptedException e) {
+            throw new RuntimeException(e);
+
+        }
+    }
+    @And("user click on all filters and should click on not viewed events")
+    public void user_click_on_all_filters_and_should_click_on_not_viewed_events(){
+        try {
+            Thread.sleep(10000);
+            this.driver.findElement(By.className("ant-collapse-item")).click();
+            Thread.sleep(5000);
+            this.driver.findElement(By.id("eventFilterNotViewed")).click();
+            List<WebElement> evnetnotViewed = this.driver.findElements(By.className("notViewed"));
+            System.out.println("the events not viewed " + evnetnotViewed.size());
+            Thread.sleep(3000);
+            this.driver.findElement(By.id("eventFilterEventsBTN")).click();
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+
+        }
+    }
+    @Then("the user must find the events that he has not yet consulted")
+    public void the_user_must_find_the_events_that_he_has_not_yet_consulted (){
+        try {
+            Thread.sleep(5000);
+            List<WebElement> eventNames = this.driver.findElements(By.className("eventDetails__bottom-name"));
+            List<WebElement> evnetnotViewed = this.driver.findElements(By.className("notViewed"));
+            System.out.println("the events not viewed " + evnetnotViewed.size());
+            boolean find = false;
+            int no_event = eventNames.size();
+            System.out.println("number of filtred events " + no_event);
+            if (no_event==0) {
+                find = true;
+                System.out.println("no event no consulted");
+            }
+            else {
+                if (no_event==evnetnotViewed.size()){
+                    find=true ;
+                }
+            }
+
+            Assert.assertTrue(find);
+            Thread.sleep(2000);
+            this.driver.quit();
+
+        }catch (InterruptedException e) {
+            throw new RuntimeException(e);
+
+        }
+    }
 }
+
 

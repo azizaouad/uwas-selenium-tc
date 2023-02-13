@@ -54,6 +54,18 @@ Feature: filter test
     And user click on all filters and fill the name of event as "koura" , the location of event as "tunis", and the status of event as "In progress" and the date of event today
     Then The user must find the events whoose name of event as "koura" , location of event as "tunis", status of event as "In progress" and the date of event today
 
+  Scenario: client can filter the events by the consultation status ( viewed events )
+    Given  user should navigate to the website
+    When user write email as "a.aouadi@coral-io.fr" and password as "Aziz1996@!!" and click on login
+    And user click on all filters and should click on viewed events
+    Then the user must find the events he has consulted
+
+  Scenario: client can filter the events by the consultation status ( not viewed events )
+    Given  user should navigate to the website
+    When user write email as "a.aouadi@coral-io.fr" and password as "Aziz1996@!!" and click on login
+    And user click on all filters and should click on not viewed events
+    Then the user must find the events that he has not yet consulted
+
 
 
 

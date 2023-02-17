@@ -5,19 +5,23 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.jetbrains.annotations.NotNull;
 import org.junit.Assert;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import shared.Controller;
 
 public class sign_up_steps {
-    WebDriver driver;
+    WebDriver driver ;
+    Controller controller;
 
-    public sign_up_steps(Controller controller) {
-        this.driver = controller.getDriver();
+    public sign_up_steps (Controller controller) {
+        this.controller = controller;
+        this.controller.setupController();
+        this.driver = this.controller.getDriver();
     }
-
     @Given("user open the website and click on sign up now")
     public void user_open_the_website_and_click_on_sign_up_now() {
         try {
@@ -108,6 +112,7 @@ public class sign_up_steps {
 
         }
     }
+
     @Then("user have an account he can login with this credentials email as {string} and password as {string}")
     public void user_have_an_account_he_can_login_with_this_credentials_email_and_password ( String email , String password) {
         try {
@@ -134,6 +139,7 @@ public class sign_up_steps {
         }
 
     }
+
     @Then("user fail to create an account")
     public void user_fail_to_create_an_account (){
         try {

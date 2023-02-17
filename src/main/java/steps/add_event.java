@@ -28,10 +28,13 @@ import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class add_event {
-    WebDriver driver;
+    WebDriver driver ;
+    Controller controller;
 
-    public add_event (Controller controller) {
-        this.driver = controller.getDriver();
+    public add_event(Controller controller) {
+        this.controller = controller;
+        this.controller.setupController();
+        this.driver = this.controller.getDriver();
     }
 
 
@@ -99,6 +102,7 @@ public class add_event {
             Thread.sleep(2000);
             dateInput.sendKeys(Keys.ENTER);
 
+
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -156,7 +160,7 @@ public class add_event {
             }
             Assert.assertTrue(found);
             Thread.sleep(2000);
-            //this.driver.quit();
+            this.driver.quit();
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);

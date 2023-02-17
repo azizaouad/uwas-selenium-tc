@@ -20,10 +20,13 @@ import java.util.List;
 import java.util.Set;
 
 public class forget_password_steps {
-    WebDriver driver;
+    WebDriver driver ;
+    Controller controller;
 
     public forget_password_steps(Controller controller) {
-        this.driver = controller.getDriver();
+        this.controller = controller;
+        this.controller.setupController();
+        this.driver = this.controller.getDriver();
     }
 
 

@@ -54,10 +54,17 @@ public class scenario_steps {
             Thread.sleep(2000);
             upload_button.click();
             Thread.sleep(5000);
-            upload_button.sendKeys("C://Users/Lenovo/Desktop/Nouveau dossier/qa@gmail.com/a (1).jpg");
-            upload_button.sendKeys("/Users/Lenovo/Desktop/Nouveau dossier/qa@gmail.com/a (2).jpg");
+            System.out.println("1");
+            WebElement source = this.driver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[2]/form"));
+            System.out.println("2");
+            //source.click();
+            source.sendKeys("/C://Users//Lenovo//Desktop//Nouveau dossier//qa@gmail.com//a (3).jpg");
 
-
+            System.out.println("3");
+            source.sendKeys("C:/Users/Lenovo/Desktop/Nouveau dossier/qa@gmail.com/a (2).jpg");
+            System.out.println("4");
+            Thread.sleep(4000);
+            driver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[2]/form/div[2]/div/div/div/div/button")).click();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

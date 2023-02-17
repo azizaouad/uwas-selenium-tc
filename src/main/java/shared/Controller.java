@@ -22,6 +22,7 @@ public class Controller {
         this.driver = new ChromeDriver();
         this.driver.manage().window().maximize();
         this.driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+
     }
 
     public void teardownController() {

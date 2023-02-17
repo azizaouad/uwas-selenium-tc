@@ -121,5 +121,6 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.webjars:jquery:3.6.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: io.cucumber:cucumber-picocontainer:5.7.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.picocontainer:picocontainer:2.15" level="project" />
+    <orderEntry type="library" name="Maven: org.jetbrains:annotations:24.0.0" level="project" />
   </component>
 </module>

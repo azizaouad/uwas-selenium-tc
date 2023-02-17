@@ -27,10 +27,13 @@ import static java.time.temporal.TemporalAdjusters.lastDayOfYear;
 
 public class filter_steps {
 
-    WebDriver driver;
+    WebDriver driver ;
+    Controller controller;
 
     public filter_steps(Controller controller) {
-        this.driver = controller.getDriver();
+        this.controller = controller;
+        this.controller.setupController();
+        this.driver = this.controller.getDriver();
     }
 
     @And("user click on all filters and should choose the start date as {string} and the finish date as {string}")

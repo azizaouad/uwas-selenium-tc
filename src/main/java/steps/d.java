@@ -34,19 +34,19 @@ import static java.time.temporal.TemporalAdjusters.lastDayOfYear;
 public class d {
     public static void main(String[] args) {
         try {
-           WebDriverManager.chromedriver().setup();
-            WebDriver driver = new ChromeDriver();
-           driver.manage().window().maximize();
-            driver.get("https://recette.uwas.fr/login");
-            Thread.sleep(20000);
-            String email = "a.aouadi@coral-io.fr";
-            String password = "Aziz1996@!!";
-            driver.findElement(By.id("normal_login_email")).sendKeys(email);
-            Thread.sleep(2000);
-            driver.findElement(By.id("normal_login_password")).sendKeys(password);
-            Thread.sleep(2000);
-            driver.findElement(By.id("testLogin")).click();
-            Thread.sleep(10000);
+//           WebDriverManager.chromedriver().setup();
+//            WebDriver driver = new ChromeDriver();
+//           driver.manage().window().maximize();
+//            driver.get("https://recette.uwas.fr/login");
+//            Thread.sleep(20000);
+//            String email = "a.aouadi@coral-io.fr";
+//            String password = "Aziz1996@!!";
+//            driver.findElement(By.id("normal_login_email")).sendKeys(email);
+//            Thread.sleep(2000);
+//            driver.findElement(By.id("normal_login_password")).sendKeys(password);
+//            Thread.sleep(2000);
+//            driver.findElement(By.id("testLogin")).click();
+//            Thread.sleep(10000);
 //            LocalDate startDate = LocalDate.of(2015, 2, 20);
 //           LocalDate endDate = LocalDate.of(2017, 1, 15);
 
@@ -276,33 +276,43 @@ public class d {
 //                System.out.println("on the month");
 //
 //   /
-            driver.findElement(By.className("ant-collapse-item")).click();
-            Thread.sleep(5000);
-            driver.findElement(By.id("eventFilterViewed")).click();
-            Thread.sleep(3000);
-            driver.findElement(By.id("eventFilterEventsBTN")).click();
-            Thread.sleep(3000);
-            Thread.sleep(5000);
-            List<WebElement> eventNames = driver.findElements(By.className("eventDetails__bottom-name"));
-            List<WebElement> evnetViewed = driver.findElements(By.className("viewed"));
-            boolean find = false;
-            int no_event = eventNames.size();
-            System.out.println("number of filtred events" + no_event);
-            if (no_event==0) {
-                find = true;
-                System.out.println("no event this year");
-            }
-            else {
-                if (no_event == evnetViewed.size()){
-                    System.out.println(find);
-                    find = true ;
-                    System.out.println(find);
-                }
-            }
-            Assert.assertTrue(find);
-            Thread.sleep(2000);
-        }catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            LocalDate date = LocalDate.now();
+            System.out.println(date);
+            Thread.sleep(1000);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String start_date ="2023-02-14";
+            String finish_date = "2023-02-28";
+            LocalDate startInterval = LocalDate.parse(start_date);
+            LocalDate endInterval = LocalDate.parse(finish_date);
+            System.out.println(startInterval.minusDays(1));
+            System.out.println(endInterval.plusDays(1));
+//            driver.findElement(By.className("ant-collapse-item")).click();
+//            Thread.sleep(5000);
+//            driver.findElement(By.id("eventFilterViewed")).click();
+//            Thread.sleep(3000);
+//            driver.findElement(By.id("eventFilterEventsBTN")).click();
+//            Thread.sleep(3000);
+//            Thread.sleep(5000);
+//            List<WebElement> eventNames = driver.findElements(By.className("eventDetails__bottom-name"));
+//            List<WebElement> evnetViewed = driver.findElements(By.className("viewed"));
+//            boolean find = false;
+//            int no_event = eventNames.size();
+//            System.out.println("number of filtred events" + no_event);
+//            if (no_event==0) {
+//                find = true;
+//                System.out.println("no event this year");
+//            }
+//            else {
+//                if (no_event == evnetViewed.size()){
+//                    System.out.println(find);
+//                    find = true ;
+//                    System.out.println(find);
+//                }
+//            }
+//            Assert.assertTrue(find);
+//            Thread.sleep(2000);
+      }catch (InterruptedException e) {
+           throw new RuntimeException(e);
         }
     }
 }

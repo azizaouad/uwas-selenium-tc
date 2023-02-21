@@ -19,11 +19,10 @@ public class scenario_steps {
     @Then("photographer should logout")
     public void photographer_should_logout() {
         try {
-            Thread.sleep(5000);
             this.driver.getWebDriver().findElement(By.className("anticon-down")).click();
-            Thread.sleep(4000);
+            Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("testLogout")).click();
-            Thread.sleep(5000);
+            Thread.sleep(1000);
             boolean bol = false;
             String Current_url = this.driver.getWebDriver().getCurrentUrl();
             String expected_url = "https://recette.uwas.fr/login";
@@ -31,7 +30,7 @@ public class scenario_steps {
                 bol = true;
             }
             Assert.assertTrue(bol);
-            Thread.sleep(2000);
+            Thread.sleep(100);
             this.driver.getWebDriver().quit();
 
         } catch (InterruptedException e) {

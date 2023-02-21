@@ -4,29 +4,19 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.PageFactory;
-import shared.Controller;
-
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import org.uwas.Driver;
 
 public class forget_password_steps {
-    WebDriver driver ;
-    Controller controller;
+    Driver driver;
 
-    public forget_password_steps(Controller controller) {
-        this.controller = controller;
-        this.controller.setupController();
-        this.driver = this.controller.getDriver();
+    public forget_password_steps(Driver driver) {
+        this.driver = driver;
+        this.driver.setupController("chrome");
     }
 
 
@@ -34,9 +24,9 @@ public class forget_password_steps {
     public void user_open_the_website_and_click_on_forget_password() {
         try {
 
-            this.driver.get("https://recette.uwas.fr/login");
+            this.driver.getWebDriver().get("https://coralio:cmVjZXR0ZWNvcmFsaW8yMDIyCg==@recette.uwas.fr/login");
             Thread.sleep(20000);
-            this.driver.findElement(By.linkText("Forgot Password?")).click();
+            this.driver.getWebDriver().findElement(By.linkText("Forgot Password?")).click();
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -49,7 +39,7 @@ public class forget_password_steps {
     public void user_write_email(String email) {
         try {
             Thread.sleep(3000);
-            this.driver.findElement(By.id("normal_login_email")).sendKeys(email);
+            this.driver.getWebDriver().findElement(By.id("normal_login_email")).sendKeys(email);
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -60,7 +50,7 @@ public class forget_password_steps {
     public void user_confirm_the_email() {
         try {
             Thread.sleep(2000);
-            this.driver.findElement(By.id("testResetPW")).click();
+            this.driver.getWebDriver().findElement(By.id("testResetPW")).click();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -70,23 +60,23 @@ public class forget_password_steps {
     public void user_visit_the_mail_and_click_on_the_link() {
         try {
             Thread.sleep(5000);
-            this.driver.switchTo().newWindow(WindowType.TAB);
-            this.driver.navigate().to("https://www.google.com/intl/fr/gmail/about/");
+            this.driver.getWebDriver().switchTo().newWindow(WindowType.TAB);
+            this.driver.getWebDriver().navigate().to("https://www.google.com/intl/fr/gmail/about/");
             Thread.sleep(3000);
-            this.driver.findElement(By.xpath("/html/body/header/div/div/div/a[2]")).click();
-            this.driver.findElement(By.id("identifierId")).sendKeys("a.aouadi@coral-io.fr");
+            this.driver.getWebDriver().findElement(By.xpath("/html/body/header/div/div/div/a[2]")).click();
+            this.driver.getWebDriver().findElement(By.id("identifierId")).sendKeys("a.aouadi@coral-io.fr");
             Thread.sleep(2000);
-            this.driver.findElement(By.xpath("/html/body/div[1]/div[1]/div[2]/div/c-wiz/div/div[2]/div/div[2]/div/div[1]/div/div/button/span")).click();
+            this.driver.getWebDriver().findElement(By.xpath("/html/body/div[1]/div[1]/div[2]/div/c-wiz/div/div[2]/div/div[2]/div/div[1]/div/div/button/span")).click();
             Thread.sleep(3000);
-            this.driver.findElement(By.name("Passwd")).sendKeys("Aziz1996@");
+            this.driver.getWebDriver().findElement(By.name("Passwd")).sendKeys("Aziz1996@");
             Thread.sleep(3000);
-            this.driver.findElement(By.xpath("/html/body/div[1]/div[1]/div[2]/div/c-wiz/div/div[2]/div/div[2]/div/div[1]/div/div/button/span")).click();
+            this.driver.getWebDriver().findElement(By.xpath("/html/body/div[1]/div[1]/div[2]/div/c-wiz/div/div[2]/div/div[2]/div/div[1]/div/div/button/span")).click();
             Thread.sleep(5000);
-            WebElement unreadEmail = this.driver.findElement(By.className("zE"));
+            WebElement unreadEmail = this.driver.getWebDriver().findElement(By.className("zE"));
             unreadEmail.click();
             Thread.sleep(2000);
-            WebElement link = this.driver.findElement(By.partialLinkText("https://recette.uwas.fr/change-password/"));
-            this.driver.get(link.getText());
+            WebElement link = this.driver.getWebDriver().findElement(By.partialLinkText("https://recette.uwas.fr/change-password/"));
+            this.driver.getWebDriver().get(link.getText());
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -96,7 +86,7 @@ public class forget_password_steps {
     public void user_write_password(String password) {
         try {
             Thread.sleep(15000);
-            this.driver.findElement(By.id("normal_login_password")).sendKeys(password);
+            this.driver.getWebDriver().findElement(By.id("normal_login_password")).sendKeys(password);
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -107,9 +97,9 @@ public class forget_password_steps {
     public void user_write_confirm_password(String confirm_password) {
         try {
             Thread.sleep(2000);
-            this.driver.findElement(By.id("normal_login_confirmPassword")).sendKeys(confirm_password);
+            this.driver.getWebDriver().findElement(By.id("normal_login_confirmPassword")).sendKeys(confirm_password);
             Thread.sleep(2000);
-            this.driver.findElement(By.id("testChangePW")).click();
+            this.driver.getWebDriver().findElement(By.id("testChangePW")).click();
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -120,13 +110,13 @@ public class forget_password_steps {
     public void the_password_is_changed_user_can_login_with_new_password_and_email(String password, String email) {
         try {
             Thread.sleep(10000);
-            this.driver.findElement(By.id("normal_login_email")).sendKeys(email);
+            this.driver.getWebDriver().findElement(By.id("normal_login_email")).sendKeys(email);
             Thread.sleep(3000);
-            this.driver.findElement(By.id("normal_login_password")).sendKeys(password);
+            this.driver.getWebDriver().findElement(By.id("normal_login_password")).sendKeys(password);
             Thread.sleep(3000);
-            this.driver.findElement(By.id("testLogin")).click();
+            this.driver.getWebDriver().findElement(By.id("testLogin")).click();
             Thread.sleep(10000);
-            String Current_url = this.driver.getCurrentUrl() ;
+            String Current_url = this.driver.getWebDriver().getCurrentUrl() ;
             boolean login = false ;
             if (Current_url.contentEquals("https://recette.uwas.fr/login")){
                 login = false ;}
@@ -135,7 +125,7 @@ public class forget_password_steps {
             }
             Assert.assertTrue(login);
             Thread.sleep(2000);
-            this.driver.quit();
+            this.driver.getWebDriver().quit();
 
 
         } catch (InterruptedException e) {
@@ -148,10 +138,10 @@ public class forget_password_steps {
     public void an_error_message_is_displayed() {
         try {
             Thread.sleep(2000);
-            Assert.assertTrue(this.driver.findElement(By.id("normal_login_email")).isDisplayed());
-            Assert.assertTrue(this.driver.findElement(By.id("testResetPW")).isDisplayed());
+            Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("normal_login_email")).isDisplayed());
+            Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("testResetPW")).isDisplayed());
             Thread.sleep(2000);
-            this.driver.quit();
+            this.driver.getWebDriver().quit();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -161,10 +151,10 @@ public class forget_password_steps {
     public void the_password_is_not_changed_and_an_error_message_appear() {
         try {
             Thread.sleep(2000);
-            Assert.assertTrue(this.driver.findElement(By.id("normal_login_password")).isDisplayed());
-            Assert.assertTrue(this.driver.findElement(By.id("normal_login_confirmPassword")).isDisplayed());
+            Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("normal_login_password")).isDisplayed());
+            Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("normal_login_confirmPassword")).isDisplayed());
             Thread.sleep(2000);
-            this.driver.quit();
+            this.driver.getWebDriver().quit();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
 

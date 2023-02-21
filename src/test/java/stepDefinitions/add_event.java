@@ -9,19 +9,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import shared.Controller;
+import org.uwas.Driver;
 
 import java.time.LocalDate;
 import java.util.List;
 
 public class add_event {
-    WebDriver driver ;
-    Controller controller;
+    Driver driver;
 
-    public add_event(Controller controller) {
-        this.controller = controller;
-        this.controller.setupController();
-        this.driver = this.controller.getDriver();
+    public add_event(Driver driver) {
+        this.driver = driver;
+        this.driver.setupController("chrome");
     }
 
 
@@ -29,13 +27,13 @@ public class add_event {
     public void photographer_should_login() {
         try {
 
-            this.driver.get("https://recette.uwas.fr/login");
-            Thread.sleep(10000);
-            this.driver.findElement(By.id("normal_login_email")).sendKeys("azizaouadi12@gmail.com");
-            Thread.sleep(3000);
-            this.driver.findElement(By.id("normal_login_password")).sendKeys("Aziz1996@");
-            Thread.sleep(3000);
-            this.driver.findElement(By.id("testLogin")).click();
+            this.driver.getWebDriver().get("https://coralio:cmVjZXR0ZWNvcmFsaW8yMDIyCg==@recette.uwas.fr/login");
+            Thread.sleep(2000);
+            this.driver.getWebDriver().findElement(By.id("normal_login_email")).sendKeys("azizaouadi12@gmail.com");
+            Thread.sleep(2000);
+            this.driver.getWebDriver().findElement(By.id("normal_login_password")).sendKeys("Aziz1996@");
+            Thread.sleep(2000);
+            this.driver.getWebDriver().findElement(By.id("testLogin")).click();
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -46,7 +44,7 @@ public class add_event {
     public void photographer_should_click_on_the_button_of_add_event() {
         try {
             Thread.sleep(10000);
-            this.driver.findElement(By.id("testAddEvent")).click();
+            this.driver.getWebDriver().findElement(By.id("testAddEvent")).click();
 
 
         } catch (InterruptedException e) {
@@ -58,7 +56,7 @@ public class add_event {
     public void photographer_should_fill_the_title_of_event(String title_of_event) {
         try {
             Thread.sleep(3000);
-            this.driver.findElement(By.id("name")).sendKeys(title_of_event);
+            this.driver.getWebDriver().findElement(By.id("name")).sendKeys(title_of_event);
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -69,7 +67,7 @@ public class add_event {
     public void photographer_should_fill_the_location_of_event(String location_of_event) {
         try {
             Thread.sleep(3000);
-            this.driver.findElement(By.id("location")).sendKeys(location_of_event);
+            this.driver.getWebDriver().findElement(By.id("location")).sendKeys(location_of_event);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -79,7 +77,7 @@ public class add_event {
     public void photographer_should_fill_the_date_of_event(String date_of_event) {
         try {
             Thread.sleep(3000);
-            WebElement dateInput = this.driver.findElement(By.id("testEventDate"));
+            WebElement dateInput = this.driver.getWebDriver().findElement(By.id("testEventDate"));
             Thread.sleep(2000);
             dateInput.sendKeys(Keys.CONTROL, "a");
             Thread.sleep(3000);
@@ -99,7 +97,7 @@ public class add_event {
     public void photographer_put_an_image_for_the_event() {
         try {
             Thread.sleep(3000);
-            WebElement source = this.driver.findElement(By.id("testUploadImg"));
+            WebElement source = this.driver.getWebDriver().findElement(By.id("testUploadImg"));
             source.sendKeys("C://Users/Lenovo/Desktop/traditions-noel-europe-1024x683.jpg");
 
 
@@ -114,7 +112,7 @@ public class add_event {
     public void photographer_should_click_on_the_button_ok() {
         try {
             Thread.sleep(3000);
-            this.driver.findElement(By.id("test123")).click();
+            this.driver.getWebDriver().findElement(By.id("test123")).click();
             Thread.sleep(10000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -127,10 +125,10 @@ public class add_event {
         try {
             Thread.sleep(5000);
             boolean found = false;
-            List<WebElement> eventNames = this.driver.findElements(By.className("eventDetails__bottom-name"));
-            List<WebElement> eventLocation = this.driver.findElements(By.className("eventDetails__bottom-location-text"));
-            List<WebElement> eventDate = this.driver.findElements(By.className("eventDetails__bottom-date-text"));
-            List<WebElement> eventStatus = this.driver.findElements(By.className("ant-tag-gold"));
+            List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-name"));
+            List<WebElement> eventLocation = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-location-text"));
+            List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-date-text"));
+            List<WebElement> eventStatus = this.driver.getWebDriver().findElements(By.className("ant-tag-gold"));
 
 
             for (int i = 0; i < eventNames.size(); i++) {
@@ -147,7 +145,7 @@ public class add_event {
             }
             Assert.assertTrue(found);
             Thread.sleep(2000);
-            this.driver.quit();
+            this.driver.getWebDriver().quit();
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -158,11 +156,11 @@ public class add_event {
     @Then("an error message appear under the title field")
     public void an_error_message_appear_under_the_title_field() {
         try {
-            Assert.assertTrue(this.driver.findElement(By.id("name")).isDisplayed());
-            Assert.assertTrue(this.driver.findElement(By.id("location")).isDisplayed());
-            Assert.assertTrue(this.driver.findElement(By.id("date")).isDisplayed());
+            Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("name")).isDisplayed());
+            Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("location")).isDisplayed());
+            Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("date")).isDisplayed());
             Thread.sleep(2000);
-            this.driver.quit();
+            this.driver.getWebDriver().quit();
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -175,10 +173,10 @@ public class add_event {
     public void title_of_event_in_location_of_event_is_created_with_the_date_added(String title_of_event, String location_of_event) {
         try {
             boolean found = false;
-            List<WebElement> eventNames =this.driver.findElements(By.className("eventDetails__bottom-name"));
-            List<WebElement> eventLocation =this.driver.findElements(By.className("eventDetails__bottom-location-text"));
-            List<WebElement> eventDate = this.driver.findElements(By.className("eventDetails__bottom-date-text"));
-            List<WebElement> eventStatus = this.driver.findElements(By.className("ant-tag"));
+            List<WebElement> eventNames =this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-name"));
+            List<WebElement> eventLocation =this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-location-text"));
+            List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-date-text"));
+            List<WebElement> eventStatus = this.driver.getWebDriver().findElements(By.className("ant-tag"));
             LocalDate localDate = LocalDate.now();
             for (int i = 0; i < eventNames.size(); i++) {
                 String name_string = eventNames.get(i).getText();
@@ -194,7 +192,7 @@ public class add_event {
             }
             Assert.assertTrue(found);
             Thread.sleep(2000);
-            this.driver.quit();
+            this.driver.getWebDriver().quit();
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -205,7 +203,7 @@ public class add_event {
     @Then("an error message appear and the event is created without image")
     public void an_error_message_appear_and_the_event_is_created_without_image() {
         try {
-            WebElement im = this.driver.findElement(By.className("ant-card-cover"));
+            WebElement im = this.driver.getWebDriver().findElement(By.className("ant-card-cover"));
             im = im.findElement(By.tagName("img"));
             Thread.sleep(3000);
             String src_im = im.getAttribute("src");
@@ -215,7 +213,7 @@ public class add_event {
             }
             Assert.assertTrue(find);
             Thread.sleep(2000);
-            this.driver.quit();
+            this.driver.getWebDriver().quit();
 
 
         }catch (InterruptedException e) {
@@ -227,7 +225,7 @@ public class add_event {
     public void photographer_put_a_file_in_the_image_field_for_the_event() {
         try {
             Thread.sleep(3000);
-            WebElement source =this.driver.findElement(By.id("testUploadImg"));
+            WebElement source =this.driver.getWebDriver().findElement(By.id("testUploadImg"));
             source.sendKeys("C://Users/Lenovo/Desktop/Compte photographe.pptx");
         } catch (InterruptedException e) {
             throw new RuntimeException(e);

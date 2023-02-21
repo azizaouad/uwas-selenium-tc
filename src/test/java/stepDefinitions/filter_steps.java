@@ -1,25 +1,17 @@
 package stepDefinitions;
 
-import com.fasterxml.jackson.annotation.JacksonInject;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
-import io.cucumber.java.en_scouse.An;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import shared.Controller;
+import org.uwas.Driver;
 
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import static java.time.temporal.TemporalAdjusters.firstDayOfYear;
@@ -27,29 +19,26 @@ import static java.time.temporal.TemporalAdjusters.lastDayOfYear;
 
 public class filter_steps {
 
-    WebDriver driver ;
-    Controller controller;
+    Driver driver;
 
-    public filter_steps(Controller controller) {
-        this.controller = controller;
-        this.controller.setupController();
-        this.driver = this.controller.getDriver();
-    }
+    public filter_steps(Driver driver) {
+        this.driver = driver;
+        this.driver.setupController("chrome");    }
 
     @And("user click on all filters and should choose the start date as {string} and the finish date as {string}")
     public void user_click_on_all_filters_and_should_choose_the_start_date_and_the_finish_date(String star_date, String finish_date) {
         try {
 
             Thread.sleep(10000);
-            this.driver.findElement(By.className("ant-collapse-item")).click();
+            this.driver.getWebDriver().findElement(By.className("ant-collapse-item")).click();
             Thread.sleep(5000);
-            this.driver.findElement(By.id("eventDateFilter")).sendKeys(star_date);
+            this.driver.getWebDriver().findElement(By.id("eventDateFilter")).sendKeys(star_date);
             Thread.sleep(5000);
-            this.driver.findElement(By.xpath("/html/body/div[1]/div/main/section[2]/main/div[1]/div[1]/div/div/div[2]/div/form/div/div[3]/div/div[3]/input")).sendKeys(finish_date);
+            this.driver.getWebDriver().findElement(By.xpath("/html/body/div[1]/div/main/section[2]/main/div[1]/div[1]/div/div/div[2]/div/form/div/div[3]/div/div[3]/input")).sendKeys(finish_date);
             Thread.sleep(5000);
-            this.driver.findElement(By.xpath("/html/body/div[1]/div/main/section[2]/main/div[1]/div[1]/div/div/div[2]/div/form/div/div[3]/div/div[3]/input")).sendKeys(Keys.ENTER);
+            this.driver.getWebDriver().findElement(By.xpath("/html/body/div[1]/div/main/section[2]/main/div[1]/div[1]/div/div/div[2]/div/form/div/div[3]/div/div[3]/input")).sendKeys(Keys.ENTER);
             Thread.sleep(5000);
-            this.driver.findElement(By.xpath("/html/body/div[1]/div/main/section[2]/main/div[1]/div[1]/div/div/div[2]/div/form/div/div[5]/button")).click();
+            this.driver.getWebDriver().findElement(By.xpath("/html/body/div[1]/div/main/section[2]/main/div[1]/div[1]/div/div/div[2]/div/form/div/div[5]/button")).click();
             Thread.sleep(8000);
 
 
@@ -64,8 +53,8 @@ public class filter_steps {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             LocalDate startInterval = LocalDate.parse(start_date);
             LocalDate endInterval = LocalDate.parse(finish_date);
-            List<WebElement> eventNames = this.driver.findElements(By.className("eventDetails__bottom-name"));
-            List<WebElement> eventDate = this.driver.findElements(By.className("eventDetails__bottom-date-text"));
+            List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-name"));
+            List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-date-text"));
             boolean find = false;
             int no_event = eventNames.size();
             System.out.println("number of filtred events " + no_event);
@@ -92,7 +81,7 @@ public class filter_steps {
 
             Assert.assertTrue(find);
             Thread.sleep(2000);
-            this.driver.quit();
+            this.driver.getWebDriver().quit();
 
         } catch (Exception e) {
             System.out.println("Erreur format");
@@ -104,11 +93,11 @@ public class filter_steps {
     public void user_click_on_all_filters_and_should_write_the_name_of_event(String name_of_event) {
         try {
             Thread.sleep(10000);
-            this.driver.findElement(By.className("ant-collapse-item")).click();
+            this.driver.getWebDriver().findElement(By.className("ant-collapse-item")).click();
             Thread.sleep(5000);
-            this.driver.findElement(By.id("eventName")).sendKeys(name_of_event);
+            this.driver.getWebDriver().findElement(By.id("eventName")).sendKeys(name_of_event);
             Thread.sleep(5000);
-            this.driver.findElement(By.id("eventFilterEventsBTN")).click();
+            this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
             Thread.sleep(3000);
 
         } catch (InterruptedException e) {
@@ -120,7 +109,7 @@ public class filter_steps {
     public void The_user_must_find_the_events_whose_name_of_event(String name_of_event) {
         try {
             Thread.sleep(5000);
-            List<WebElement> eventNames = this.driver.findElements(By.className("eventDetails__bottom-name"));
+            List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-name"));
             boolean find = false;
             int no_event = eventNames.size();
             System.out.println("number of filtred events " + no_event);
@@ -146,7 +135,7 @@ public class filter_steps {
 
             Assert.assertTrue(find);
             Thread.sleep(3000);
-            this.driver.quit();
+            this.driver.getWebDriver().quit();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -156,11 +145,11 @@ public class filter_steps {
     public void user_click_on_all_filters_and_should_write_the_location_of_event(String location_of_event) {
         try {
             Thread.sleep(10000);
-            this.driver.findElement(By.className("ant-collapse-item")).click();
+            this.driver.getWebDriver().findElement(By.className("ant-collapse-item")).click();
             Thread.sleep(5000);
-            this.driver.findElement(By.id("eventLocation")).sendKeys(location_of_event);
+            this.driver.getWebDriver().findElement(By.id("eventLocation")).sendKeys(location_of_event);
             Thread.sleep(5000);
-            this.driver.findElement(By.id("eventFilterEventsBTN")).click();
+            this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
             Thread.sleep(3000);
 
         } catch (InterruptedException e) {
@@ -172,8 +161,8 @@ public class filter_steps {
     public void The_user_must_find_the_events_whose_location_of_event(String location_of_event) {
         try {
             Thread.sleep(5000);
-            List<WebElement> eventNames = this.driver.findElements(By.className("eventDetails__bottom-name"));
-            List<WebElement> eventlocation = this.driver.findElements(By.className("eventDetails__bottom-location-text"));
+            List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-name"));
+            List<WebElement> eventlocation = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-location-text"));
             boolean find = false;
             int no_event = eventNames.size();
             System.out.println("number of filtred events " + no_event);
@@ -200,7 +189,7 @@ public class filter_steps {
             }
             Assert.assertTrue(find);
             Thread.sleep(3000);
-            this.driver.quit();
+            this.driver.getWebDriver().quit();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -210,11 +199,11 @@ public class filter_steps {
     public void user_click_on_all_filters_and_should_write_the_status_of_event(String status_of_event) {
         try {
             Thread.sleep(10000);
-            this.driver.findElement(By.className("ant-collapse-item")).click();
+            this.driver.getWebDriver().findElement(By.className("ant-collapse-item")).click();
             Thread.sleep(5000);
-            this.driver.findElement(By.id("eventFilterInProgress")).click();
+            this.driver.getWebDriver().findElement(By.id("eventFilterInProgress")).click();
             Thread.sleep(5000);
-            this.driver.findElement(By.id("eventFilterEventsBTN")).click();
+            this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
             Thread.sleep(3000);
 
         } catch (InterruptedException e) {
@@ -226,8 +215,8 @@ public class filter_steps {
     public void The_user_must_find_the_events_whose_status_of_event(String status_of_event) {
         try {
             Thread.sleep(5000);
-            List<WebElement> eventNames = this.driver.findElements(By.className("eventDetails__bottom-name"));
-            List<WebElement> eventstatus = this.driver.findElements(By.className("ant-tag-gold"));
+            List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-name"));
+            List<WebElement> eventstatus = this.driver.getWebDriver().findElements(By.className("ant-tag-gold"));
             boolean find = false;
             int no_event = eventNames.size();
             System.out.println("number of filtred events " + no_event);
@@ -253,7 +242,7 @@ public class filter_steps {
             }
             Assert.assertTrue(find);
             Thread.sleep(3000);
-            this.driver.quit();
+            this.driver.getWebDriver().quit();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -263,15 +252,15 @@ public class filter_steps {
     public void user_click_on_all_filters_and_should_click_on_today() {
         try {
             Thread.sleep(10000);
-            this.driver.findElement(By.className("ant-collapse-item")).click();
+            this.driver.getWebDriver().findElement(By.className("ant-collapse-item")).click();
             Thread.sleep(5000);
-            this.driver.findElement(By.id("eventDateFilter")).click();
+            this.driver.getWebDriver().findElement(By.id("eventDateFilter")).click();
             Thread.sleep(5000);
-            this.driver.findElement(By.id("test_Today")).click();
+            this.driver.getWebDriver().findElement(By.id("test_Today")).click();
             Thread.sleep(3000);
-            this.driver.findElement(By.id("eventDateFilterOK")).click();
+            this.driver.getWebDriver().findElement(By.id("eventDateFilterOK")).click();
             Thread.sleep(4000);
-            this.driver.findElement(By.id("eventFilterEventsBTN")).click();
+            this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
             Thread.sleep(3000);
 
 
@@ -284,8 +273,8 @@ public class filter_steps {
     public void The_user_must_find_the_events_of_today() {
         try {
             Thread.sleep(5000);
-            List<WebElement> eventNames = this.driver.findElements(By.className("eventDetails__bottom-name"));
-            List<WebElement> eventDate = this.driver.findElements(By.className("eventDetails__bottom-date-text"));
+            List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-name"));
+            List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-date-text"));
             LocalDate localDate = LocalDate.now();
             boolean find = false;
             int no_event = eventNames.size();
@@ -312,7 +301,7 @@ public class filter_steps {
             }
             Assert.assertTrue(find);
             Thread.sleep(2000);
-            this.driver.quit();
+            this.driver.getWebDriver().quit();
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -323,15 +312,15 @@ public class filter_steps {
     public void user_click_on_all_filters_and_should_click_on_this_week() {
         try {
             Thread.sleep(10000);
-            this.driver.findElement(By.className("ant-collapse-item")).click();
+            this.driver.getWebDriver().findElement(By.className("ant-collapse-item")).click();
             Thread.sleep(5000);
-            this.driver.findElement(By.id("eventDateFilter")).click();
+            this.driver.getWebDriver().findElement(By.id("eventDateFilter")).click();
             Thread.sleep(5000);
-            this.driver.findElement(By.id("test_This Week")).click();
+            this.driver.getWebDriver().findElement(By.id("test_This Week")).click();
             Thread.sleep(3000);
-            this.driver.findElement(By.id("eventDateFilterOK")).click();
+            this.driver.getWebDriver().findElement(By.id("eventDateFilterOK")).click();
             Thread.sleep(4000);
-            this.driver.findElement(By.id("eventFilterEventsBTN")).click();
+            this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
             Thread.sleep(3000);
 
 
@@ -344,8 +333,8 @@ public class filter_steps {
     public void The_user_must_find_the_events_of_this_week() {
         try {
             Thread.sleep(5000);
-            List<WebElement> eventNames = this.driver.findElements(By.className("eventDetails__bottom-name"));
-            List<WebElement> eventDate = this.driver.findElements(By.className("eventDetails__bottom-date-text"));
+            List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-name"));
+            List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-date-text"));
             LocalDate date = LocalDate.now();
             LocalDate startweek = date;
             while (startweek.getDayOfWeek() != DayOfWeek.MONDAY) {
@@ -387,7 +376,7 @@ public class filter_steps {
 
             Assert.assertTrue(find);
             Thread.sleep(2000);
-            this.driver.quit();
+            this.driver.getWebDriver().quit();
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -398,15 +387,15 @@ public class filter_steps {
     public void user_click_on_all_filters_and_should_click_on_this_month() {
         try {
             Thread.sleep(10000);
-            this.driver.findElement(By.className("ant-collapse-item")).click();
+            this.driver.getWebDriver().findElement(By.className("ant-collapse-item")).click();
             Thread.sleep(5000);
-            this.driver.findElement(By.id("eventDateFilter")).click();
+            this.driver.getWebDriver().findElement(By.id("eventDateFilter")).click();
             Thread.sleep(5000);
-            this.driver.findElement(By.id("test_This Month")).click();
+            this.driver.getWebDriver().findElement(By.id("test_This Month")).click();
             Thread.sleep(3000);
-            this.driver.findElement(By.id("eventDateFilterOK")).click();
+            this.driver.getWebDriver().findElement(By.id("eventDateFilterOK")).click();
             Thread.sleep(4000);
-            this.driver.findElement(By.id("eventFilterEventsBTN")).click();
+            this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
             Thread.sleep(3000);
 
 
@@ -419,8 +408,8 @@ public class filter_steps {
     public void The_user_must_find_the_events_of_this_month() {
         try {
             Thread.sleep(5000);
-            List<WebElement> eventNames = this.driver.findElements(By.className("eventDetails__bottom-name"));
-            List<WebElement> eventDate = this.driver.findElements(By.className("eventDetails__bottom-date-text"));
+            List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-name"));
+            List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-date-text"));
             LocalDate date = LocalDate.now();
             boolean find = false;
             int no_event = eventNames.size();
@@ -450,7 +439,7 @@ public class filter_steps {
             }
             Assert.assertTrue(find);
             Thread.sleep(2000);
-            this.driver.quit();
+            this.driver.getWebDriver().quit();
 
 
         } catch (InterruptedException e) {
@@ -463,15 +452,15 @@ public class filter_steps {
     public void user_click_on_all_filters_and_should_click_on_this_year() {
         try {
             Thread.sleep(10000);
-            this.driver.findElement(By.className("ant-collapse-item")).click();
+            this.driver.getWebDriver().findElement(By.className("ant-collapse-item")).click();
             Thread.sleep(5000);
-            this.driver.findElement(By.id("eventDateFilter")).click();
+            this.driver.getWebDriver().findElement(By.id("eventDateFilter")).click();
             Thread.sleep(5000);
-            this.driver.findElement(By.id("test_This Year")).click();
+            this.driver.getWebDriver().findElement(By.id("test_This Year")).click();
             Thread.sleep(3000);
-            this.driver.findElement(By.id("eventDateFilterOK")).click();
+            this.driver.getWebDriver().findElement(By.id("eventDateFilterOK")).click();
             Thread.sleep(4000);
-            this.driver.findElement(By.id("eventFilterEventsBTN")).click();
+            this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
             Thread.sleep(3000);
 
 
@@ -484,8 +473,8 @@ public class filter_steps {
     public void The_user_must_find_the_events_of_this_year() {
         try {
             Thread.sleep(5000);
-            List<WebElement> eventNames = this.driver.findElements(By.className("eventDetails__bottom-name"));
-            List<WebElement> eventDate = this.driver.findElements(By.className("eventDetails__bottom-date-text"));
+            List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-name"));
+            List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-date-text"));
             LocalDate date = LocalDate.now();
             boolean find = false;
             int no_event = eventNames.size();
@@ -515,7 +504,7 @@ public class filter_steps {
             }
             Assert.assertTrue(find);
             Thread.sleep(2000);
-            this.driver.quit();
+            this.driver.getWebDriver().quit();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -525,21 +514,21 @@ public class filter_steps {
     public void user_click_on_all_filters_and_fill_the_name_of_event_the_location_of_event_and_the_status_of_event_and_the_date_of_event_today(String name_of_event, String location_of_event, String status_of_event){
         try {
             Thread.sleep(10000);
-            this.driver.findElement(By.className("ant-collapse-item")).click();
+            this.driver.getWebDriver().findElement(By.className("ant-collapse-item")).click();
             Thread.sleep(5000);
-            this.driver.findElement(By.id("eventName")).sendKeys(name_of_event);
+            this.driver.getWebDriver().findElement(By.id("eventName")).sendKeys(name_of_event);
             Thread.sleep(5000);
-            this.driver.findElement(By.id("eventLocation")).sendKeys(location_of_event);
+            this.driver.getWebDriver().findElement(By.id("eventLocation")).sendKeys(location_of_event);
             Thread.sleep(5000);
-            this.driver.findElement(By.id("eventFilterInProgress")).click();
+            this.driver.getWebDriver().findElement(By.id("eventFilterInProgress")).click();
             Thread.sleep(5000);
-            this.driver.findElement(By.id("eventDateFilter")).click();
+            this.driver.getWebDriver().findElement(By.id("eventDateFilter")).click();
             Thread.sleep(5000);
-            this.driver.findElement(By.id("test_Today")).click();
+            this.driver.getWebDriver().findElement(By.id("test_Today")).click();
             Thread.sleep(3000);
-            this.driver.findElement(By.id("eventDateFilterOK")).click();
+            this.driver.getWebDriver().findElement(By.id("eventDateFilterOK")).click();
             Thread.sleep(4000);
-            this.driver.findElement(By.id("eventFilterEventsBTN")).click();
+            this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
             Thread.sleep(3000);
         }catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -549,10 +538,10 @@ public class filter_steps {
     public void The_user_must_find_the_events_whoose_name_of_event_location_of_event_status_of_event_and_the_date_of_event_today(String name_of_event, String location_of_event , String status_of_event ) {
         try {
             Thread.sleep(5000);
-            List<WebElement> eventNames = this.driver.findElements(By.className("eventDetails__bottom-name"));
-            List<WebElement> eventDate = this.driver.findElements(By.className("eventDetails__bottom-date-text"));
-            List<WebElement> eventstatus = this.driver.findElements(By.className("ant-tag-gold"));
-            List<WebElement> eventlocation = this.driver.findElements(By.className("eventDetails__bottom-location-text"));
+            List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-name"));
+            List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-date-text"));
+            List<WebElement> eventstatus = this.driver.getWebDriver().findElements(By.className("ant-tag-gold"));
+            List<WebElement> eventlocation = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-location-text"));
             LocalDate date = LocalDate.now();
             boolean find = false;
             int no_event = eventNames.size();
@@ -587,7 +576,7 @@ public class filter_steps {
             }
             Assert.assertTrue(find);
             Thread.sleep(2000);
-            this.driver.quit();
+            this.driver.getWebDriver().quit();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
 
@@ -597,13 +586,13 @@ public class filter_steps {
     public void user_click_on_all_filters_and_should_click_on_viewed_events (){
         try {
             Thread.sleep(10000);
-            this.driver.findElement(By.className("ant-collapse-item")).click();
+            this.driver.getWebDriver().findElement(By.className("ant-collapse-item")).click();
             Thread.sleep(5000);
-            this.driver.findElement(By.id("eventFilterViewed")).click();
+            this.driver.getWebDriver().findElement(By.id("eventFilterViewed")).click();
             Thread.sleep(3000);
-            List<WebElement> evnetViewed = this.driver.findElements(By.className("viewed"));
+            List<WebElement> evnetViewed = this.driver.getWebDriver().findElements(By.className("viewed"));
             System.out.println("the events viewed " + evnetViewed.size());
-            this.driver.findElement(By.id("eventFilterEventsBTN")).click();
+            this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -614,8 +603,8 @@ public class filter_steps {
     public void the_user_must_find_the_events_he_has_consulted (){
         try {
             Thread.sleep(5000);
-            List<WebElement> eventNames = this.driver.findElements(By.className("eventDetails__bottom-name"));
-            List<WebElement> evnetViewed = this.driver.findElements(By.className("viewed"));
+            List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-name"));
+            List<WebElement> evnetViewed = this.driver.getWebDriver().findElements(By.className("viewed"));
             System.out.println("the events viewed " + evnetViewed.size());
             boolean find = false;
             int no_event = eventNames.size();
@@ -632,7 +621,7 @@ public class filter_steps {
 
             Assert.assertTrue(find);
             Thread.sleep(2000);
-            this.driver.quit();
+            this.driver.getWebDriver().quit();
 
         }catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -643,13 +632,13 @@ public class filter_steps {
     public void user_click_on_all_filters_and_should_click_on_not_viewed_events(){
         try {
             Thread.sleep(10000);
-            this.driver.findElement(By.className("ant-collapse-item")).click();
+            this.driver.getWebDriver().findElement(By.className("ant-collapse-item")).click();
             Thread.sleep(5000);
-            this.driver.findElement(By.id("eventFilterNotViewed")).click();
-            List<WebElement> evnetnotViewed = this.driver.findElements(By.className("notViewed"));
+            this.driver.getWebDriver().findElement(By.id("eventFilterNotViewed")).click();
+            List<WebElement> evnetnotViewed = this.driver.getWebDriver().findElements(By.className("notViewed"));
             System.out.println("the events not viewed " + evnetnotViewed.size());
             Thread.sleep(3000);
-            this.driver.findElement(By.id("eventFilterEventsBTN")).click();
+            this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -660,8 +649,8 @@ public class filter_steps {
     public void the_user_must_find_the_events_that_he_has_not_yet_consulted (){
         try {
             Thread.sleep(5000);
-            List<WebElement> eventNames = this.driver.findElements(By.className("eventDetails__bottom-name"));
-            List<WebElement> evnetnotViewed = this.driver.findElements(By.className("notViewed"));
+            List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-name"));
+            List<WebElement> evnetnotViewed = this.driver.getWebDriver().findElements(By.className("notViewed"));
             System.out.println("the events not viewed " + evnetnotViewed.size());
             boolean find = false;
             int no_event = eventNames.size();
@@ -678,7 +667,7 @@ public class filter_steps {
 
             Assert.assertTrue(find);
             Thread.sleep(2000);
-            this.driver.quit();
+            this.driver.getWebDriver().quit();
 
         }catch (InterruptedException e) {
             throw new RuntimeException(e);

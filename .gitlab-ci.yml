@@ -20,11 +20,11 @@ qa_test:
     - mvn install
   script:
     - mvn -Denvironment=$QA_ENVIRONMENT -DwebDriver=$WEB_DRIVER test
-  tags:
-    - gitlab-runner
   artifacts:
     when: always
     name: "qa_report"
     paths:
       - target/reports/*
     expire_in: 1 h
+  tags:
+    - gitlab-runner

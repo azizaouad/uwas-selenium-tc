@@ -17,10 +17,8 @@ qa_test:
     QA_ENVIRONMENT: recette
     WEB_DRIVER: chrome
   allow_failure: true
-  before_script:
-    - mvn install
   script:
-    - mvn -Denvironment=$QA_ENVIRONMENT -DwebDriver=$WEB_DRIVER test
+    - mvn clean -Denvironment=$QA_ENVIRONMENT -DwebDriver=$WEB_DRIVER test
   artifacts:
     when: always
     name: "qa_report"

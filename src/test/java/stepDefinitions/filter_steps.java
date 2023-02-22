@@ -23,7 +23,7 @@ public class filter_steps {
 
     public filter_steps(Driver driver) {
         this.driver = driver;
-        this.driver.setupController("chrome");    }
+        this.driver.setupController();    }
 
     @And("user click on all filters and should choose the start date as {string} and the finish date as {string}")
     public void user_click_on_all_filters_and_should_choose_the_start_date_and_the_finish_date(String star_date, String finish_date) {

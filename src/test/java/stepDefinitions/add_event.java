@@ -18,8 +18,10 @@ public class add_event {
     Driver driver;
 
     public add_event(Driver driver) {
+        System.out.println(System.getProperty("environment"));
         this.driver = driver;
-        this.driver.setupController("chrome");
+        this.driver.setupController();
+
     }
 
 

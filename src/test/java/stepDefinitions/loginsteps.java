@@ -14,8 +14,10 @@ public class loginsteps {
     Driver driver;
 
     public loginsteps(Driver driver) {
+
         this.driver = driver;
-        this.driver.setupController("chrome");
+        this.driver.setupController();
+
     }
 
     @Given("user should navigate to the website")
@@ -24,8 +26,9 @@ public class loginsteps {
             WebDriverManager.chromedriver().setup();
             /*this.driver = new ChromeDriver();
             this.driver.manage().window().maximize();*/
-            this.driver.getWebDriver().get("https://coralio:cmVjZXR0ZWNvcmFsaW8yMDIyCg==@recette.uwas.fr/login");
-            Thread.sleep(500);
+            System.out.println(this.driver.getBaseUrl());
+            this.driver.getWebDriver().get(this.driver.getBaseUrl()+"/login");
+            Thread.sleep(1000);
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -37,9 +40,9 @@ public class loginsteps {
         try {
 
             this.driver.getWebDriver().findElement(By.id("normal_login_email")).sendKeys(email);
-            Thread.sleep(500);
+            Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("normal_login_password")).sendKeys(password);
-            Thread.sleep(500);
+            Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("testLogin")).click();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -55,13 +58,13 @@ public class loginsteps {
             Thread.sleep(500);
             String Current_url = this.driver.getWebDriver().getCurrentUrl() ;
             boolean login = false ;
-            if (Current_url.contentEquals("https://recette.uwas.fr/login")){
+            if (Current_url.contentEquals("https://"+System.getProperty("environment")+".uwas.fr"+"/login")){
                 login = false ;}
             else {
                 login = true;
             }
             Assert.assertTrue(login);
-            Thread.sleep(500);
+            Thread.sleep(1000);
             this.driver.getWebDriver().quit();
             }
 
@@ -75,15 +78,13 @@ public class loginsteps {
     @Then("error message should appear")
     public void error_message_should_appear() {
         try {
-            Thread.sleep(500);
+            Thread.sleep(1000);
             Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("normal_login_email")).isDisplayed());
-            Thread.sleep(500);
+            Thread.sleep(1000);
             this.driver.getWebDriver().quit();
-
 
         }catch (InterruptedException e) {
             throw new RuntimeException(e);
-
     }
     }
 }

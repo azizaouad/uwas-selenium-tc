@@ -14,7 +14,7 @@ public class sign_up_steps {
 
     public sign_up_steps (Driver driver) {
         this.driver = driver;
-        this.driver.setupController("chrome");
+        this.driver.setupController();
     }
     @Given("user open the website and click on sign up now")
     public void user_open_the_website_and_click_on_sign_up_now() {

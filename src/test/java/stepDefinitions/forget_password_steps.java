@@ -16,7 +16,7 @@ public class forget_password_steps {
 
     public forget_password_steps(Driver driver) {
         this.driver = driver;
-        this.driver.setupController("chrome");
+        this.driver.setupController();
     }
 
 

@@ -12,15 +12,27 @@ import java.util.concurrent.TimeUnit;
 
 public class Driver {
     private WebDriver webDriver;
+    private String baseUrl;
+
     final Logger logger = LoggerFactory.getLogger(Driver.class);
 
-    public  Driver(WebDriver webDriver) {
+    public  Driver(WebDriver webDriver, String baseUrl) {
+
         this.webDriver=webDriver;
+        this.baseUrl=baseUrl;
+
     }
     public  Driver() {
     }
 
 
+    public String getBaseUrl() {
+        return baseUrl;
+    }
+
+    public void setBaseUrl(String baseUrl) {
+        this.baseUrl = baseUrl;
+    }
 
     public WebDriver getWebDriver() {
         return webDriver;
@@ -30,16 +42,25 @@ public class Driver {
         this.webDriver = driver;
     }
 
-    public void setupController(String driverType) {
-        if (driverType == "firefox") {
+    public void setupController() {
+        String driverType = "";
+        if ( System.getProperty("webDriver") != "" ) {
+            driverType=System.getProperty("webDriver");
+        }
+
+        else {
+            logger.error("webDriver not provided");
+        }
+
+        if (driverType.equals("firefox")) {
             FirefoxOptions options = new FirefoxOptions();
             options.addArguments("headless");
             this.webDriver = new FirefoxDriver(options);
             this.webDriver.manage().window().maximize();
-            this.webDriver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+            this.webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         }
         else {
-            if (driverType=="chrome"){
+            if (driverType.equals("chrome")){
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("headless");
                 this.webDriver = new ChromeDriver(options);
@@ -49,11 +70,18 @@ public class Driver {
             }
             else {
                 logger.error("driver type is not chrome or firefox");
-
             }
         }
 
 
+        if (System.getProperty("environment").equals("recette")){
+            baseUrl= "https://coralio:cmVjZXR0ZWNvcmFsaW8yMDIyCg==@"+System.getProperty("environment")+".uwas.fr";
+        }
+        else {
+            baseUrl= "https://"+System.getProperty("environment")+".uwas.fr";
+
+        }
+        logger.info("BaseUrl to test is :"+baseUrl);
 
     }
 

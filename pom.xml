@@ -6,6 +6,7 @@
     <groupId>org.example</groupId>
     <artifactId>CucumberQA_UWAS</artifactId>
     <version>1.0-SNAPSHOT</version>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="7" failures="0" name="runner.TestRunner" time="59.178" errors="0" skipped="0">
+<testsuite tests="7" failures="0" name="runner.TestRunner" time="227.36" errors="0" skipped="0">
   <properties>
+    <property name="webDriver" value="chrome"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="17.0.6+9-LTS-190"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-17\bin"/>
@@ -43,7 +44,7 @@
     <property name="java.class.path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2022.2.3\plugins\maven\lib\maven3\bin\..\boot\plexus-classworlds-2.6.0.jar"/>
     <property name="java.vm.specification.version" value="17"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean test"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Denvironment=recette -DwebDriver=chrome test"/>
     <property name="java.home" value="C:\Program Files\Java\jdk-17"/>
     <property name="user.language" value="fr"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
@@ -51,6 +52,7 @@
     <property name="java.version" value="17.0.6"/>
     <property name="native.encoding" value="Cp1252"/>
     <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="environment" value="recette"/>
     <property name="sun.stderr.encoding" value="cp850"/>
     <property name="maven.home" value="C:\Program Files\JetBrains\IntelliJ IDEA 2022.2.3\plugins\maven\lib\maven3\bin\.."/>
     <property name="file.separator" value="\"/>
@@ -61,11 +63,11 @@
     <property name="sun.stdout.encoding" value="cp850"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="test the login functionality" name="user to login with valid email and valid password" time="9.593"/>
-  <testcase classname="test the login functionality" name="login with invalid credentials #1" time="7.523"/>
-  <testcase classname="test the login functionality" name="login with invalid credentials #2" time="11.014"/>
-  <testcase classname="test the login functionality" name="login with invalid credentials #3" time="10.366"/>
-  <testcase classname="test the login functionality" name="login with invalid credentials #4" time="9.871"/>
-  <testcase classname="test the login functionality" name="login with invalid credentials #5" time="4.826"/>
-  <testcase classname="test the login functionality" name="login with invalid credentials #6" time="5.985"/>
+  <testcase classname="test the login functionality" name="user to login with valid email and valid password" time="15.598"/>
+  <testcase classname="test the login functionality" name="login with invalid credentials #1" time="18.384"/>
+  <testcase classname="test the login functionality" name="login with invalid credentials #2" time="30.487"/>
+  <testcase classname="test the login functionality" name="login with invalid credentials #3" time="30.551"/>
+  <testcase classname="test the login functionality" name="login with invalid credentials #4" time="34.68"/>
+  <testcase classname="test the login functionality" name="login with invalid credentials #5" time="40.731"/>
+  <testcase classname="test the login functionality" name="login with invalid credentials #6" time="56.929"/>
 </testsuite>

@@ -13,7 +13,7 @@ public class scenario_steps {
 
     public scenario_steps(Driver driver) {
         this.driver = driver;
-        this.driver.setupController("chrome");
+        this.driver.setupController();
     }
 
     @Then("photographer should logout")

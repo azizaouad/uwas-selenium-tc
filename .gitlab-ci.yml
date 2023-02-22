@@ -19,7 +19,7 @@ qa_test:
   allow_failure: true
   script:
     - echo $QA_ENVIRONMENT
-    - mvn clean -Denvironment=$QA_ENVIRONMENT -DwebDriver=$WEB_DRIVER test
+    - mvn clean -Denvironment=$(echo $QA_ENVIRONMENT) -DwebDriver=$(echo $WEB_DRIVER) test
   artifacts:
     when: always
     name: "qa_report"

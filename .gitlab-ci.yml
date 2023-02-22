@@ -13,7 +13,6 @@ qa_test:
   stage: test
   only:
     - main
-    - poc
   variables:
     QA_ENVIRONMENT: recette
     WEB_DRIVER: chrome

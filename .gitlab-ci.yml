@@ -12,6 +12,8 @@ stages:
 
 qa_test:
   stage: test
+  only:
+    - main
   variables:
     QA_ENVIRONMENT: recette
     WEB_DRIVER: chrome

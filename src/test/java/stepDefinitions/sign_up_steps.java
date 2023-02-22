@@ -20,7 +20,7 @@ public class sign_up_steps {
     public void user_open_the_website_and_click_on_sign_up_now() {
         try {
             this.driver.getWebDriver().get("https://coralio:cmVjZXR0ZWNvcmFsaW8yMDIyCg==@recette.uwas.fr/login");
-            Thread.sleep(10000);
+            Thread.sleep(2000);
             this.driver.getWebDriver().findElement(By.linkText("Sign up now!")).click();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -31,7 +31,7 @@ public class sign_up_steps {
     public void user_fill_first_name(String first_name) {
 
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1);
             this.driver.getWebDriver().findElement(By.id("normal_login_first_name")).sendKeys(first_name);
         }
         catch (InterruptedException e) {
@@ -45,7 +45,7 @@ public class sign_up_steps {
     @And("user fill last_name as {string}")
     public void user_fill_last_name(String last_name) {
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1);
             this.driver.getWebDriver().findElement(By.id("normal_login_last_name")).sendKeys(last_name);
         }catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -56,7 +56,7 @@ public class sign_up_steps {
     @And("user fill email as {string}")
     public void user_fill_email(String email) {
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1);
             this.driver.getWebDriver().findElement(By.id("normal_login_email")).sendKeys(email);
         }catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -66,7 +66,7 @@ public class sign_up_steps {
     @And("user fill password as {string}")
     public void user_fill_password ( String password ) {
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1);
             this.driver.getWebDriver().findElement(By.id("normal_login_password")).sendKeys(password);
 
         }catch (InterruptedException e) {
@@ -77,7 +77,7 @@ public class sign_up_steps {
     @And("user fill confirm_password as {string}")
     public void user_fill_confirm_password ( String confirm_password ) {
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1);
             this.driver.getWebDriver().findElement(By.id("normal_login_confirmPassword")).sendKeys(confirm_password);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -87,7 +87,7 @@ public class sign_up_steps {
     @And("user click on the captcha")
     public void user_click_on_the_captcha (  ) {
         try {
-            Thread.sleep(2000);
+
             this.driver.getWebDriver().findElement(By.name("captcha")).click();
             Thread.sleep(10000);
         }catch (InterruptedException e) {
@@ -110,13 +110,11 @@ public class sign_up_steps {
     @Then("user have an account he can login with this credentials email as {string} and password as {string}")
     public void user_have_an_account_he_can_login_with_this_credentials_email_and_password ( String email , String password) {
         try {
-            Thread.sleep(8000);
+            Thread.sleep(2000);
             this.driver.getWebDriver().findElement(By.id("normal_login_email")).sendKeys(email);
-            Thread.sleep(2000);
             this.driver.getWebDriver().findElement(By.id("normal_login_password")).sendKeys(password);
-            Thread.sleep(2000);
             this.driver.getWebDriver().findElement(By.id("testLogin")).click();
-            Thread.sleep(5000);
+            Thread.sleep(2000);
             String Current_url = this.driver.getWebDriver().getCurrentUrl() ;
             boolean login = false ;
             if (Current_url.contentEquals("https://recette.uwas.fr/login")){
@@ -125,7 +123,7 @@ public class sign_up_steps {
                 login = true;
             }
             Assert.assertTrue(login);
-            Thread.sleep(2000);
+            Thread.sleep(100);
             this.driver.getWebDriver().quit();
         }catch (InterruptedException e) {
             throw new RuntimeException(e);

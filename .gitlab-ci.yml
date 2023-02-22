@@ -14,10 +14,11 @@ qa_test:
   only:
     - main
   variables:
-    QA_ENVIRONMENT: recette
-    WEB_DRIVER: chrome
+    QA_ENVIRONMENT: "recette"
+    WEB_DRIVER: "chrome"
   allow_failure: true
   script:
+    - echo $QA_ENVIRONMENT
     - mvn clean -Denvironment=$QA_ENVIRONMENT -DwebDriver=$WEB_DRIVER test
   artifacts:
     when: always

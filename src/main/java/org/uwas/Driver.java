@@ -55,6 +55,7 @@ public class Driver {
         if (driverType.equals("firefox")) {
             FirefoxOptions options = new FirefoxOptions();
             options.addArguments("headless");
+            options.addArguments("no-sandbox");
             this.webDriver = new FirefoxDriver(options);
             this.webDriver.manage().window().maximize();
             this.webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -63,6 +64,7 @@ public class Driver {
             if (driverType.equals("chrome")){
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("headless");
+                options.addArguments("no-sandbox");
                 this.webDriver = new ChromeDriver(options);
                 this.webDriver.manage().window().maximize();
                 this.webDriver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);

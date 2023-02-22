@@ -9,11 +9,11 @@ stages:
 #-----------------------------------------------------
 # TEST: QA TEST
 #-----------------------------------------------------
-
 qa_test:
   stage: test
   only:
     - main
+    - poc
   variables:
     QA_ENVIRONMENT: recette
     WEB_DRIVER: chrome
@@ -29,4 +29,4 @@ qa_test:
       - target/reports/*
     expire_in: 1 h
   tags:
-    - uwas-infra-runner
+    - gitlab-runner

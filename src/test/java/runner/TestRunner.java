@@ -19,17 +19,6 @@ import org.uwas.Driver;
 )
 
 public class TestRunner {
-    static final Logger logger = LoggerFactory.getLogger(TestRunner.class);
-
-    @BeforeAll
-    static void setup() {
-        logger.info("startup - testing uwas "+System.getProperty("environment")+" env features");
-    }
-
-    @AfterAll
-    static void tearDown() {
-        logger.info("Closing - testing uwas "+System.getProperty("environment")+" env features");
-    }
 
 
 

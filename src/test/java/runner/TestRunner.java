@@ -12,15 +12,16 @@ import org.uwas.Driver;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
+
         features = "src/test/resources/functionalFeatures/3forget_password.feature"
         ,glue = "stepDefinitions",
         plugin = {"pretty","html:target/reports/report.html","json:target/reports/report.json"}
 
-)
+
+
+                )
 
 public class TestRunner {
-
-
 
 }
 

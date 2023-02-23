@@ -74,8 +74,13 @@ public class forget_password_steps {
             Thread.sleep(2000);
             WebElement unreadEmail = this.driver.getWebDriver().findElement(By.className("zE"));
             unreadEmail.click();
-            WebElement link = this.driver.getWebDriver().findElement(By.partialLinkText(this.driver.getBaseUrl()+"/change-password/"));
-            this.driver.getWebDriver().get(link.getText());
+            WebElement link = this.driver.getWebDriver().findElement(By.partialLinkText("https://recette.uwas.fr/change-password/"));
+            String link_string = link.toString();
+            String subs = link_string.substring(link_string.indexOf("/change-password/"),link_string.length());
+
+            System.out.println(this.driver.getBaseUrl()+subs);
+
+            this.driver.getWebDriver().get(this.driver.getBaseUrl()+subs);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

@@ -24,7 +24,7 @@ public class archive_event {
     @Given("photographer should login with his credentials email as {string} and password as {string} and create an event title as {string}")
     public void photographer_should_login_with_his_credentials_email_and_password ( String email , String password, String title) {
         try {
-            this.driver.getWebDriver().get("https://coralio:cmVjZXR0ZWNvcmFsaW8yMDIyCg==@recette.uwas.fr/login");
+            this.driver.getWebDriver().get(this.driver.getBaseUrl()+"/login");
             Thread.sleep(2000);
             this.driver.getWebDriver().findElement(By.id("normal_login_email")).sendKeys(email);
 
@@ -174,7 +174,7 @@ public class archive_event {
     public void photographer_should_login_with_his_credentials_email_and_password (String email , String password) {
         try {
 
-            this.driver.getWebDriver().get("https://coralio:cmVjZXR0ZWNvcmFsaW8yMDIyCg==@recette.uwas.fr/login");
+            this.driver.getWebDriver().get(this.driver.getBaseUrl()+"/login");
             Thread.sleep(2000);
             this.driver.getWebDriver().findElement(By.id("normal_login_email")).sendKeys(email);
             this.driver.getWebDriver().findElement(By.id("normal_login_password")).sendKeys(password);

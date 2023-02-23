@@ -19,7 +19,7 @@ public class sign_up_steps {
     @Given("user open the website and click on sign up now")
     public void user_open_the_website_and_click_on_sign_up_now() {
         try {
-            this.driver.getWebDriver().get("https://coralio:cmVjZXR0ZWNvcmFsaW8yMDIyCg==@recette.uwas.fr/login");
+            this.driver.getWebDriver().get(this.driver.getBaseUrl()+"/login");
             Thread.sleep(2000);
             this.driver.getWebDriver().findElement(By.linkText("Sign up now!")).click();
         } catch (InterruptedException e) {

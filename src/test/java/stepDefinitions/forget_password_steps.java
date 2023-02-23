@@ -24,7 +24,7 @@ public class forget_password_steps {
     public void user_open_the_website_and_click_on_forget_password() {
         try {
 
-            this.driver.getWebDriver().get("https://coralio:cmVjZXR0ZWNvcmFsaW8yMDIyCg==@recette.uwas.fr/login");
+            this.driver.getWebDriver().get(this.driver.getBaseUrl()+"/login");
             Thread.sleep(2000);
             this.driver.getWebDriver().findElement(By.linkText("Forgot Password?")).click();
 

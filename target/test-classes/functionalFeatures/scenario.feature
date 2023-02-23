@@ -1,6 +1,6 @@
 Feature: use case
 
-
+@RegressionTest
   Scenario: photographer should login, then he should create an event and logout
     Given user should navigate to the website
     When user write email as "qa@gmail.com" and password as "Aziz1996@" and click on login
@@ -12,7 +12,7 @@ Feature: use case
     And photographer should click on the button ok
     And title of event as "scenariotest" event in location of event as "paris" at the date of event as "2022-12-31" is created
     Then photographer should logout
-
+  @SmokeTest
   Scenario: photographer should login, then he should upload some photos and logout
     Given user should navigate to the website
     When user write email as "qa@gmail.com" and password as "Aziz1996@" and click on login

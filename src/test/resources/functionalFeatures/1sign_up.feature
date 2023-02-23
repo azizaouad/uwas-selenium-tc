@@ -1,3 +1,4 @@
+
 Feature: test the sign up functionality
   @RegressionTest
   Scenario: fill in all the mandatory fields respecting the conditions of each field

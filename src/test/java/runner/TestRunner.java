@@ -1,19 +1,38 @@
 package runner;
 
+import io.cucumber.java.AfterAll;
+import io.cucumber.java.BeforeAll;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.uwas.Driver;
 
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
+
         features = "src/test/resources/functionalFeatures/3forget_password.feature"
         ,glue = "stepDefinitions",
         plugin = {"pretty","html:target/reports/report.html","json:target/reports/report.json"}
-        ,tags="@SmokeTest"
+
+
+
                 )
 
 public class TestRunner {
+    static final Logger logger = LoggerFactory.getLogger(TestRunner.class);
+
+//    @BeforeAll
+//    static void setup() {
+//        logger.info("startup - testing uwas "+System.getProperty("environment")+" env features");
+//    }
+//
+//    @AfterAll
+//    static void tearDown() {
+//        logger.info("Closing - testing uwas "+System.getProperty("environment")+" env features");
+//    }
 
 
 

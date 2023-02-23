@@ -29,7 +29,7 @@ public class add_event {
     public void photographer_should_login() {
         try {
 
-            this.driver.getWebDriver().get("https://coralio:cmVjZXR0ZWNvcmFsaW8yMDIyCg==@recette.uwas.fr/login");
+            this.driver.getWebDriver().get(this.driver.getBaseUrl()+"/login");
             Thread.sleep(10);
             this.driver.getWebDriver().findElement(By.id("normal_login_email")).sendKeys("azizaouadi12@gmail.com");
             Thread.sleep(10);

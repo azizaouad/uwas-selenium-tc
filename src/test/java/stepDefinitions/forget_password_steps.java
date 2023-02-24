@@ -61,24 +61,28 @@ public class forget_password_steps {
         try {
 
             this.driver.getWebDriver().switchTo().newWindow(WindowType.TAB);
-            this.driver.getWebDriver().navigate().to("https://www.google.com/intl/fr/gmail/about/");
+            this.driver.getWebDriver().navigate().to("https://qa.team/inbox?utf8=%E2%9C%93&code=uwas&locale=en&commit=go+%C2%BB");
             Thread.sleep(2000);
-            this.driver.getWebDriver().findElement(By.xpath("/html/body/header/div/div/div/a[2]")).click();
-            this.driver.getWebDriver().findElement(By.id("identifierId")).sendKeys("a.aouadi@coral-io.fr");
-            Thread.sleep(2000);
-            this.driver.getWebDriver().findElement(By.xpath("/html/body/div[1]/div[1]/div[2]/div/c-wiz/div/div[2]/div/div[2]/div/div[1]/div/div/button/span")).click();
-            Thread.sleep(2000);
-            this.driver.getWebDriver().findElement(By.name("Passwd")).sendKeys("Aziz1996@");
-            Thread.sleep(2000);
-            this.driver.getWebDriver().findElement(By.xpath("/html/body/div[1]/div[1]/div[2]/div/c-wiz/div/div[2]/div/div[2]/div/div[1]/div/div/button/span")).click();
-            Thread.sleep(2000);
-            WebElement unreadEmail = this.driver.getWebDriver().findElement(By.className("zE"));
-            unreadEmail.click();
-            WebElement link = this.driver.getWebDriver().findElement(By.partialLinkText("https://recette.uwas.fr/change-password/"));
+            this.driver.getWebDriver().findElement(By.className("list-group-item")).click();
+//            this.driver.getWebDriver().findElement(By.xpath("/html/body/header/div/div/div/a[2]")).click();
+//            this.driver.getWebDriver().findElement(By.id("identifierId")).sendKeys("qa.uwas@gmail.com");
+//            Thread.sleep(2000);
+//            this.driver.getWebDriver().findElement(By.xpath("/html/body/div[1]/div[1]/div[2]/div/c-wiz/div/div[2]/div/div[2]/div/div[1]/div/div/button/span")).click();
+//            Thread.sleep(2000);
+//            this.driver.getWebDriver().findElement(By.name("Passwd")).sendKeys("uwasqa123");
+//            Thread.sleep(2000);
+//            this.driver.getWebDriver().findElement(By.xpath("/html/body/div[1]/div[1]/div[2]/div/c-wiz/div/div[2]/div/div[2]/div/div[1]/div/div/button/span")).click();
+//            Thread.sleep(2000);
+//            WebElement unreadEmail = this.driver.getWebDriver().findElement(By.className("zE"));
+//            unreadEmail.click();
+            WebElement corps_mail = this.driver.getWebDriver().findElement(By.className("col-xs-12"));
+            System.out.println(corps_mail.getText());
+            WebElement link = corps_mail.findElement(By.partialLinkText("https://recette.uwas.fr/change-password"));
             String link_string = link.toString();
             String subs = link_string.substring(link_string.indexOf("/change-password/"),link_string.length());
-
+//
             System.out.println(this.driver.getBaseUrl()+subs);
+//
 
             this.driver.getWebDriver().get(this.driver.getBaseUrl()+subs);
         } catch (InterruptedException e) {

@@ -63,7 +63,7 @@ public class Driver {
         else {
             if (driverType.equals("chrome")){
                 ChromeOptions options = new ChromeOptions();
-               // options.addArguments("headless");
+               //options.addArguments("headless");
                 //options.addArguments("no-sandbox");
                 this.webDriver = new ChromeDriver(options);
                 this.webDriver.manage().window().maximize();

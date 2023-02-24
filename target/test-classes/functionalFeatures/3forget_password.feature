@@ -5,9 +5,9 @@ Feature: test forget password functionality
     When user write email as "uwas@qa.team"
     And user confirm the email
     And user visit the mail and click on the link
-    And user write password as "Aziz1997@!!"
-    And user write confirm_password as "Aziz1997@!!"
-    Then the password is changed user can login with new password as "Aziz1997@!!" and email as "uwas@qa.team"
+    And user write password as "Aziz201@!!"
+    And user write confirm_password as "Aziz201@!!"
+    Then the password is changed user can login with new password as "Aziz201@!!" and email as "uwas@qa.team"
 #  @SmokeTest
 #  Scenario: user try to reset his password without having an account
 #    Given user open the website and click on forget password

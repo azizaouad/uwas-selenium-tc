@@ -128,11 +128,9 @@ public class forget_password_steps {
     @Then("the password is changed user can login with new password as {string} and email as {string}")
     public void the_password_is_changed_user_can_login_with_new_password_and_email(String password, String email) {
         try {
-            Thread.sleep(4000);
+            Thread.sleep(5000);
             this.driver.getWebDriver().findElement(By.id("normal_login_email")).sendKeys(email);
-
             this.driver.getWebDriver().findElement(By.id("normal_login_password")).sendKeys(password);
-
             this.driver.getWebDriver().findElement(By.id("testLogin")).click();
             Thread.sleep(4000);
             String Current_url = this.driver.getWebDriver().getCurrentUrl() ;

@@ -56,6 +56,7 @@ public class Driver {
             FirefoxOptions options = new FirefoxOptions();
             options.addArguments("headless");
             options.addArguments("no-sandbox");
+            options.addArguments("start-maximized");
             this.webDriver = new FirefoxDriver(options);
             this.webDriver.manage().window().maximize();
             this.webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -65,6 +66,7 @@ public class Driver {
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("headless");
                 options.addArguments("no-sandbox");
+                options.addArguments("start-maximized");
                 this.webDriver = new ChromeDriver(options);
                 this.webDriver.manage().window().maximize();
                 this.webDriver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);

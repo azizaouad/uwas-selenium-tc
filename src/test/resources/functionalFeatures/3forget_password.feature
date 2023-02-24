@@ -24,14 +24,14 @@ Feature: test forget password functionality
 #    And user write confirm_password as "<confirm_password>"
 #    Then the password is not changed and an error message appear
 
-   // Examples:
-     // | password  | confirm_password |
-     // | admin123! | admin123!        |
-    //  | Admin1234 | Admin1234        |
-    //  | Admin!!!! | Admin!!!!        |
-    //  | ADMIN123! | ADMIN123!        |
-   //   | Admin1!   | Admin1!          |
-   //   |           | Admin123!        |
-   //   | Admin123! | Admin12345!      |
- //     | Admin123! |                  |
+      Examples:
+      | password  | confirm_password |
+      | admin123! | admin123!        |
+    # | Admin1234 | Admin1234        |
+    # | Admin!!!! | Admin!!!!        |
+    # | ADMIN123! | ADMIN123!        |
+    # | Admin1!   | Admin1!          |
+    # |           | Admin123!        |
+   #  | Admin123! | Admin12345!      |
+   #   | Admin123! |                  |
 

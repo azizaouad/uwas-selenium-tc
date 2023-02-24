@@ -11,6 +11,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
 import org.uwas.Driver;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class forget_password_steps {
     Driver driver;
 
@@ -61,36 +66,42 @@ public class forget_password_steps {
         try {
 
             this.driver.getWebDriver().switchTo().newWindow(WindowType.TAB);
+            Thread.sleep(3000);
             this.driver.getWebDriver().navigate().to("https://qa.team/inbox?utf8=%E2%9C%93&code=uwas&locale=en&commit=go+%C2%BB");
-            Thread.sleep(2000);
-            this.driver.getWebDriver().findElement(By.className("list-group-item")).click();
-//            this.driver.getWebDriver().findElement(By.xpath("/html/body/header/div/div/div/a[2]")).click();
-//            this.driver.getWebDriver().findElement(By.id("identifierId")).sendKeys("qa.uwas@gmail.com");
-//            Thread.sleep(2000);
-//            this.driver.getWebDriver().findElement(By.xpath("/html/body/div[1]/div[1]/div[2]/div/c-wiz/div/div[2]/div/div[2]/div/div[1]/div/div/button/span")).click();
-//            Thread.sleep(2000);
-//            this.driver.getWebDriver().findElement(By.name("Passwd")).sendKeys("uwasqa123");
-//            Thread.sleep(2000);
-//            this.driver.getWebDriver().findElement(By.xpath("/html/body/div[1]/div[1]/div[2]/div/c-wiz/div/div[2]/div/div[2]/div/div[1]/div/div/button/span")).click();
-//            Thread.sleep(2000);
-//            WebElement unreadEmail = this.driver.getWebDriver().findElement(By.className("zE"));
-//            unreadEmail.click();
-            WebElement corps_mail = this.driver.getWebDriver().findElement(By.className("col-xs-12"));
-            System.out.println(corps_mail.getText());
-            WebElement link = corps_mail.findElement(By.partialLinkText("https://recette.uwas.fr/change-password"));
-            String link_string = link.toString();
-            String subs = link_string.substring(link_string.indexOf("/change-password/"),link_string.length());
-//
-            System.out.println(this.driver.getBaseUrl()+subs);
-//
+            Thread.sleep(1000);
 
-            this.driver.getWebDriver().get(this.driver.getBaseUrl()+subs);
-        } catch (InterruptedException e) {
+            this.driver.getWebDriver().findElement(By.className("list-group-item")).click();
+            WebElement corps_mail = this.driver.getWebDriver().findElement(By.className("col-xs-12"));
+
+            List<String> containedUrls = new ArrayList<String>();
+            String urlRegex = "((https?|ftp|gopher|telnet|file):((//)|(\\\\))+[\\w\\d:#@%/;$()~_?\\+-=\\\\\\.&]*)";
+            Pattern pattern = Pattern.compile(urlRegex, Pattern.CASE_INSENSITIVE);
+            Matcher urlMatcher = pattern.matcher(corps_mail.getText().toString().split("---")[1]);
+
+            while (urlMatcher.find())
+            {
+                containedUrls.add(corps_mail.getText().toString().split("---")[1].substring(urlMatcher.start(0),
+                        urlMatcher.end(0)));
+            }
+
+                String webUrlResetPassword = "";
+
+                if (System.getProperty("environment").equals("recette")){
+                    webUrlResetPassword =" https:///coralio:cmVjZXR0ZWNvcmFsaW8yMDIyCg==@"+containedUrls.get(0).substring(8);
+                }
+                else {
+                    webUrlResetPassword = containedUrls.get(0).toString();
+                }
+
+
+                this.driver.getWebDriver().get(webUrlResetPassword);
+            }
+
+         catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
-
-    @And("user write password as {string}")
+        @And("user write password as {string}")
     public void user_write_password(String password) {
         try {
             Thread.sleep(5000);

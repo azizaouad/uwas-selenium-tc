@@ -5,9 +5,9 @@ Feature: test forget password functionality
     When user write email as "uwas@qa.team"
     And user confirm the email
     And user visit the mail and click on the link
-    And user write password as "Aziz1996@!!"
-    And user write confirm_password as "Aziz1996@!!"
-    Then the password is changed user can login with new password as "Aziz1996@!!" and email as "uwas@qa.team"
+    And user write password as "Aziz1998@!!"
+    And user write confirm_password as "Aziz1998@!!"
+    Then the password is changed user can login with new password as "Aziz1998@!!" and email as "uwas@qa.team"
 #  @SmokeTest
 #  Scenario: user try to reset his password without having an account
 #    Given user open the website and click on forget password
@@ -25,13 +25,6 @@ Feature: test forget password functionality
 #    Then the password is not changed and an error message appear
 
       Examples:
-      | password  | confirm_password |
-      | admin1235!| admin1235!       |
-      | Admin1234 | Admin1234        |
-      | Admin!!!! | Admin!!!!        |
-      | ADMIN123! | ADMIN123!        |
-      | Admin1!   | Admin1!          |
-      |           | Admin123!        |
-      | Admin123! | Admin12345!      |
-      | Admin123! |                  |
+      | password    | confirm_password  |
+      | admin6542!  | admin6542!        |
 

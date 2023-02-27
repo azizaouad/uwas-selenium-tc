@@ -41,7 +41,7 @@ qa_test:
 #-----------------------------------------------------
 
 qa_notify:
-  stage: test
+  stage: notify
   only:
     - main
   script:

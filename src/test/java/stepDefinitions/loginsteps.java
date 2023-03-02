@@ -28,7 +28,7 @@ public class loginsteps {
             this.driver.manage().window().maximize();*/
             System.out.println(this.driver.getBaseUrl());
             this.driver.getWebDriver().get(this.driver.getBaseUrl()+"/login");
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);

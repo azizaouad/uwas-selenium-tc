@@ -1,9 +1,11 @@
 package stepDefinitions;
 
+import gherkin.lexer.Th;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.uwas.Driver;
 
 import javax.swing.*;
 import java.security.Key;
@@ -32,21 +34,50 @@ import static java.time.temporal.TemporalAdjusters.lastDayOfYear;
 //import java.util.logging.Logger;
 //
 public class d {
+
     public static void main(String[] args) {
         try {
-//           WebDriverManager.chromedriver().setup();
+//            WebDriverManager.chromedriver().setup();
 //            WebDriver driver = new ChromeDriver();
-//           driver.manage().window().maximize();
-//            driver.get("https://recette.uwas.fr/login");
-//            Thread.sleep(20000);
-//            String email = "a.aouadi@coral-io.fr";
-//            String password = "Aziz1996@!!";
+//            driver.manage().window().maximize();
+//            driver.get("https://coralio:cmVjZXR0ZWNvcmFsaW8yMDIyCg==@recette.uwas.fr/login");
+//            Thread.sleep(2000);
+//
+//            String email = "qa@gmail.com";
+//            String password = "Aziz1996@";
 //            driver.findElement(By.id("normal_login_email")).sendKeys(email);
 //            Thread.sleep(2000);
 //            driver.findElement(By.id("normal_login_password")).sendKeys(password);
 //            Thread.sleep(2000);
 //            driver.findElement(By.id("testLogin")).click();
-//            Thread.sleep(10000);
+//            Thread.sleep(5000);
+//            driver.findElement(By.id("testAddEvent")).click();
+//            Thread.sleep(2000);
+//            driver.findElement(By.id("name")).sendKeys("qaqaqa");
+//            WebElement upload = driver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[2]/form/div[5]/div/div[2]/div/div/span/div[1]/span/input"));
+////            upload.click();
+//            Thread.sleep(2000);
+////            WebElement frame = driver.switchTo().activeElement();
+//
+//            upload.sendKeys("C://Users/Lenovo/Desktop/sss.PNG");
+            LocalDate date = LocalDate.now();
+            LocalDate startweek = date;
+            while (startweek.getDayOfWeek() != DayOfWeek.MONDAY) {
+                startweek = startweek.minusDays(1);
+
+            }
+            System.out.println("Start of the Week = " + startweek);
+            LocalDate endweek = date;
+            while (endweek.getDayOfWeek() != DayOfWeek.SUNDAY) {
+                endweek = endweek.plusDays(1);
+
+
+            }
+            System.out.println(date);
+            System.out.println("Start of the Week = " + endweek);
+            Thread.sleep(1000);
+
+
 //            LocalDate startDate = LocalDate.of(2015, 2, 20);
 //           LocalDate endDate = LocalDate.of(2017, 1, 15);
 
@@ -276,16 +307,7 @@ public class d {
 //                System.out.println("on the month");
 //
 //   /
-            LocalDate date = LocalDate.now();
-            System.out.println(date);
-            Thread.sleep(1000);
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            String start_date ="2023-02-14";
-            String finish_date = "2023-02-28";
-            LocalDate startInterval = LocalDate.parse(start_date);
-            LocalDate endInterval = LocalDate.parse(finish_date);
-            System.out.println(startInterval.minusDays(1));
-            System.out.println(endInterval.plusDays(1));
+
 //            driver.findElement(By.className("ant-collapse-item")).click();
 //            Thread.sleep(5000);
 //            driver.findElement(By.id("eventFilterViewed")).click();

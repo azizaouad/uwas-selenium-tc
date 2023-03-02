@@ -31,11 +31,12 @@ public class add_event {
 
             this.driver.getWebDriver().get(this.driver.getBaseUrl()+"/login");
             Thread.sleep(10);
-            this.driver.getWebDriver().findElement(By.id("normal_login_email")).sendKeys("azizaouadi12@gmail.com");
+            this.driver.getWebDriver().findElement(By.id("normal_login_email")).sendKeys("mkd@outlook.fr");
             Thread.sleep(10);
             this.driver.getWebDriver().findElement(By.id("normal_login_password")).sendKeys("Aziz1996@");
             Thread.sleep(10);
             this.driver.getWebDriver().findElement(By.id("testLogin")).click();
+            Thread.sleep(2000);
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -45,8 +46,12 @@ public class add_event {
     @When("photographer should click on the button of add event")
     public void photographer_should_click_on_the_button_of_add_event() {
         try {
-            Thread.sleep(2000);
-            this.driver.getWebDriver().findElement(By.id("testAddEvent")).click();
+            Thread.sleep(5000);
+            System.out.println(0);
+            this.driver.getWebDriver().findElement(By.className("underHeader__left-menu")).click();
+            System.out.println(1);
+            Thread.sleep(500);
+            this.driver.getWebDriver().findElement(By.className("ant-dropdown-menu-title-content")).click();
 
 
         } catch (InterruptedException e) {
@@ -98,8 +103,8 @@ public class add_event {
     @And("photographer put an image for the event")
     public void photographer_put_an_image_for_the_event() {
         try {
-            Thread.sleep(1000);
-            WebElement source = this.driver.getWebDriver().findElement(By.id("testUploadImg"));
+            Thread.sleep(3000);
+            WebElement source = this.driver.getWebDriver().findElement(By.xpath("/html/body/div[3]/div/div[2]/div/div[2]/div[2]/form/div[5]/div/div[2]/div/div/span/div[1]/span/input"));
             source.sendKeys("C://Users/Lenovo/Desktop/traditions-noel-europe-1024x683.jpg");
 
 
@@ -115,7 +120,7 @@ public class add_event {
         try {
             Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("test123")).click();
-            Thread.sleep(4000);
+            Thread.sleep(7000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -227,7 +232,7 @@ public class add_event {
     public void photographer_put_a_file_in_the_image_field_for_the_event() {
         try {
             Thread.sleep(10);
-            WebElement source =this.driver.getWebDriver().findElement(By.id("testUploadImg"));
+            WebElement source =this.driver.getWebDriver().findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[2]/form/div[5]/div/div[2]/div/div/span/div[1]/span/input"));
             source.sendKeys("C://Users/Lenovo/Desktop/Compte photographe.pptx");
         } catch (InterruptedException e) {
             throw new RuntimeException(e);

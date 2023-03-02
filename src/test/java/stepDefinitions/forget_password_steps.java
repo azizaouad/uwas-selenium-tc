@@ -66,7 +66,7 @@ public class forget_password_steps {
         try {
 
             this.driver.getWebDriver().switchTo().newWindow(WindowType.TAB);
-            Thread.sleep(3000);
+            Thread.sleep(5000);
             this.driver.getWebDriver().navigate().to("https://qa.team/inbox?utf8=%E2%9C%93&code=uwas&locale=en&commit=go+%C2%BB");
             Thread.sleep(2000);
 
@@ -87,7 +87,7 @@ public class forget_password_steps {
                 String webUrlResetPassword = "";
 
                 if (System.getProperty("environment").equals("recette")){
-                    webUrlResetPassword =" https:///coralio:cmVjZXR0ZWNvcmFsaW8yMDIyCg==@"+containedUrls.get(0).substring(8);
+                    webUrlResetPassword ="https:///coralio:cmVjZXR0ZWNvcmFsaW8yMDIyCg==@"+containedUrls.get(0).substring(8);
                 }
                 else {
                     webUrlResetPassword = containedUrls.get(0).toString();

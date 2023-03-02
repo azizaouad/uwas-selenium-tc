@@ -13,7 +13,7 @@ import org.uwas.Driver;
 @RunWith(Cucumber.class)
 @CucumberOptions(
 
-        features = "src/test/resources/functionalFeatures/3forget_password.feature"
+        features = "src/test/resources/functionalFeatures/scenario.feature"
         ,glue = "stepDefinitions",
         plugin = {"pretty","html:target/reports/report.html","json:target/reports/report.json"}
 

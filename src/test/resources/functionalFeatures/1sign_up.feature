@@ -5,7 +5,7 @@ Feature: test the sign up functionality
     Given user open the website and click on sign up now
     When user fill first_name as "aziz"
     And user fill last_name as "aouadi"
-    And user fill email as "uwas@qa.team"
+    And user fill email as "uwas@qa.fr"
     And user fill password as "Aziz1996@"
     And user fill confirm_password as "Aziz1996@"
     And user click on the captcha

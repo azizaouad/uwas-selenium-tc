@@ -699,6 +699,10 @@ public class filter_steps {
     public void user_click_on_all_filters_and_should_click_on_viewed_events (){
         try {
             Thread.sleep(4000);
+            this.driver.getWebDriver().findElement(By.className("underHeader__left-menu")).click();
+            Thread.sleep(1000);
+            List <WebElement> list = this.driver.getWebDriver().findElements(By.className("ant-dropdown-menu-title-content"));
+            list.get(1).click();
             this.driver.getWebDriver().findElement(By.className("ant-collapse-item")).click();
             Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("eventFilterViewed")).click();
@@ -744,6 +748,10 @@ public class filter_steps {
     public void user_click_on_all_filters_and_should_click_on_not_viewed_events(){
         try {
             Thread.sleep(4000);
+            this.driver.getWebDriver().findElement(By.className("underHeader__left-menu")).click();
+            Thread.sleep(1000);
+            List <WebElement> list = this.driver.getWebDriver().findElements(By.className("ant-dropdown-menu-title-content"));
+            list.get(1).click();
             this.driver.getWebDriver().findElement(By.className("ant-collapse-item")).click();
             Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("eventFilterNotViewed")).click();

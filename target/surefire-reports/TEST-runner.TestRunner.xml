@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="2" failures="0" name="runner.TestRunner" time="84.279" errors="0" skipped="0">
+<testsuite tests="0" failures="0" name="runner.TestRunner" time="0" errors="0" skipped="0">
   <properties>
     <property name="webDriver" value="chrome"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
@@ -63,6 +63,4 @@
     <property name="sun.stdout.encoding" value="cp850"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="use case" name="photographer should login, then he should create an event and logout" time="40.204"/>
-  <testcase classname="use case" name="photographer should login, then he should upload some photos and logout" time="44.075"/>
 </testsuite>

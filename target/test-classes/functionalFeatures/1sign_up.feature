@@ -1,6 +1,6 @@
 
 Feature: test the sign up functionality
-  @RegressionTest
+  @Regression
   Scenario: fill in all the mandatory fields respecting the conditions of each field
     Given user open the website and click on sign up now
     When user fill first_name as "aziz"
@@ -11,7 +11,7 @@ Feature: test the sign up functionality
     And user click on the captcha
     And user click on sign up
     Then user have an account he can login with this credentials email as "qa.uwas@gmail.com" and password as "Aziz1996@"
-  @RegressionTest
+  @Regression
   Scenario Outline: fill in all the mandatory fields without respecting the conditions of each field
     Given user open the website and click on sign up now
     When user fill first_name as "<first_name>"

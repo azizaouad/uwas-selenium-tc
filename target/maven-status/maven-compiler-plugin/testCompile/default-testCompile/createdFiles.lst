@@ -1,9 +1,0 @@
-stepDefinitions\filter_steps.class
-stepDefinitions\scenario_steps.class
-stepDefinitions\archive_event.class
-stepDefinitions\forget_password_steps.class
-stepDefinitions\d.class
-stepDefinitions\loginsteps.class
-stepDefinitions\sign_up_steps.class
-stepDefinitions\add_event.class
-runner\TestRunner.class

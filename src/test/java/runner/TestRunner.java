@@ -12,9 +12,9 @@ import org.uwas.Driver;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/resources/functionalFeatures"
+        features = "src/test/resources/functionalFeatures/4archive_event.feature"
         ,glue = "stepDefinitions",
-        plugin = {"pretty","html:target/reports/report.html","json:target/reports/report.json"}
+        plugin = {"pretty","html:target/reports/report.html","json:target/reports/report.json","rerun:target/failedrun.txt"}
 
        )
 

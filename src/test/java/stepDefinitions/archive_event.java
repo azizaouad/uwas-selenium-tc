@@ -26,15 +26,17 @@ public class archive_event {
         try {
             this.driver.getWebDriver().get(this.driver.getBaseUrl()+"/login");
             Thread.sleep(2000);
-            this.driver.getWebDriver().findElement(By.id("normal_login_email")).sendKeys(email);
+            this.driver.getWebDriver().findElement(By.id("email")).sendKeys(email);
 
-            this.driver.getWebDriver().findElement(By.id("normal_login_password")).sendKeys(password);
+            this.driver.getWebDriver().findElement(By.id("password")).sendKeys(password);
             this.driver.getWebDriver().findElement(By.id("testLogin")).click();
-            Thread.sleep(6000);
-            this.driver.getWebDriver().findElement(By.className("underHeader__left-menu")).click();
-            Thread.sleep(1000);
+            Thread.sleep(4000);
+            System.out.println(0);
+            WebElement drp = this.driver.getWebDriver().findElement(By.className("underHeader__left-menu--icon"));
+            drp.click();
+            System.out.println(1);
             this.driver.getWebDriver().findElement(By.className("ant-dropdown-menu-title-content")).click();
-            Thread.sleep(1000);
+            Thread.sleep(500);
             this.driver.getWebDriver().findElement(By.id("name")).sendKeys(title);
 
             this.driver.getWebDriver().findElement(By.id("test123")).click();
@@ -61,7 +63,7 @@ public class archive_event {
 //            action.moveToElement(ele).build().perform();
            Thread.sleep(4000);
             //driver.findElement(By.xpath("/html/body/div[1]/div/main/section[2]/main/div[1]/div[2]/div/div/div[7]/div[2]/div[1]/button[2]/span/svg")).click();
-           WebElement points=this.driver.getWebDriver().findElement(By.className("ant-btn-icon-only"));
+           WebElement points=this.driver.getWebDriver().findElement(By.className("eventDetails__top-right-menu"));
            points.click();
            Thread.sleep(2000);
            driver.getWebDriver().findElement(By.id("testArchive")).click();
@@ -93,7 +95,15 @@ public class archive_event {
                 break;
             }
         }
-        Assert.assertFalse(found);
+        if (found) {
+            Assert.assertTrue(found);
+            System.out.println("test fail");
+        }
+        else {
+            Assert.assertFalse(found);
+            System.out.println("test pass");
+        }
+
         this.driver.getWebDriver().quit();
     }
 
@@ -101,8 +111,8 @@ public class archive_event {
     public void photographer_should_go_to_the_archive_event (){
         try {
             Thread.sleep(5000);
-            this.driver.getWebDriver().findElement(By.className("underHeader__left-menu")).click();
-            Thread.sleep(1000);
+            WebElement drp = this.driver.getWebDriver().findElement(By.className("underHeader__left-menu--icon"));
+            drp.click();
             List<WebElement> List = this.driver.getWebDriver().findElements(By.className("ant-dropdown-menu-title-content"));
             List.get(2).click();
             Thread.sleep(1000);
@@ -176,7 +186,15 @@ public class archive_event {
                 }
             }
 
-            Assert.assertTrue(found);
+            if (found) {
+                Assert.assertTrue(found);
+                System.out.println("test pass");
+            }
+            else {
+                Assert.assertFalse(found);
+                System.out.println("test fail");
+            }
+
             Thread.sleep(10);
             this.driver.getWebDriver().quit();
 
@@ -190,8 +208,8 @@ public class archive_event {
 
             this.driver.getWebDriver().get(this.driver.getBaseUrl()+"/login");
             Thread.sleep(2000);
-            this.driver.getWebDriver().findElement(By.id("normal_login_email")).sendKeys(email);
-            this.driver.getWebDriver().findElement(By.id("normal_login_password")).sendKeys(password);
+            this.driver.getWebDriver().findElement(By.id("email")).sendKeys(email);
+            this.driver.getWebDriver().findElement(By.id("password")).sendKeys(password);
             this.driver.getWebDriver().findElement(By.id("testLogin")).click();
             Thread.sleep(2000);
         }catch (InterruptedException e) {

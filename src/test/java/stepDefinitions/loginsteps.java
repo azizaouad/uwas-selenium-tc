@@ -39,9 +39,9 @@ public class loginsteps {
     public void user_write_email_and_password_and_click_on_login(String email , String password) {
         try {
 
-            this.driver.getWebDriver().findElement(By.id("normal_login_email")).sendKeys(email);
+            this.driver.getWebDriver().findElement(By.id("email")).sendKeys(email);
             Thread.sleep(1000);
-            this.driver.getWebDriver().findElement(By.id("normal_login_password")).sendKeys(password);
+            this.driver.getWebDriver().findElement(By.id("password")).sendKeys(password);
             Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("testLogin")).click();
         } catch (InterruptedException e) {
@@ -55,17 +55,11 @@ public class loginsteps {
     public void user_should_navigate_to_home_page() {
         try {
 
-            Thread.sleep(500);
-            String Current_url = this.driver.getWebDriver().getCurrentUrl() ;
-            boolean login = false ;
-            if (Current_url.contentEquals("https://"+System.getProperty("environment")+".uwas.fr"+"/login")){
-                login = false ;}
-            else {
-                login = true;
-            }
-            Assert.assertTrue(login);
-            Thread.sleep(1000);
-            this.driver.getWebDriver().quit();
+            Thread.sleep(4000);
+
+            boolean f =  this.driver.getWebDriver().findElement(By.className("header__menu-wrapper")).isDisplayed();
+            Assert.assertTrue(f);
+           this.driver.getWebDriver().quit();
             }
 
 

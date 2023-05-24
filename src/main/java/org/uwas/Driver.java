@@ -8,6 +8,7 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class Driver {
@@ -54,22 +55,25 @@ public class Driver {
 
         if (driverType.equals("firefox")) {
             FirefoxOptions options = new FirefoxOptions();
-            options.addArguments("headless");
-            options.addArguments("no-sandbox");
-            options.addArguments("start-maximized");
+//            options.addArguments("headless");
+//            options.addArguments("no-sandbox");
+//            options.addArguments("start-maximized");
+            options.addArguments("--remote-allow-origins=*");
             this.webDriver = new FirefoxDriver(options);
             this.webDriver.manage().window().maximize();
-            this.webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+            this.webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         }
         else {
             if (driverType.equals("chrome")){
                 ChromeOptions options = new ChromeOptions();
-                options.addArguments("headless");
-                options.addArguments("no-sandbox");
-                options.addArguments("start-maximized");
+//                options.addArguments("headless");
+//                options.addArguments("no-sandbox");
+//                options.addArguments("start-maximized");
+                options.addArguments("--remote-allow-origins=*");
                 this.webDriver = new ChromeDriver(options);
                 this.webDriver.manage().window().maximize();
-                this.webDriver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+
+                this.webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 
             }
             else {

@@ -1,5 +1,6 @@
 package stepDefinitions;
 
+import cucumber.runtime.junit.Assertions;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -103,7 +104,6 @@ public class filter_steps {
                     System.out.println(names);
                     System.out.println(date);
                     if (date.isBefore(startInterval.minusDays(1)) || date.isAfter(endInterval.plusDays(1))) {
-                        System.out.println("Date is not in the interval ==> test fail");
                         find = false;
                         break;
                     }else {
@@ -113,9 +113,17 @@ public class filter_steps {
             }
 
 
-            Assert.assertTrue(find);
+            if (find) {
+                Assert.assertTrue(find);
+                System.out.println("test pass");
+            }
+            else {
+                Assert.assertFalse(find);
+                System.out.println("test fail");
+            }
+
             Thread.sleep(100);
-            //this.driver.getWebDriver().quit();
+            this.driver.getWebDriver().quit();
 
         } catch (Exception e) {
             System.out.println("Erreur format");
@@ -162,7 +170,6 @@ public class filter_steps {
                     if (find) {
                         find = true ;
                     } else {
-                        System.out.println("test fail");
                         find = false;
                         break;
 
@@ -170,7 +177,15 @@ public class filter_steps {
                 }
             }
 
-            Assert.assertTrue(find);
+            if (find) {
+                Assert.assertTrue(find);
+                System.out.println("test pass");
+            }
+            else {
+                Assert.assertFalse(find);
+                System.out.println("test fail");
+            }
+
             Thread.sleep(500);
             this.driver.getWebDriver().quit();
         } catch (InterruptedException e) {

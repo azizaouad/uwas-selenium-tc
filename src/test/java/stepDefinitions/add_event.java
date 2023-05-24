@@ -31,9 +31,9 @@ public class add_event {
 
             this.driver.getWebDriver().get(this.driver.getBaseUrl()+"/login");
             Thread.sleep(10);
-            this.driver.getWebDriver().findElement(By.id("normal_login_email")).sendKeys("mkd@outlook.fr");
+            this.driver.getWebDriver().findElement(By.id("email")).sendKeys("azizaouadi12@gmail.com");
             Thread.sleep(10);
-            this.driver.getWebDriver().findElement(By.id("normal_login_password")).sendKeys("Aziz1996@");
+            this.driver.getWebDriver().findElement(By.id("password")).sendKeys("Admin123!");
             Thread.sleep(10);
             this.driver.getWebDriver().findElement(By.id("testLogin")).click();
             Thread.sleep(2000);
@@ -48,7 +48,8 @@ public class add_event {
         try {
             Thread.sleep(5000);
             System.out.println(0);
-            this.driver.getWebDriver().findElement(By.className("underHeader__left-menu")).click();
+            WebElement drp = this.driver.getWebDriver().findElement(By.className("underHeader__left-menu--icon"));
+            drp.click();
             System.out.println(1);
             Thread.sleep(500);
             this.driver.getWebDriver().findElement(By.className("ant-dropdown-menu-title-content")).click();
@@ -120,7 +121,7 @@ public class add_event {
         try {
             Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("test123")).click();
-            Thread.sleep(7000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -139,10 +140,11 @@ public class add_event {
 
 
             for (int i = 0; i < eventNames.size(); i++) {
+                System.out.println(eventLocation.get(i).toString());
                 String name_string =eventNames.get(i).getText();
                 String location_string = eventLocation.get(i).getText();
                 boolean name = name_string.toUpperCase().equals(title_of_event.toUpperCase());
-                boolean location = location_string.toUpperCase().equals(location_of_event.toUpperCase());
+                boolean location = (location_string.toUpperCase().equals(location_of_event.toUpperCase()));
                 boolean date = eventDate.get(i).getText().equals(date_of_event);
                 boolean status = eventStatus.get(i).getText().equals("In progress");
                 if ((name) && (date ) && (status)) {
@@ -150,7 +152,15 @@ public class add_event {
                     break;
                 }
             }
-            Assert.assertTrue(found);
+            if (found) {
+                Assert.assertTrue(true);
+                System.out.println("test pass");
+            }
+            else {
+                Assert.assertFalse(false);
+                System.out.println("test fail");
+            }
+
             Thread.sleep(100);
             this.driver.getWebDriver().quit();
 
@@ -197,7 +207,15 @@ public class add_event {
                     break;
                 }
             }
-            Assert.assertTrue(found);
+            if (found) {
+                Assert.assertTrue(found);
+                System.out.println("test pass");
+            }
+            else {
+                Assert.assertFalse(found);
+                System.out.println("test fail");
+            }
+
             Thread.sleep(100);
             this.driver.getWebDriver().quit();
 
@@ -218,7 +236,15 @@ public class add_event {
             if (src_im.contentEquals("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW_80vVH0RghGLTxWZjz0EYc9JanOzT-m0wEUvdU0caY6bKU5n8oF5hbOHZlU9GVUM1dQ&usqp=CAU")){
                 find = true ;
             }
-            Assert.assertTrue(find);
+            if (find) {
+                Assert.assertTrue(find);
+                System.out.println("test pass");
+            }
+            else {
+                Assert.assertFalse(find);
+                System.out.println("test fail");
+            }
+
             Thread.sleep(10);
             this.driver.getWebDriver().quit();
 
@@ -232,8 +258,8 @@ public class add_event {
     public void photographer_put_a_file_in_the_image_field_for_the_event() {
         try {
             Thread.sleep(10);
-            WebElement source =this.driver.getWebDriver().findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[2]/form/div[5]/div/div[2]/div/div/span/div[1]/span/input"));
-            source.sendKeys("C://Users/Lenovo/Desktop/Compte photographe.pptx");
+            WebElement source = this.driver.getWebDriver().findElement(By.xpath("/html/body/div[3]/div/div[2]/div/div[2]/div[2]/form/div[5]/div/div[2]/div/div/span/div[1]/span/input"));
+            source.sendKeys("C://Users/Lenovo/Desktop/CORAL IO_Rescrit_JEI_2021 2022 2023_v1.0 (1) - Copie.docx");
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

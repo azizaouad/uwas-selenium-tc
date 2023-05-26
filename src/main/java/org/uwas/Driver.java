@@ -45,7 +45,7 @@ public class Driver {
 
     public void setupController() {
         String driverType = "";
-        logger.error(System.getProperty("webDriver"))
+        logger.error(System.getProperty("webDriver"));
         if ( System.getProperty("webDriver") != "" ) {
             driverType=System.getProperty("webDriver");
         }

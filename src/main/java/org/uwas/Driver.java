@@ -79,7 +79,7 @@ public class Driver {
                 this.webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 
             }
-            if (driverType.equals("local")){
+            else if (driverType.equals("local")){
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--remote-allow-origins=*");
                 this.webDriver = new ChromeDriver(options);

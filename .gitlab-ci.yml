@@ -19,7 +19,7 @@ build_test:
     - main
   script:
     - chmod +x ci/build.sh
-    - ./build.sh
+    - ./ci/build.sh
   tags:
     - gitlab-runner
 
@@ -39,7 +39,7 @@ qa_test:
   allow_failure: true
   script:
     - chmod +x ci/test.sh
-    - ./test.sh
+    - ./ci/test.sh
   artifacts:
     when: always
     name: "qa_report"
@@ -60,6 +60,6 @@ qa_notify:
     - main
   script:
     - chmod +x ci/notify.sh
-    - ./notify.sh
+    - ./ci/notify.sh
   tags:
     - gitlab-runner

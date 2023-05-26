@@ -3,8 +3,25 @@
 #-----------------------------------------------------
 
 stages:
+  - build
   - test
   - notify
+
+
+#-----------------------------------------------------
+# BUILD: QA BUILD
+#-----------------------------------------------------
+
+
+build_test:
+  stage: build
+  only:
+    - main
+  script:
+    - chmod +x ci/build.sh
+    - ./build.sh
+  tags:
+    - gitlab-runner
 
 
 #-----------------------------------------------------
@@ -20,12 +37,9 @@ qa_test:
     QA_ENVIRONMENT: "recette"
     WEB_DRIVER: "chrome"
   allow_failure: true
-  before_script:
-    - google-chrome-stable --headless --disable-gpu --print-to-pdf https://www.chromestatus.com/ --no-sandbox
   script:
-    - mvn clean -Denvironment=$QA_ENVIRONMENT -DwebDriver=$WEB_DRIVER test
-  after_script:
-    - ps aux | grep chrome | awk ' { print $2 } ' | xargs kill -9 || true
+    - chmod +x ci/test.sh
+    - ./test.sh
   artifacts:
     when: always
     name: "qa_report"
@@ -45,6 +59,7 @@ qa_notify:
   only:
     - main
   script:
-    - curl -s --user "api:$MAILGUN_API_KEY" "https://api.mailgun.net/v3/$MAILGUN_DOMAIN/messages" -F from='admin.gitlab@coral-io.com' -F to='a.aouadi@coral-io.fr'  -F subject='UWAS QA pipeline results' -F template='uwas-qa' -F attachment='@target/reports/report.html'
+    - chmod +x ci/notify.sh
+    - ./notify.sh
   tags:
     - gitlab-runner

@@ -72,7 +72,6 @@ public class Driver {
                 options.addArguments("--remote-allow-origins=*");
                 this.webDriver = new ChromeDriver(options);
                 this.webDriver.manage().window().maximize();
-
                 this.webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 
             }

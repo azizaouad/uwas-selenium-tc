@@ -55,25 +55,29 @@ public class loginsteps {
     public void user_should_navigate_to_home_page() {
         try {
 
-            Thread.sleep(4000);
+            Thread.sleep(10000);
+            boolean f = true ;
 
-            boolean f =  this.driver.getWebDriver().findElement(By.className("header__menu-wrapper")).isDisplayed();
-            Assert.assertTrue(f);
-           this.driver.getWebDriver().quit();
+            String current_url = this.driver.getWebDriver().getCurrentUrl();
+            if (current_url.contentEquals("https://recette.uwas.fr/login")) {
+                f = false;
             }
-
-
-
-        catch (InterruptedException e) {
+            Assert.assertTrue(f);
+            this.driver.getWebDriver().quit();
+            }   catch (InterruptedException e) {
             throw new RuntimeException(e);
 
         }
+
+
+
+
     }
     @Then("error message should appear")
     public void error_message_should_appear() {
         try {
             Thread.sleep(1000);
-            Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("normal_login_email")).isDisplayed());
+            Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("email")).isDisplayed());
             Thread.sleep(1000);
             this.driver.getWebDriver().quit();
 

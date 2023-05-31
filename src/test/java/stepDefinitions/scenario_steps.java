@@ -33,8 +33,8 @@ public class scenario_steps {
             boolean bol1 = false;
             boolean bol2 = false;
             Thread.sleep(2000);
-            bol1 = this.driver.getWebDriver().findElement(By.id("normal_login_email")).isDisplayed();
-            bol2 = this.driver.getWebDriver().findElement(By.id("normal_login_password")).isDisplayed();
+            bol1 = this.driver.getWebDriver().findElement(By.id("email")).isDisplayed();
+            bol2 = this.driver.getWebDriver().findElement(By.id("password")).isDisplayed();
             Assert.assertTrue(bol1);
             Assert.assertTrue(bol2);
             Thread.sleep(100);
@@ -64,9 +64,9 @@ public class scenario_steps {
     public void user_write_email_and_password_and_click_on_login_button(String email , String password) {
         try {
 
-            this.driver.getWebDriver().findElement(By.id("normal_login_email")).sendKeys(email);
+            this.driver.getWebDriver().findElement(By.id("email")).sendKeys(email);
             Thread.sleep(1000);
-            this.driver.getWebDriver().findElement(By.id("normal_login_password")).sendKeys(password);
+            this.driver.getWebDriver().findElement(By.id("password")).sendKeys(password);
             Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("testLogin")).click();
             Thread.sleep(3000);

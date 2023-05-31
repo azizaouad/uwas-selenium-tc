@@ -130,7 +130,7 @@ public class archive_event {
     public void Choose_restore_for_the_event (String event) {
         try {
 
-            List <WebElement> points = this.driver.getWebDriver().findElements(By.className("anticon-ellipsis"));
+            WebElement points = this.driver.getWebDriver().findElement(By.className("eventDetails__top-right-menu"));
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-name"));
             List<WebElement> eventLocation = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-location-text"));
             List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-date-text"));
@@ -144,8 +144,8 @@ public class archive_event {
                 boolean date = date_string.equals(localDate.toString());
                 if ((name)&&(date)){
                     Thread.sleep(100);
-                    points.get(i+1).click();
-                    WebElement restore = this.driver.getWebDriver().findElement(By.className("ant-dropdown-menu-title-content"));
+                    points.click();
+                    WebElement restore = this.driver.getWebDriver().findElement(By.className("ant-dropdown-menu-item"));
                     restore.click();
                     break;
                     }

@@ -63,8 +63,9 @@ public class add_event {
     @And("photographer should fill the title of event as {string}")
     public void photographer_should_fill_the_title_of_event(String title_of_event) {
         try {
-            Thread.sleep(2000);
-            this.driver.getWebDriver().findElement(By.id("name")).sendKeys(title_of_event);
+            Thread.sleep(10000);
+            WebElement title = this.driver.getWebDriver().findElement(By.id("name"));
+            title.sendKeys(title_of_event);
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -74,7 +75,7 @@ public class add_event {
     @And("photographer should fill the location of event as {string}")
     public void photographer_should_fill_the_location_of_event(String location_of_event) {
         try {
-            Thread.sleep(10);
+            Thread.sleep(5000);
             this.driver.getWebDriver().findElement(By.id("location")).sendKeys(location_of_event);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);

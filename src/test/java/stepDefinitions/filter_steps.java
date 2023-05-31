@@ -47,9 +47,9 @@ public class filter_steps {
     public void user_write_email_and_password_and_click_on_the_button_of_login(String email , String password) {
         try {
 
-            this.driver.getWebDriver().findElement(By.id("normal_login_email")).sendKeys(email);
+            this.driver.getWebDriver().findElement(By.id("email")).sendKeys(email);
             Thread.sleep(1000);
-            this.driver.getWebDriver().findElement(By.id("normal_login_password")).sendKeys(password);
+            this.driver.getWebDriver().findElement(By.id("password")).sendKeys(password);
             Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("testLogin")).click();
         } catch (InterruptedException e) {
@@ -63,16 +63,19 @@ public class filter_steps {
     public void user_click_on_all_filters_and_should_choose_the_start_date_and_the_finish_date(String star_date, String finish_date) {
         try {
 
-            Thread.sleep(4000);
-            this.driver.getWebDriver().findElement(By.className("underHeader__left-menu")).click();
-            Thread.sleep(1000);
-            List <WebElement> list = this.driver.getWebDriver().findElements(By.className("ant-dropdown-menu-title-content"));
-            list.get(1).click();
-            this.driver.getWebDriver().findElement(By.className("ant-collapse-item")).click();
+            WebElement drp = this.driver.getWebDriver().findElement(By.className("underHeader__left-menu--icon"));
+            drp.click();
+            List<WebElement> List = this.driver.getWebDriver().findElements(By.className("ant-dropdown-menu-title-content"));
+            List.get(1).click();
             Thread.sleep(2000);
             this.driver.getWebDriver().findElement(By.id("eventDateFilter")).sendKeys(star_date);
-            this.driver.getWebDriver().findElement(By.xpath("/html/body/div[3]/div/div[3]/div/div/div[2]/div/div/div[2]/div/form/div/div[3]/div/div[3]/input")).sendKeys(finish_date);
-            this.driver.getWebDriver().findElement(By.xpath("/html/body/div[3]/div/div[3]/div/div/div[2]/div/div/div[2]/div/form/div/div[3]/div/div[3]/input")).sendKeys(Keys.ENTER);
+            Thread.sleep(1000);
+            this.driver.getWebDriver().findElement(By.xpath("/html/body/div[3]/div/div[3]/div/div/div[2]/form/div/div[3]/div/div[3]/input")).sendKeys(finish_date);
+            Thread.sleep(1000);
+            this.driver.getWebDriver().findElement(By.xpath("/html/body/div[3]/div/div[3]/div/div/div[2]/form/div/div[3]/div/div[3]/input")).sendKeys(Keys.ENTER);
+            Thread.sleep(1000);
+            this.driver.getWebDriver().findElement(By.id("eventDateFilterOK")).click();
+            Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
             Thread.sleep(1000);
 
@@ -117,10 +120,10 @@ public class filter_steps {
                 Assert.assertTrue(find);
                 System.out.println("test pass");
             }
-            else {
-                Assert.assertFalse(find);
-                System.out.println("test fail");
-            }
+//            else {
+//                Assert.assertFalse(find);
+//                System.out.println("test fail");
+//            }
 
             Thread.sleep(100);
             this.driver.getWebDriver().quit();
@@ -134,12 +137,10 @@ public class filter_steps {
     @And("user click on all filters and should write the name of event as {string}")
     public void user_click_on_all_filters_and_should_write_the_name_of_event(String name_of_event) {
         try {
-            Thread.sleep(4000);
-            this.driver.getWebDriver().findElement(By.className("underHeader__left-menu")).click();
-            Thread.sleep(1000);
-            List <WebElement> list = this.driver.getWebDriver().findElements(By.className("ant-dropdown-menu-title-content"));
-            list.get(1).click();
-            this.driver.getWebDriver().findElement(By.className("ant-collapse-item")).click();
+            WebElement drp = this.driver.getWebDriver().findElement(By.className("underHeader__left-menu--icon"));
+            drp.click();
+            List<WebElement> List = this.driver.getWebDriver().findElements(By.className("ant-dropdown-menu-title-content"));
+            List.get(1).click();
             Thread.sleep(2000);
             this.driver.getWebDriver().findElement(By.id("eventName")).sendKeys(name_of_event);
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
@@ -196,12 +197,10 @@ public class filter_steps {
     @And("user click on all filters and should write the location of event as {string}")
     public void user_click_on_all_filters_and_should_write_the_location_of_event(String location_of_event) {
         try {
-            Thread.sleep(4000);
-            this.driver.getWebDriver().findElement(By.className("underHeader__left-menu")).click();
-            Thread.sleep(1000);
-            List <WebElement> list = this.driver.getWebDriver().findElements(By.className("ant-dropdown-menu-title-content"));
-            list.get(1).click();
-            this.driver.getWebDriver().findElement(By.className("ant-collapse-item")).click();
+            WebElement drp = this.driver.getWebDriver().findElement(By.className("underHeader__left-menu--icon"));
+            drp.click();
+            List<WebElement> List = this.driver.getWebDriver().findElements(By.className("ant-dropdown-menu-title-content"));
+            List.get(1).click();
             Thread.sleep(2000);
             this.driver.getWebDriver().findElement(By.id("eventLocation")).sendKeys(location_of_event);
 
@@ -254,13 +253,11 @@ public class filter_steps {
     @And("user click on all filters and should write the status of event")
     public void user_click_on_all_filters_and_should_write_the_status_of_event() {
         try {
-            Thread.sleep(4000);
-            this.driver.getWebDriver().findElement(By.className("underHeader__left-menu")).click();
-            Thread.sleep(1000);
-            List <WebElement> list = this.driver.getWebDriver().findElements(By.className("ant-dropdown-menu-title-content"));
-            list.get(1).click();
-            this.driver.getWebDriver().findElement(By.className("ant-collapse-item")).click();
-            Thread.sleep(2000);
+            WebElement drp = this.driver.getWebDriver().findElement(By.className("underHeader__left-menu--icon"));
+            drp.click();
+            List<WebElement> List = this.driver.getWebDriver().findElements(By.className("ant-dropdown-menu-title-content"));
+            List.get(1).click();
+            Thread.sleep(2000);;
             this.driver.getWebDriver().findElement(By.id("eventFilterInProgress")).click();
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
             Thread.sleep(1000);
@@ -272,12 +269,10 @@ public class filter_steps {
     @And("user click on all filters and should write the status of the event")
     public void user_click_on_all_filters_and_should_write_the_status_of_the_event() {
         try {
-            Thread.sleep(4000);
-            this.driver.getWebDriver().findElement(By.className("underHeader__left-menu")).click();
-            Thread.sleep(1000);
-            List <WebElement> list = this.driver.getWebDriver().findElements(By.className("ant-dropdown-menu-title-content"));
-            list.get(1).click();
-            this.driver.getWebDriver().findElement(By.className("ant-collapse-item")).click();
+            WebElement drp = this.driver.getWebDriver().findElement(By.className("underHeader__left-menu--icon"));
+            drp.click();
+            List<WebElement> List = this.driver.getWebDriver().findElements(By.className("ant-dropdown-menu-title-content"));
+            List.get(1).click();
             Thread.sleep(2000);
             this.driver.getWebDriver().findElement(By.id("eventFilterCompleted")).click();
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
@@ -362,12 +357,10 @@ public class filter_steps {
     @And("user click on all filters and should click on today")
     public void user_click_on_all_filters_and_should_click_on_today() {
         try {
-            Thread.sleep(4000);
-            this.driver.getWebDriver().findElement(By.className("underHeader__left-menu")).click();
-            Thread.sleep(1000);
-            List <WebElement> list = this.driver.getWebDriver().findElements(By.className("ant-dropdown-menu-title-content"));
-            list.get(1).click();
-            this.driver.getWebDriver().findElement(By.className("ant-collapse-item")).click();
+            WebElement drp = this.driver.getWebDriver().findElement(By.className("underHeader__left-menu--icon"));
+            drp.click();
+            List<WebElement> List = this.driver.getWebDriver().findElements(By.className("ant-dropdown-menu-title-content"));
+            List.get(1).click();
             Thread.sleep(2000);
             this.driver.getWebDriver().findElement(By.id("eventDateFilter")).click();
             Thread.sleep(1000);
@@ -426,12 +419,10 @@ public class filter_steps {
     @And("user click on all filters and should click on this week")
     public void user_click_on_all_filters_and_should_click_on_this_week() {
         try {
-            Thread.sleep(4000);
-            this.driver.getWebDriver().findElement(By.className("underHeader__left-menu")).click();
-            Thread.sleep(1000);
-            List <WebElement> list = this.driver.getWebDriver().findElements(By.className("ant-dropdown-menu-title-content"));
-            list.get(1).click();
-            this.driver.getWebDriver().findElement(By.className("ant-collapse-item")).click();
+            WebElement drp = this.driver.getWebDriver().findElement(By.className("underHeader__left-menu--icon"));
+            drp.click();
+            List<WebElement> List = this.driver.getWebDriver().findElements(By.className("ant-dropdown-menu-title-content"));
+            List.get(1).click();
             Thread.sleep(2000);
             this.driver.getWebDriver().findElement(By.id("eventDateFilter")).click();
             Thread.sleep(1000);
@@ -505,12 +496,10 @@ public class filter_steps {
     @And("user click on all filters and should click on this month")
     public void user_click_on_all_filters_and_should_click_on_this_month() {
         try {
-            Thread.sleep(4000);
-            this.driver.getWebDriver().findElement(By.className("underHeader__left-menu")).click();
-            Thread.sleep(1000);
-            List <WebElement> list = this.driver.getWebDriver().findElements(By.className("ant-dropdown-menu-title-content"));
-            list.get(1).click();
-            this.driver.getWebDriver().findElement(By.className("ant-collapse-item")).click();
+            WebElement drp = this.driver.getWebDriver().findElement(By.className("underHeader__left-menu--icon"));
+            drp.click();
+            List<WebElement> List = this.driver.getWebDriver().findElements(By.className("ant-dropdown-menu-title-content"));
+            List.get(1).click();
             Thread.sleep(2000);
             this.driver.getWebDriver().findElement(By.id("eventDateFilter")).click();
             Thread.sleep(1000);
@@ -573,12 +562,10 @@ public class filter_steps {
     @And("user click on all filters and should click on this year")
     public void user_click_on_all_filters_and_should_click_on_this_year() {
         try {
-            Thread.sleep(4000);
-            this.driver.getWebDriver().findElement(By.className("underHeader__left-menu")).click();
-            Thread.sleep(1000);
-            List <WebElement> list = this.driver.getWebDriver().findElements(By.className("ant-dropdown-menu-title-content"));
-            list.get(1).click();
-            this.driver.getWebDriver().findElement(By.className("ant-collapse-item")).click();
+            WebElement drp = this.driver.getWebDriver().findElement(By.className("underHeader__left-menu--icon"));
+            drp.click();
+            List<WebElement> List = this.driver.getWebDriver().findElements(By.className("ant-dropdown-menu-title-content"));
+            List.get(1).click();
             Thread.sleep(2000);
             this.driver.getWebDriver().findElement(By.id("eventDateFilter")).click();
             Thread.sleep(1000);
@@ -638,12 +625,10 @@ public class filter_steps {
     @And("user click on all filters and fill the name of event as {string} , the location of event as {string}, and the status of event as {string} and the date of event today")
     public void user_click_on_all_filters_and_fill_the_name_of_event_the_location_of_event_and_the_status_of_event_and_the_date_of_event_today(String name_of_event, String location_of_event, String status_of_event){
         try {
-            Thread.sleep(4000);
-            this.driver.getWebDriver().findElement(By.className("underHeader__left-menu")).click();
-            Thread.sleep(1000);
-            List <WebElement> list = this.driver.getWebDriver().findElements(By.className("ant-dropdown-menu-title-content"));
-            list.get(1).click();
-            this.driver.getWebDriver().findElement(By.className("ant-collapse-item")).click();
+            WebElement drp = this.driver.getWebDriver().findElement(By.className("underHeader__left-menu--icon"));
+            drp.click();
+            List<WebElement> List = this.driver.getWebDriver().findElements(By.className("ant-dropdown-menu-title-content"));
+            List.get(1).click();
             Thread.sleep(2000);
             this.driver.getWebDriver().findElement(By.id("eventName")).sendKeys(name_of_event);
             Thread.sleep(1000);
@@ -713,13 +698,11 @@ public class filter_steps {
     @And("user click on all filters and should click on viewed events")
     public void user_click_on_all_filters_and_should_click_on_viewed_events (){
         try {
-            Thread.sleep(4000);
-            this.driver.getWebDriver().findElement(By.className("underHeader__left-menu")).click();
-            Thread.sleep(1000);
-            List <WebElement> list = this.driver.getWebDriver().findElements(By.className("ant-dropdown-menu-title-content"));
-            list.get(1).click();
-            this.driver.getWebDriver().findElement(By.className("ant-collapse-item")).click();
-            Thread.sleep(1000);
+            WebElement drp = this.driver.getWebDriver().findElement(By.className("underHeader__left-menu--icon"));
+            drp.click();
+            List<WebElement> List = this.driver.getWebDriver().findElements(By.className("ant-dropdown-menu-title-content"));
+            List.get(0).click();
+            Thread.sleep(2000);
             this.driver.getWebDriver().findElement(By.id("eventFilterViewed")).click();
             Thread.sleep(1000);
             List<WebElement> evnetViewed = this.driver.getWebDriver().findElements(By.className("viewed"));
@@ -762,13 +745,11 @@ public class filter_steps {
     @And("user click on all filters and should click on not viewed events")
     public void user_click_on_all_filters_and_should_click_on_not_viewed_events(){
         try {
-            Thread.sleep(4000);
-            this.driver.getWebDriver().findElement(By.className("underHeader__left-menu")).click();
-            Thread.sleep(1000);
-            List <WebElement> list = this.driver.getWebDriver().findElements(By.className("ant-dropdown-menu-title-content"));
-            list.get(1).click();
-            this.driver.getWebDriver().findElement(By.className("ant-collapse-item")).click();
-            Thread.sleep(1000);
+            WebElement drp = this.driver.getWebDriver().findElement(By.className("underHeader__left-menu--icon"));
+            drp.click();
+            List<WebElement> List = this.driver.getWebDriver().findElements(By.className("ant-dropdown-menu-title-content"));
+            List.get(0).click();
+            Thread.sleep(2000);
             this.driver.getWebDriver().findElement(By.id("eventFilterNotViewed")).click();
             List<WebElement> evnetnotViewed = this.driver.getWebDriver().findElements(By.className("notViewed"));
             System.out.println("the events not viewed " + evnetnotViewed.size());

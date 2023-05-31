@@ -66,8 +66,8 @@ public class forget_password_steps {
         try {
 
             this.driver.getWebDriver().switchTo().newWindow(WindowType.TAB);
-            Thread.sleep(5000);
-            this.driver.getWebDriver().navigate().to("https://qa.team/inbox?utf8=%E2%9C%93&code=uwas&locale=en&commit=go+%C2%BB");
+            Thread.sleep(10000);
+            this.driver.getWebDriver().navigate().to("https://qa.team/inbox?utf8=%E2%9C%93&code=uwas01&locale=en&commit=go+%C2%BB");
             Thread.sleep(2000);
 
             this.driver.getWebDriver().findElement(By.className("list-group-item")).click();
@@ -132,7 +132,7 @@ public class forget_password_steps {
             this.driver.getWebDriver().findElement(By.id("email")).sendKeys(email);
             this.driver.getWebDriver().findElement(By.id("password")).sendKeys(password);
             this.driver.getWebDriver().findElement(By.id("testLogin")).click();
-            Thread.sleep(4000);
+            Thread.sleep(10000);
             String Current_url = this.driver.getWebDriver().getCurrentUrl() ;
             boolean login = false ;
             if (Current_url.contentEquals("https://recette.uwas.fr/login")){
@@ -141,7 +141,7 @@ public class forget_password_steps {
                 login = true;
             }
             Assert.assertTrue(login);
-            Thread.sleep(100);
+            Thread.sleep(2000);
             this.driver.getWebDriver().quit();
 
 
@@ -156,7 +156,7 @@ public class forget_password_steps {
         try {
             Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("normal_login_email")).isDisplayed());
             Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("testResetPW")).isDisplayed());
-            Thread.sleep(100);
+            Thread.sleep(2000);
             this.driver.getWebDriver().quit();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -166,10 +166,12 @@ public class forget_password_steps {
     @Then("the password is not changed and an error message appear")
     public void the_password_is_not_changed_and_an_error_message_appear() {
         try {
+            Thread.sleep(4000);
 
             Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("normal_login_password")).isDisplayed());
             Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("normal_login_confirmPassword")).isDisplayed());
-            Thread.sleep(100);
+            Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("testChangePW")).isDisplayed());
+            Thread.sleep(2000);
             this.driver.getWebDriver().quit();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);

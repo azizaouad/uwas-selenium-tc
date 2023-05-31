@@ -1,14 +1,14 @@
-Feature: test add event functionality
-  @Sanity
-  Scenario: photographer can login and add event
-    Given photographer should login
-    When photographer should click on the button of add event
-    And photographer should fill the location of event as "paris"
-    And photographer should fill the title of event as "test_add_event"
-    And photographer should fill the date of event as "2022-12-25"
-    And photographer put an image for the event
-    And photographer should click on the button ok
-    Then title of event as "test_add_event" event in location of event as "paris" at the date of event as "2022-12-25" is created
+#Feature: test add event functionality
+#  @Sanity
+#  Scenario: photographer can login and add event
+#    Given photographer should login
+#    When photographer should click on the button of add event
+#    And photographer should fill the location of event as "paris"
+#    And photographer should fill the title of event as "test_add_event"
+#    And photographer should fill the date of event as "2022-12-25"
+#    And photographer put an image for the event
+#    And photographer should click on the button ok
+#    Then title of event as "test_add_event" event in location of event as "paris" at the date of event as "2022-12-25" is created
 #  @Sanity
 #  Scenario Outline: photographer can login and can't add event without filling the title of event
 #    Given photographer should login

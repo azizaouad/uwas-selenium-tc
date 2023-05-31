@@ -6,8 +6,8 @@ Feature: test forget password functionality
     And user confirm the email
     And user visit the mail and click on the link
     And user write password as "Aziz!966@"
-    And user write confirm_password as "Aziz!966@"
-    Then the password is changed user can login with new password as "Aziz!966@" and email as "uwas01@qa.team"
+    And user write confirm_password as "Aziz!1966@"
+    Then the password is changed user can login with new password as "Aziz!1966@" and email as "uwas01@qa.team"
   @Sanity
   Scenario: user try to reset his password without having an account
     Given user open the website and click on forget password
@@ -27,14 +27,14 @@ Feature: test forget password functionality
       Examples:
       | password    | confirm_password  |
       | admin6542!  | admin6542!        |
-#      | Edmin65412  | Edmi65412         |
-#      | ADMIN6542!  | ADMIN6542!        |
-#      | ADMINadmi!  | ADMINadmi!        |
-#      | Admin1!     | Admin1!           |
-#      | Admin1!     | Admin123!         |
-#      | Admin123!   | Admin123456!      |
-#      |             | Admin123!         |
-#      | Admin123!   |                   |
-#      |             |                   |
+      | Edmin65412  | Edmi65412         |
+      | ADMIN6542!  | ADMIN6542!        |
+      | ADMINadmi!  | ADMINadmi!        |
+      | Admin1!     | Admin1!           |
+      | Admin1!     | Admin123!         |
+      | Admin123!   | Admin123456!      |
+      |             | Admin123!         |
+      | Admin123!   |                   |
+      |             |                   |
 
 

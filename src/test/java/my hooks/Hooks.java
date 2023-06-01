@@ -3,12 +3,12 @@
 
 // public class Hooks {
 //     @Before
-//     public void before(){
+//     public void setup(){
 //         System.out.println("before");
     
 //     }
 //     @After
-//     public void after(){
+//     public void config(){
 //         System.out.println("after");
 //     }
 // }

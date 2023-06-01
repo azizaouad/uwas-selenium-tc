@@ -18,6 +18,7 @@ import org.uwas.Driver;
 
         
         plugin = {"pretty","html:target/reports/report.html","json:target/reports/report.json"}
+       
 
        )
 

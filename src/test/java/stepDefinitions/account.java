@@ -226,7 +226,10 @@ public class account {
 
             String current_url = this.driver.getWebDriver().getCurrentUrl();
             if (current_url.contentEquals("https://recette.uwas.fr/login")) {
-                f = false;
+                f =  false;
+
+
+                
             }
             Assert.assertTrue(f);
             this.driver.getWebDriver().quit();

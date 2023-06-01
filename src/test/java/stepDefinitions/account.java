@@ -171,7 +171,81 @@ public class account {
             throw new RuntimeException(e);
         }
     }
+    @And("user click on change password")
+    public void user_click_on_change_password(){
+        try{
+            this.driver.getWebDriver().findElement(By.id("changePwLink")).click();
+            Thread.sleep(5000);
+
+        }  catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
+    @And("user fill his actuel password {string}")
+    public void user_fill_his_acutuel_password (String actuel_password ){
+        this.driver.getWebDriver().findElement(By.id("oldPwd")).sendKeys(actuel_password);
+    }
+    @And ("user fill his new password {string}")
+    public void user_fill_his_new_password(String new_password) {
+        this.driver.getWebDriver().findElement(By.id("newPwd")).sendKeys(new_password);
+    }
+    @And("user confirm password {string}")
+    public void user_confirm_password ( String confirm_password){
+        this.driver.getWebDriver().findElement(By.id("confirmPwd")).sendKeys(confirm_password);
+    }
+    @And ("user click on confirm button")
+    public void user_click_on_confirm_button(){
+        this.driver.getWebDriver().findElement(By.id("change-pw-btn")).click();
+    }
+    @And ("user logout")
+    public void  user_logout(){
+         try{
+           
+            Thread.sleep(7000);
+            this.driver.getWebDriver().findElement(By.id("user-dropdown")).click();
+            
+            this.driver.getWebDriver().findElement(By.id("testLogout")).click();
+            Thread.sleep(6000);
+
+            
+        }  catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @Then ("user can connect with new credentials email {string} and password {string}")
+    public void user_can_connect_with_new_credentials ( String email , String password ){
+         try {
+            Thread.sleep(2000);
+            this.driver.getWebDriver().findElement(By.id("email")).sendKeys(email);
+            Thread.sleep(1000);
+            this.driver.getWebDriver().findElement(By.id("password")).sendKeys(password);
+            Thread.sleep(1000);
+            this.driver.getWebDriver().findElement(By.id("testLogin")).click();
+            Thread.sleep(10000);
+            boolean f = true ;
+
+            String current_url = this.driver.getWebDriver().getCurrentUrl();
+            if (current_url.contentEquals("https://recette.uwas.fr/login")) {
+                f = false;
+            }
+            Assert.assertTrue(f);
+            this.driver.getWebDriver().quit();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+    } 
+    @Then("an error message appear")
+    public void an_error_message_appear(){
+        Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("oldPwd")).isDisplayed()); 
+        Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("newPwd")).isDisplayed());
+        Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("confirmPwd")).isDisplayed());  
+        Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("change-pw-btn")).isDisplayed());   
+        this.driver.getWebDriver().quit();  
+    } 
+}
+        
+
 
 
 

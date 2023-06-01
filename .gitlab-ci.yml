@@ -21,7 +21,7 @@ build_test:
     - chmod +x ci/build.sh
     - ./ci/build.sh
   tags:
-    - gitlab-runner
+    - qa-runner
 
 
 #-----------------------------------------------------
@@ -47,7 +47,7 @@ qa_test:
       - target/reports/report.html
     expire_in: 1 h
   tags:
-    - gitlab-runner
+    - qa-runner
 
 
 #-----------------------------------------------------
@@ -62,4 +62,4 @@ qa_notify:
     - chmod +x ci/notify.sh
     - ./ci/notify.sh
   tags:
-    - gitlab-runner
+    - qa-runner

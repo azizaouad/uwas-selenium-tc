@@ -1,13 +1,13 @@
 
 
   Feature: test the login functionality
-    @Sanity
+  
     Scenario: user to login with valid email and valid password
       Given user should navigate to the website
       When user write email as "azizaouadi12@gmail.com" and password as "Admin123!" and click on login
       Then user should navigate to home page
 
-    @Sanity
+    
     Scenario Outline: login with invalid credentials
       Given user should navigate to the website
       When user write email as "<email>" and password as "<password>" and click on login

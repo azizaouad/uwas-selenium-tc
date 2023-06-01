@@ -58,9 +58,9 @@ public class account {
     public void user_should_click_on_account (){
         try {
 
-            this.driver.getWebDriver().findElement(By.className("anticon-down")).click();
+            this.driver.getWebDriver().findElement(By.id("user-dropdown")).click();
             Thread.sleep(1000);
-            this.driver.getWebDriver().findElement(By.xpath("/html/body/div[2]/div/ul/li[1]")).click();
+            this.driver.getWebDriver().findElement(By.id("account-nav")).click();
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -80,7 +80,7 @@ public class account {
     public void user_click_on_edit(){
         try {
 
-        this.driver.getWebDriver().findElement(By.xpath("/html/body/div[1]/div/main/div/div[2]/div/div[2]/div/div/div/div[3]/form/div[1]/button")).click();
+        this.driver.getWebDriver().findElement(By.id("edit-btn")).click();
         Thread.sleep(4000);
 
         } catch (InterruptedException e) {

@@ -26,7 +26,7 @@ public class scenario_steps {
     public void photographer_should_logout() {
         try {
             Thread.sleep(4000);
-            this.driver.getWebDriver().findElement(By.className("anticon-down")).click();
+            this.driver.getWebDriver().findElement(By.id("user-dropdown")).click();
             Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("testLogout")).click();
             Thread.sleep(1000);
@@ -81,11 +81,11 @@ public class scenario_steps {
     public void user_upload_some_photos() {
         try {
             Thread.sleep(4000);
-            WebElement upload_button = this.driver.getWebDriver().findElement(By.xpath("/html/body/div/div/main/section[1]/div/div[2]/button"));
+            WebElement upload_button = this.driver.getWebDriver().findElement(By.id("testUpload"));
             Thread.sleep(2000);
             upload_button.click();
             Thread.sleep(5000);
-            WebElement source = this.driver.getWebDriver().findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[2]/form/div/div/div/div/div/span/div/span/input"));
+            WebElement source = this.driver.getWebDriver().findElement(By.id("upload-photos"));
             Thread.sleep(3000);
             source.sendKeys("C:/Users/Lenovo/Downloads/wetransfer_20230109_161332-jpg_2023-01-09_1514/12345678 (24).jpg");
             this.driver.getWebDriver().findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[2]/form/div[2]/div/div/div/div/button")).click();
@@ -123,9 +123,9 @@ public class scenario_steps {
     public void photographer_should_click_on_the_button_of_add_event() {
         try {
             Thread.sleep(2000);
-            this.driver.getWebDriver().findElement(By.className("underHeader__left-menu")).click();
+            this.driver.getWebDriver().findElement(By.id("dropdown-event-link")).click();
             Thread.sleep(2000);
-            this.driver.getWebDriver().findElement(By.className("ant-dropdown-menu-title-content")).click();
+            this.driver.getWebDriver().findElement(By.id("event-add")).click();
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -135,7 +135,7 @@ public class scenario_steps {
     public void photographer_should_fill_the_title_of_event(String title_of_event) {
         try {
             Thread.sleep(2000);
-            this.driver.getWebDriver().findElement(By.id("name")).sendKeys(title_of_event);
+            this.driver.getWebDriver().findElement(By.id("event-title")).sendKeys(title_of_event);
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -173,7 +173,7 @@ public class scenario_steps {
     public void photographer_put_an_image_for_the_event() {
         try {
             Thread.sleep(1000);
-            WebElement source = this.driver.getWebDriver().findElement(By.xpath("/html/body/div[3]/div/div[2]/div/div[2]/div[2]/form/div[5]/div/div[2]/div/div/span/div[1]/span/input"));
+            WebElement source = this.driver.getWebDriver().findElement(By.id("upload"));
             source.sendKeys("C://Users/Lenovo/Desktop/traditions-noel-europe-1024x683.jpg");
 
 
@@ -198,9 +198,9 @@ public class scenario_steps {
         try {
             Thread.sleep(1000);
             boolean found = false;
-            List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-name"));
-            List<WebElement> eventLocation = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-location-text"));
-            List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-date-text"));
+            List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
+            List<WebElement> eventLocation = this.driver.getWebDriver().findElements(By.id("event-location"));
+            List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
             List<WebElement> eventStatus = this.driver.getWebDriver().findElements(By.className("ant-tag-gold"));
 
 
@@ -211,7 +211,7 @@ public class scenario_steps {
                 boolean location = location_string.toUpperCase().equals(location_of_event.toUpperCase());
                 boolean date = eventDate.get(i).getText().equals(date_of_event);
                 boolean status = eventStatus.get(i).getText().equals("In progress");
-                if ((name) && (date ) && (status)) {
+                if ((name) && (date ) && (status)&& (location)) {
                     found = true;
                     break;
                 }

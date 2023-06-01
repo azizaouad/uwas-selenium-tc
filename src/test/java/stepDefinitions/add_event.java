@@ -47,12 +47,10 @@ public class add_event {
     public void photographer_should_click_on_the_button_of_add_event() {
         try {
             Thread.sleep(5000);
-            System.out.println(0);
-            WebElement drp = this.driver.getWebDriver().findElement(By.className("underHeader__left-menu--icon"));
+            WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
-            System.out.println(1);
             Thread.sleep(500);
-            this.driver.getWebDriver().findElement(By.className("ant-dropdown-menu-title-content")).click();
+            this.driver.getWebDriver().findElement(By.id("event-add")).click();
 
 
         } catch (InterruptedException e) {
@@ -64,7 +62,7 @@ public class add_event {
     public void photographer_should_fill_the_title_of_event(String title_of_event) {
         try {
             Thread.sleep(10000);
-            WebElement title = this.driver.getWebDriver().findElement(By.id("name"));
+            WebElement title = this.driver.getWebDriver().findElement(By.id("event-title"));
             title.sendKeys(title_of_event);
 
         } catch (InterruptedException e) {
@@ -106,7 +104,7 @@ public class add_event {
     public void photographer_put_an_image_for_the_event() {
         try {
             Thread.sleep(3000);
-            WebElement source = this.driver.getWebDriver().findElement(By.xpath("/html/body/div[3]/div/div[2]/div/div[2]/div[2]/form/div[5]/div/div[2]/div/div/span/div[1]/span/input"));
+            WebElement source = this.driver.getWebDriver().findElement(By.id("upload"));
             source.sendKeys("C://Users/Lenovo/Desktop/traditions-noel-europe-1024x683.jpg");
 
 
@@ -134,21 +132,21 @@ public class add_event {
         try {
             Thread.sleep(1000);
             boolean found = false;
-            List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-name"));
-            List<WebElement> eventLocation = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-location-text"));
-            List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-date-text"));
+            List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
+            List<WebElement> eventLocation = this.driver.getWebDriver().findElements(By.id("event-location"));
+            List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
             List<WebElement> eventStatus = this.driver.getWebDriver().findElements(By.className("ant-tag-gold"));
 
 
             for (int i = 0; i < eventNames.size(); i++) {
-                System.out.println(eventLocation.get(i).toString());
                 String name_string =eventNames.get(i).getText();
                 String location_string = eventLocation.get(i).getText();
+                String date_string = eventDate.get(i).getText();
                 boolean name = name_string.toUpperCase().equals(title_of_event.toUpperCase());
                 boolean location = (location_string.toUpperCase().equals(location_of_event.toUpperCase()));
-                boolean date = eventDate.get(i).getText().equals(date_of_event);
+                boolean date = date_string.equals(date_of_event);
                 boolean status = eventStatus.get(i).getText().equals("In progress");
-                if ((name) && (date ) && (status)) {
+                if ((name) && (date ) && (status)&&(location)) {
                     found = true;
                     break;
                 }
@@ -174,7 +172,8 @@ public class add_event {
     @Then("an error message appear under the title field")
     public void an_error_message_appear_under_the_title_field() {
         try {
-            Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("name")).isDisplayed());
+            Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("event-default-price")).isDisplayed());
+            Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("event-title")).isDisplayed());
             Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("location")).isDisplayed());
             Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("testEventDate")).isDisplayed());
             Thread.sleep(100);
@@ -191,9 +190,9 @@ public class add_event {
     public void title_of_event_in_location_of_event_is_created_with_the_date_added(String title_of_event, String location_of_event) {
         try {
             boolean found = false;
-            List<WebElement> eventNames =this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-name"));
-            List<WebElement> eventLocation =this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-location-text"));
-            List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-date-text"));
+            List<WebElement> eventNames =this.driver.getWebDriver().findElements(By.id("event-name"));
+            List<WebElement> eventLocation =this.driver.getWebDriver().findElements(By.id("event-location"));
+            List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
             List<WebElement> eventStatus = this.driver.getWebDriver().findElements(By.className("ant-tag"));
             LocalDate localDate = LocalDate.now();
             for (int i = 0; i < eventNames.size(); i++) {
@@ -259,7 +258,7 @@ public class add_event {
     public void photographer_put_a_file_in_the_image_field_for_the_event() {
         try {
             Thread.sleep(10);
-            WebElement source = this.driver.getWebDriver().findElement(By.xpath("/html/body/div[3]/div/div[2]/div/div[2]/div[2]/form/div[5]/div/div[2]/div/div/span/div[1]/span/input"));
+            WebElement source = this.driver.getWebDriver().findElement(By.id("upload"));
             source.sendKeys("C://Users/Lenovo/Desktop/CORAL IO_Rescrit_JEI_2021 2022 2023_v1.0 (1) - Copie.docx");
         } catch (InterruptedException e) {
             throw new RuntimeException(e);

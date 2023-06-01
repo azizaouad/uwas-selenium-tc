@@ -31,13 +31,12 @@ public class archive_event {
             this.driver.getWebDriver().findElement(By.id("password")).sendKeys(password);
             this.driver.getWebDriver().findElement(By.id("testLogin")).click();
             Thread.sleep(4000);
-            System.out.println(0);
-            WebElement drp = this.driver.getWebDriver().findElement(By.className("underHeader__left-menu--icon"));
+            WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
-            System.out.println(1);
-            this.driver.getWebDriver().findElement(By.className("ant-dropdown-menu-title-content")).click();
             Thread.sleep(500);
-            this.driver.getWebDriver().findElement(By.id("name")).sendKeys(title);
+            this.driver.getWebDriver().findElement(By.id("event-add")).click();
+            Thread.sleep(1000);
+            this.driver.getWebDriver().findElement(By.id("event-title")).sendKeys(title);
 
             this.driver.getWebDriver().findElement(By.id("test123")).click();
     }catch (InterruptedException e) {
@@ -63,7 +62,7 @@ public class archive_event {
 //            action.moveToElement(ele).build().perform();
            Thread.sleep(4000);
             //driver.findElement(By.xpath("/html/body/div[1]/div/main/section[2]/main/div[1]/div[2]/div/div/div[7]/div[2]/div[1]/button[2]/span/svg")).click();
-           WebElement points=this.driver.getWebDriver().findElement(By.className("eventDetails__top-right-menu"));
+           WebElement points=this.driver.getWebDriver().findElement(By.id("event-edit-dropdown"));
            points.click();
            Thread.sleep(2000);
            driver.getWebDriver().findElement(By.id("testArchive")).click();
@@ -77,9 +76,9 @@ public class archive_event {
     @Then("the event as {string} is archived")
     public void the_event_is_archived (String title) {
         boolean found = false;
-        List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-name"));
-        List<WebElement> eventLocation = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-location-text"));
-        List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-date-text"));
+        List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
+        List<WebElement> eventLocation = this.driver.getWebDriver().findElements(By.id("even-location"));
+        List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
         List<WebElement> eventStatus = this.driver.getWebDriver().findElements(By.className("ant-tag"));
         LocalDate localDate = LocalDate.now();
         System.out.println(localDate.toString());
@@ -111,10 +110,10 @@ public class archive_event {
     public void photographer_should_go_to_the_archive_event (){
         try {
             Thread.sleep(5000);
-            WebElement drp = this.driver.getWebDriver().findElement(By.className("underHeader__left-menu--icon"));
+            WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
-            List<WebElement> List = this.driver.getWebDriver().findElements(By.className("ant-dropdown-menu-title-content"));
-            List.get(2).click();
+            WebElement List = this.driver.getWebDriver().findElement(By.id("event-archive"));
+            List.click();
             Thread.sleep(1000);
 
 
@@ -130,10 +129,10 @@ public class archive_event {
     public void Choose_restore_for_the_event (String event) {
         try {
 
-            WebElement points = this.driver.getWebDriver().findElement(By.className("eventDetails__top-right-menu"));
-            List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-name"));
-            List<WebElement> eventLocation = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-location-text"));
-            List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-date-text"));
+            List <WebElement> points = this.driver.getWebDriver().findElements(By.id("event-edit-dropdown"));
+            List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
+            List<WebElement> eventLocation = this.driver.getWebDriver().findElements(By.id("event-location"));
+            List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
             LocalDate localDate = LocalDate.now();
 
             for ( int i =0 ; i<eventNames.size() ; i++ ) {
@@ -144,8 +143,8 @@ public class archive_event {
                 boolean date = date_string.equals(localDate.toString());
                 if ((name)&&(date)){
                     Thread.sleep(100);
-                    points.click();
-                    WebElement restore = this.driver.getWebDriver().findElement(By.className("ant-dropdown-menu-item"));
+                    points.get(i).click();
+                    WebElement restore = this.driver.getWebDriver().findElement(By.id("testRestore"));
                     restore.click();
                     break;
                     }
@@ -161,12 +160,12 @@ public class archive_event {
     @Then("the title of event as {string} is restored")
     public void the_event_is_restored (String title) {
         try {
-            this.driver.getWebDriver().findElement(By.className("ant-menu-title-content")).click();
+            this.driver.getWebDriver().findElement(By.xpath("/html/body/div[1]/div/main/div/section/main/div[1]/button")).click();
             Thread.sleep(1500);
             boolean found = false;
-            List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-name"));
-            List<WebElement> eventLocation = this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-location-text"));
-            List<WebElement> eventDate =this.driver.getWebDriver().findElements(By.className("eventDetails__bottom-date-text"));
+            List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
+            List<WebElement> eventLocation = this.driver.getWebDriver().findElements(By.id("event-location"));
+            List<WebElement> eventDate =this.driver.getWebDriver().findElements(By.id("event-date"));
             List<WebElement> eventStatus = this.driver.getWebDriver().findElements(By.className("ant-tag"));
             LocalDate localDate = LocalDate.now();
             if (eventNames.size()==0){

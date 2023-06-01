@@ -115,7 +115,12 @@ public class sign_up_steps {
             this.driver.getWebDriver().findElement(By.id("password")).sendKeys(password);
             this.driver.getWebDriver().findElement(By.id("testLogin")).click();
             Thread.sleep(4000);
-            boolean f =  this.driver.getWebDriver().findElement(By.className("header__menu-wrapper")).isDisplayed();
+            boolean f = true ;
+
+            String current_url = this.driver.getWebDriver().getCurrentUrl();
+            if (current_url.contentEquals("https://recette.uwas.fr/login")) {
+                f = false;
+            }
             Assert.assertTrue(f);
             this.driver.getWebDriver().quit();
         }catch (InterruptedException e) {

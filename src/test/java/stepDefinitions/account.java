@@ -9,13 +9,14 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.uwas.Driver;
 
-import java.security.Key;
-import java.util.List;
+
 
 public class account {
     Driver driver;
+
 
     public account(Driver driver) {
         System.out.println(System.getProperty("environment"));
@@ -23,6 +24,8 @@ public class account {
         this.driver.setupController();
 
     }
+    
+
 
     @Given("user should navigate to the website of uwas")
     public void user_should_navigate_to_the_website() {

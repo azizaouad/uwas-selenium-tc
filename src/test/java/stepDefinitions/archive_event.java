@@ -7,7 +7,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.uwas.Driver;
 
@@ -77,9 +76,9 @@ public class archive_event {
     public void the_event_is_archived (String title) {
         boolean found = false;
         List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
-        List<WebElement> eventLocation = this.driver.getWebDriver().findElements(By.id("even-location"));
+        //List<WebElement> eventLocation = this.driver.getWebDriver().findElements(By.id("even-location"));
         List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
-        List<WebElement> eventStatus = this.driver.getWebDriver().findElements(By.className("ant-tag"));
+        //List<WebElement> eventStatus = this.driver.getWebDriver().findElements(By.className("ant-tag"));
         LocalDate localDate = LocalDate.now();
         System.out.println(localDate.toString());
         for (int i = 0; i < eventNames.size(); i++) {
@@ -131,7 +130,7 @@ public class archive_event {
 
             List <WebElement> points = this.driver.getWebDriver().findElements(By.id("event-edit-dropdown"));
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
-            List<WebElement> eventLocation = this.driver.getWebDriver().findElements(By.id("event-location"));
+            //List<WebElement> eventLocation = this.driver.getWebDriver().findElements(By.id("event-location"));
             List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
             LocalDate localDate = LocalDate.now();
 
@@ -164,9 +163,9 @@ public class archive_event {
             Thread.sleep(1500);
             boolean found = false;
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
-            List<WebElement> eventLocation = this.driver.getWebDriver().findElements(By.id("event-location"));
+            //List<WebElement> eventLocation = this.driver.getWebDriver().findElements(By.id("event-location"));
             List<WebElement> eventDate =this.driver.getWebDriver().findElements(By.id("event-date"));
-            List<WebElement> eventStatus = this.driver.getWebDriver().findElements(By.className("ant-tag"));
+            //List<WebElement> eventStatus = this.driver.getWebDriver().findElements(By.className("ant-tag"));
             LocalDate localDate = LocalDate.now();
             if (eventNames.size()==0){
                 found = true;

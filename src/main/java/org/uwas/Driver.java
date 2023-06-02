@@ -78,6 +78,7 @@ public class Driver {
                 this.webDriver = new ChromeDriver(options);
                 this.webDriver.manage().window().maximize();
 
+                
                 this.webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 
             }

@@ -62,7 +62,7 @@ public class loginsteps {
         try {
 
             Thread.sleep(10);
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(10))
             .until(ExpectedConditions.visibilityOfElementLocated(By.id("dropdown-event-link")));
             boolean f = false ;
 

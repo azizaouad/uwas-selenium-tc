@@ -281,7 +281,9 @@ public class account {
         Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("oldPwd")).isDisplayed()); 
         Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("newPwd")).isDisplayed());
         Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("confirmPwd")).isDisplayed());  
-        Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("change-pw-btn")).isDisplayed());   
+        Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("change-pw-btn")).isDisplayed());  
+        
+        
         this.driver.getWebDriver().quit();  
     } 
 }

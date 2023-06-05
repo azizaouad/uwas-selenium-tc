@@ -9,8 +9,11 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.uwas.Driver;
 
+import java.time.Duration;
 import java.util.List;
 
 public class scenario_steps {
@@ -26,12 +29,13 @@ public class scenario_steps {
         try {
             Thread.sleep(4000);
             this.driver.getWebDriver().findElement(By.id("user-dropdown")).click();
-            Thread.sleep(1000);
+            Thread.sleep(10);
             this.driver.getWebDriver().findElement(By.id("testLogout")).click();
-            Thread.sleep(1000);
+            Thread.sleep(10);
             boolean bol1 = false;
             boolean bol2 = false;
-            Thread.sleep(2000);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
             bol1 = this.driver.getWebDriver().findElement(By.id("email")).isDisplayed();
             bol2 = this.driver.getWebDriver().findElement(By.id("password")).isDisplayed();
             Assert.assertTrue(bol1);
@@ -53,7 +57,7 @@ public class scenario_steps {
             this.driver.manage().window().maximize();*/
             System.out.println(this.driver.getBaseUrl());
             this.driver.getWebDriver().get(this.driver.getBaseUrl()+"/login");
-            Thread.sleep(2000);
+            Thread.sleep(20);
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -62,13 +66,15 @@ public class scenario_steps {
     @When("user write email as {string} and password as {string} and click on login button")
     public void user_write_email_and_password_and_click_on_login_button(String email , String password) {
         try {
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
 
             this.driver.getWebDriver().findElement(By.id("email")).sendKeys(email);
-            Thread.sleep(1000);
+            // Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("password")).sendKeys(password);
-            Thread.sleep(1000);
+            // Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("testLogin")).click();
-            Thread.sleep(3000);
+            Thread.sleep(30);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -79,13 +85,15 @@ public class scenario_steps {
     @And("user upload some photos")
     public void user_upload_some_photos() {
         try {
-            Thread.sleep(4000);
+            // Thread.sleep(4000);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.visibilityOfElementLocated(By.id("testUpload")));
             WebElement upload_button = this.driver.getWebDriver().findElement(By.id("testUpload"));
-            Thread.sleep(2000);
+            // Thread.sleep(2000);
             upload_button.click();
-            Thread.sleep(5000);
+            // Thread.sleep(5000);
             WebElement source = this.driver.getWebDriver().findElement(By.id("upload-photos"));
-            Thread.sleep(3000);
+            Thread.sleep(30);
             source.sendKeys("C:/Users/Lenovo/Downloads/wetransfer_20230109_161332-jpg_2023-01-09_1514/12345678 (24).jpg");
             this.driver.getWebDriver().findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[2]/form/div[2]/div/div/div/div/button")).click();
 
@@ -121,9 +129,10 @@ public class scenario_steps {
     @And("photographer click on the button of add event")
     public void photographer_should_click_on_the_button_of_add_event() {
         try {
-            Thread.sleep(2000);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
             this.driver.getWebDriver().findElement(By.id("dropdown-event-link")).click();
-            Thread.sleep(2000);
+            Thread.sleep(20);
             this.driver.getWebDriver().findElement(By.id("event-add")).click();
 
         } catch (InterruptedException e) {
@@ -133,7 +142,9 @@ public class scenario_steps {
     @And("photographer fill the title of event as {string}")
     public void photographer_should_fill_the_title_of_event(String title_of_event) {
         try {
-            Thread.sleep(2000);
+            Thread.sleep(20);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.visibilityOfElementLocated(By.id("title_of_event")));
             this.driver.getWebDriver().findElement(By.id("event-title")).sendKeys(title_of_event);
 
         } catch (InterruptedException e) {
@@ -154,13 +165,13 @@ public class scenario_steps {
         try {
 
             WebElement dateInput = this.driver.getWebDriver().findElement(By.id("testEventDate"));
-            Thread.sleep(1000);
+            Thread.sleep(10);
             dateInput.sendKeys(Keys.CONTROL, "a");
-            Thread.sleep(1000);
+            Thread.sleep(10);
             dateInput.sendKeys(Keys.DELETE);
-            Thread.sleep(1000);
+            Thread.sleep(10);
             dateInput.sendKeys(date_of_event);
-            Thread.sleep(1000);
+            Thread.sleep(10);
             dateInput.sendKeys(Keys.ENTER);
 
 
@@ -171,7 +182,7 @@ public class scenario_steps {
     @And("photographer put an image")
     public void photographer_put_an_image_for_the_event() {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(10);
             WebElement source = this.driver.getWebDriver().findElement(By.id("upload"));
             source.sendKeys("C://Users/Lenovo/Desktop/traditions-noel-europe-1024x683.jpg");
 
@@ -185,9 +196,9 @@ public class scenario_steps {
     @And("photographer should click on the ok button")
     public void photographer_should_click_on_the_button_ok() {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(10);
             this.driver.getWebDriver().findElement(By.id("test123")).click();
-            Thread.sleep(4000);
+            // Thread.sleep(4000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -195,7 +206,7 @@ public class scenario_steps {
     @Then("title of event as {string} in the location of event as {string} at the date of event as {string} is created")
     public void title_of_event_in_location_at_date_is_created(String title_of_event, String location_of_event, String date_of_event) {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(3000);
             boolean found = false;
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
             List<WebElement> eventLocation = this.driver.getWebDriver().findElements(By.id("event-location"));

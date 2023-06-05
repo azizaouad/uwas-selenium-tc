@@ -4,8 +4,13 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
+import java.time.Duration;
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.uwas.Driver;
 
 public class sign_up_steps {
@@ -19,7 +24,9 @@ public class sign_up_steps {
     public void user_open_the_website_and_click_on_sign_up_now() {
         try {
             this.driver.getWebDriver().get(this.driver.getBaseUrl()+"/login");
-            Thread.sleep(2000);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
+            Thread.sleep(10);
             this.driver.getWebDriver().findElement(By.linkText("Sign up now!")).click();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -31,6 +38,8 @@ public class sign_up_steps {
 
         try {
             Thread.sleep(1);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.visibilityOfElementLocated(By.id("first_name")));
             this.driver.getWebDriver().findElement(By.id("first_name")).sendKeys(first_name);
         }
         catch (InterruptedException e) {
@@ -98,7 +107,7 @@ public class sign_up_steps {
     @And("user click on sign up")
     public void user_click_on_sign_up () {
         try {
-            Thread.sleep(4000);
+            Thread.sleep(4);
             this.driver.getWebDriver().findElement(By.id("testRegister")).click();
         }catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -109,11 +118,12 @@ public class sign_up_steps {
     @Then("user have an account he can login with this credentials email as {string} and password as {string}")
     public void user_have_an_account_he_can_login_with_this_credentials_email_and_password ( String email , String password) {
         try {
-            Thread.sleep(2000);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
             this.driver.getWebDriver().findElement(By.id("email")).sendKeys(email);
             this.driver.getWebDriver().findElement(By.id("password")).sendKeys(password);
             this.driver.getWebDriver().findElement(By.id("testLogin")).click();
-            Thread.sleep(4000);
+            Thread.sleep(4);
             boolean f = true ;
 
             String current_url = this.driver.getWebDriver().getCurrentUrl();
@@ -132,9 +142,11 @@ public class sign_up_steps {
     @Then("user fail to create an account")
     public void user_fail_to_create_an_account (){
         try {
-            Thread.sleep(3000);
+            // Thread.sleep(3000);
             Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("confirmPassword")).isDisplayed());
-            Thread.sleep(2000);
+            Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("first_name")).isDisplayed());
+            Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("last_name")).isDisplayed());
+            Thread.sleep(2);
             this.driver.getWebDriver().quit();
 
         }catch (InterruptedException e) {

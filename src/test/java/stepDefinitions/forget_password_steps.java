@@ -8,8 +8,11 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.uwas.Driver;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -29,7 +32,9 @@ public class forget_password_steps {
         try {
 
             this.driver.getWebDriver().get(this.driver.getBaseUrl()+"/login");
-            Thread.sleep(2000);
+            Thread.sleep(20);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.linkText("Forgot Password?")));
             this.driver.getWebDriver().findElement(By.linkText("Forgot Password?")).click();
 
         } catch (InterruptedException e) {
@@ -42,7 +47,9 @@ public class forget_password_steps {
     @When("user write email as {string}")
     public void user_write_email(String email) {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(10);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
             this.driver.getWebDriver().findElement(By.id("normal_login_email")).sendKeys(email);
 
         } catch (InterruptedException e) {
@@ -53,7 +60,7 @@ public class forget_password_steps {
     @And("user confirm the email")
     public void user_confirm_the_email() {
         try {
-            Thread.sleep(1);
+            Thread.sleep(10);
             this.driver.getWebDriver().findElement(By.id("testResetPW")).click();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -65,7 +72,7 @@ public class forget_password_steps {
         try {
 
             this.driver.getWebDriver().switchTo().newWindow(WindowType.TAB);
-            Thread.sleep(10000);
+            Thread.sleep(5000);
             this.driver.getWebDriver().navigate().to("https://qa.team/inbox?utf8=%E2%9C%93&code=uwas01&locale=en&commit=go+%C2%BB");
             Thread.sleep(2000);
 
@@ -103,7 +110,9 @@ public class forget_password_steps {
         @And("user write password as {string}")
     public void user_write_password(String password) {
         try {
-            Thread.sleep(5000);
+            Thread.sleep(50);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.visibilityOfElementLocated(By.id("normal_login_password")));
             this.driver.getWebDriver().findElement(By.id("normal_login_password")).sendKeys(password);
 
         } catch (InterruptedException e) {
@@ -127,20 +136,25 @@ public class forget_password_steps {
     @Then("the password is changed user can login with new password as {string} and email as {string}")
     public void the_password_is_changed_user_can_login_with_new_password_and_email(String password, String email) {
         try {
-            Thread.sleep(5000);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
             this.driver.getWebDriver().findElement(By.id("email")).sendKeys(email);
             this.driver.getWebDriver().findElement(By.id("password")).sendKeys(password);
             this.driver.getWebDriver().findElement(By.id("testLogin")).click();
             Thread.sleep(10000);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
             String Current_url = this.driver.getWebDriver().getCurrentUrl() ;
             boolean login = false ;
             if (Current_url.contentEquals("https://recette.uwas.fr/login")){
-                login = false ;}
+                login = false ;
+                System.out.println("test fail");
+            }
             else {
                 login = true;
             }
             Assert.assertTrue(login);
-            Thread.sleep(2000);
+            Thread.sleep(20);
             this.driver.getWebDriver().quit();
 
 
@@ -153,9 +167,11 @@ public class forget_password_steps {
     @Then("an error message is displayed")
     public void an_error_message_is_displayed() {
         try {
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.visibilityOfElementLocated(By.id("normal_login_email")));
             Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("normal_login_email")).isDisplayed());
             Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("testResetPW")).isDisplayed());
-            Thread.sleep(2000);
+            Thread.sleep(20);
             this.driver.getWebDriver().quit();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -165,7 +181,9 @@ public class forget_password_steps {
     @Then("the password is not changed and an error message appear")
     public void the_password_is_not_changed_and_an_error_message_appear() {
         try {
-            Thread.sleep(4000);
+            // Thread.sleep(4000);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.visibilityOfElementLocated(By.id("testChangePW")));
 
             Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("normal_login_password")).isDisplayed());
             Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("normal_login_confirmPassword")).isDisplayed());

@@ -8,8 +8,11 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.uwas.Driver;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -24,18 +27,23 @@ public class archive_event {
     public void photographer_should_login_with_his_credentials_email_and_password ( String email , String password, String title) {
         try {
             this.driver.getWebDriver().get(this.driver.getBaseUrl()+"/login");
-            Thread.sleep(2000);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
             this.driver.getWebDriver().findElement(By.id("email")).sendKeys(email);
 
             this.driver.getWebDriver().findElement(By.id("password")).sendKeys(password);
             this.driver.getWebDriver().findElement(By.id("testLogin")).click();
-            Thread.sleep(4000);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
-            Thread.sleep(500);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.visibilityOfElementLocated(By.id("event-add")));
             this.driver.getWebDriver().findElement(By.id("event-add")).click();
-            Thread.sleep(1000);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.visibilityOfElementLocated(By.id("event-title")));
             this.driver.getWebDriver().findElement(By.id("event-title")).sendKeys(title);
+            Thread.sleep(10);
 
             this.driver.getWebDriver().findElement(By.id("test123")).click();
     }catch (InterruptedException e) {
@@ -59,15 +67,18 @@ public class archive_event {
 //            Actions action = new Actions(driver);
 //            Thread.sleep(2000);
 //            action.moveToElement(ele).build().perform();
-           Thread.sleep(4000);
+           new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+           .until(ExpectedConditions.visibilityOfElementLocated(By.id("event-edit-dropdown")));
             //driver.findElement(By.xpath("/html/body/div[1]/div/main/section[2]/main/div[1]/div[2]/div/div/div[7]/div[2]/div[1]/button[2]/span/svg")).click();
            WebElement points=this.driver.getWebDriver().findElement(By.id("event-edit-dropdown"));
            points.click();
-           Thread.sleep(2000);
+           new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+           .until(ExpectedConditions.elementToBeClickable(By.id("testArchive")));
            driver.getWebDriver().findElement(By.id("testArchive")).click();
-           Thread.sleep(2000);
+           new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+           .until(ExpectedConditions.elementToBeClickable(By.id("testOKArchive")));
            driver.getWebDriver().findElement(By.id("testOKArchive")).click();
-           Thread.sleep(2000);
+           Thread.sleep(20);
         }catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -94,7 +105,6 @@ public class archive_event {
             }
         }
         if (found) {
-            Assert.assertTrue(found);
             System.out.println("test fail");
         }
         else {
@@ -108,7 +118,8 @@ public class archive_event {
     @When("photographer should go to the archive event")
     public void photographer_should_go_to_the_archive_event (){
         try {
-            Thread.sleep(5000);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.visibilityOfElementLocated(By.id("dropdown-event-link")));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
             WebElement List = this.driver.getWebDriver().findElement(By.id("event-archive"));
@@ -137,7 +148,6 @@ public class archive_event {
             for ( int i =0 ; i<eventNames.size() ; i++ ) {
                 String name_string = eventNames.get(i).getText() ;
                 String date_string = eventDate.get(i).getText();
-                System.out.println(name_string);
                 boolean name = name_string.toUpperCase().equals(event.toUpperCase());
                 boolean date = date_string.equals(localDate.toString());
                 if ((name)&&(date)){
@@ -160,7 +170,7 @@ public class archive_event {
     public void the_event_is_restored (String title) {
         try {
             this.driver.getWebDriver().findElement(By.xpath("/html/body/div[1]/div/main/div/section/main/div[1]/button")).click();
-            Thread.sleep(1500);
+            Thread.sleep(3000);
             boolean found = false;
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
             //List<WebElement> eventLocation = this.driver.getWebDriver().findElements(By.id("event-location"));
@@ -188,10 +198,6 @@ public class archive_event {
                 Assert.assertTrue(found);
                 System.out.println("test pass");
             }
-            else {
-                Assert.assertFalse(found);
-                System.out.println("test fail");
-            }
 
             Thread.sleep(10);
             this.driver.getWebDriver().quit();
@@ -205,11 +211,12 @@ public class archive_event {
         try {
 
             this.driver.getWebDriver().get(this.driver.getBaseUrl()+"/login");
-            Thread.sleep(2000);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
             this.driver.getWebDriver().findElement(By.id("email")).sendKeys(email);
             this.driver.getWebDriver().findElement(By.id("password")).sendKeys(password);
             this.driver.getWebDriver().findElement(By.id("testLogin")).click();
-            Thread.sleep(2000);
+            Thread.sleep(200);
         }catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

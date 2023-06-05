@@ -10,10 +10,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.uwas.Driver;
 
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -35,7 +38,7 @@ public class filter_steps {
             this.driver.manage().window().maximize();*/
             System.out.println(this.driver.getBaseUrl());
             this.driver.getWebDriver().get(this.driver.getBaseUrl()+"/login");
-            Thread.sleep(10000);
+            Thread.sleep(10);
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -45,11 +48,13 @@ public class filter_steps {
     @When("user write email as {string} and password as {string} and click on the button of login")
     public void user_write_email_and_password_and_click_on_the_button_of_login(String email , String password) {
         try {
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
 
             this.driver.getWebDriver().findElement(By.id("email")).sendKeys(email);
-            Thread.sleep(1000);
+            
             this.driver.getWebDriver().findElement(By.id("password")).sendKeys(password);
-            Thread.sleep(1000);
+            Thread.sleep(10);
             this.driver.getWebDriver().findElement(By.id("testLogin")).click();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -61,21 +66,23 @@ public class filter_steps {
     @And("user click on all filters and should choose the start date as {string} and the finish date as {string}")
     public void user_click_on_all_filters_and_should_choose_the_start_date_and_the_finish_date(String star_date, String finish_date) {
         try {
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
 
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
             this.driver.getWebDriver().findElement(By.id("event-filtre")).click();
-            Thread.sleep(2000);
+            Thread.sleep(10);
             this.driver.getWebDriver().findElement(By.id("eventDateFilter")).sendKeys(star_date);
-            Thread.sleep(1000);
+            Thread.sleep(10);
             this.driver.getWebDriver().findElement(By.xpath("/html/body/div[3]/div/div[3]/div/div/div[2]/form/div/div[3]/div/div[3]/input")).sendKeys(finish_date);
-            Thread.sleep(1000);
+            Thread.sleep(10);
             this.driver.getWebDriver().findElement(By.xpath("/html/body/div[3]/div/div[3]/div/div/div[2]/form/div/div[3]/div/div[3]/input")).sendKeys(Keys.ENTER);
-            Thread.sleep(1000);
+            Thread.sleep(10);
             this.driver.getWebDriver().findElement(By.id("eventDateFilterOK")).click();
-            Thread.sleep(1000);
+            Thread.sleep(10);
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
-            Thread.sleep(1000);
+            Thread.sleep(10);
 
 
         } catch (InterruptedException e) {
@@ -102,8 +109,8 @@ public class filter_steps {
                 for (int i = 0; eventNames.size() > i; i++) {
                     LocalDate date = LocalDate.parse(eventDate.get(i).getText());
                     String names = eventNames.get(i).getText();
-                    System.out.println(names);
-                    System.out.println(date);
+                    // System.out.println(names);
+                    // System.out.println(date);
                     if (date.isBefore(startInterval.minusDays(1)) || date.isAfter(endInterval.plusDays(1))) {
                         find = false;
                         break;
@@ -123,7 +130,7 @@ public class filter_steps {
                 System.out.println("test fail");
             }
 
-            Thread.sleep(100);
+            Thread.sleep(10);
             this.driver.getWebDriver().quit();
 
         } catch (Exception e) {
@@ -135,13 +142,15 @@ public class filter_steps {
     @And("user click on all filters and should write the name of event as {string}")
     public void user_click_on_all_filters_and_should_write_the_name_of_event(String name_of_event) {
         try {
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
             this.driver.getWebDriver().findElement(By.id("event-filtre")).click();
-            Thread.sleep(2000);
+            
             this.driver.getWebDriver().findElement(By.id("eventName")).sendKeys(name_of_event);
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
-            Thread.sleep(1000);
+            Thread.sleep(10);
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -164,7 +173,6 @@ public class filter_steps {
                 for (int i = 0; i < eventNames.size(); i++) {
                     String Name = eventNames.get(i).getText();
                     find = Name.toUpperCase().contains(name_of_event.toUpperCase());
-                    System.out.println(Name);
                     if (find) {
                         find = true ;
                     } else {
@@ -180,11 +188,11 @@ public class filter_steps {
                 System.out.println("test pass");
             }
             else {
-                Assert.assertFalse(find);
+                // Assert.assertFalse(find);
                 System.out.println("test fail");
             }
 
-            Thread.sleep(500);
+            Thread.sleep(50);
             this.driver.getWebDriver().quit();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -194,14 +202,16 @@ public class filter_steps {
     @And("user click on all filters and should write the location of event as {string}")
     public void user_click_on_all_filters_and_should_write_the_location_of_event(String location_of_event) {
         try {
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
             this.driver.getWebDriver().findElement(By.id("event-filtre")).click();
-            Thread.sleep(2000);
+            Thread.sleep(20);
             this.driver.getWebDriver().findElement(By.id("eventLocation")).sendKeys(location_of_event);
 
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
-            Thread.sleep(1000);
+            Thread.sleep(10);
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -226,8 +236,8 @@ public class filter_steps {
                     String names = eventNames.get(i).getText();
                     String location = eventlocation.get(i).getText();
                     find = location.toUpperCase().contains(location_of_event.toUpperCase());
-                    System.out.println(names);
-                    System.out.println(location);
+                    // System.out.println(names);
+                    // System.out.println(location);
                     if (find) {
                         find = true;
                     } else {
@@ -249,28 +259,32 @@ public class filter_steps {
     @And("user click on all filters and should write the status of event")
     public void user_click_on_all_filters_and_should_write_the_status_of_event() {
         try {
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
             this.driver.getWebDriver().findElement(By.id("event-filtre")).click();
-            Thread.sleep(2000);
             this.driver.getWebDriver().findElement(By.id("eventFilterInProgress")).click();
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
-            Thread.sleep(1000);
+            Thread.sleep(10);
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
-        }
+        
     }
+}
     @And("user click on all filters and should write the status of the event")
     public void user_click_on_all_filters_and_should_write_the_status_of_the_event() {
         try {
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
             this.driver.getWebDriver().findElement(By.id("event-filtre")).click();
-            Thread.sleep(2000);
+            Thread.sleep(20);
             this.driver.getWebDriver().findElement(By.id("eventFilterCompleted")).click();
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
-            Thread.sleep(1000);
+            Thread.sleep(10);
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -294,8 +308,8 @@ public class filter_steps {
                     String names = eventNames.get(i).getText();
                     String status = eventstatus.get(i).getText();
                     find = status.toUpperCase().contentEquals(status_of_event.toUpperCase());
-                    System.out.println(names);
-                    System.out.println(status);
+                    // System.out.println(names);
+                    // System.out.println(status);
                     if (find) {
                         find = true ;
                     } else {
@@ -306,7 +320,7 @@ public class filter_steps {
                 }
             }
             Assert.assertTrue(find);
-            Thread.sleep(100);
+            Thread.sleep(10);
             this.driver.getWebDriver().quit();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -342,7 +356,7 @@ public class filter_steps {
                 }
             }
             Assert.assertTrue(find);
-            Thread.sleep(100);
+            Thread.sleep(10);
             this.driver.getWebDriver().quit();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -352,18 +366,17 @@ public class filter_steps {
     @And("user click on all filters and should click on today")
     public void user_click_on_all_filters_and_should_click_on_today() {
         try {
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
             this.driver.getWebDriver().findElement(By.id("event-filtre")).click();
-            Thread.sleep(2000);
             this.driver.getWebDriver().findElement(By.id("eventDateFilter")).click();
-            Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("test_Today")).click();
-            Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("eventDateFilterOK")).click();
-            Thread.sleep(1000);
+            Thread.sleep(10);
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
-            Thread.sleep(1000);
+            Thread.sleep(10);
 
 
         } catch (InterruptedException e) {
@@ -390,8 +403,8 @@ public class filter_steps {
                     String names =eventNames.get(i).getText();
                     String date = eventDate.get(i).getText();
                     find = date.contentEquals(localDate.toString());
-                    System.out.println(names);
-                    System.out.println(date);
+                    // System.out.println(names);
+                    // System.out.println(date);
                     if (find) {
                         find = true ;
                     } else {
@@ -402,7 +415,7 @@ public class filter_steps {
                 }
             }
             Assert.assertTrue(find);
-            Thread.sleep(100);
+            Thread.sleep(10);
             this.driver.getWebDriver().quit();
 
         } catch (InterruptedException e) {
@@ -413,18 +426,20 @@ public class filter_steps {
     @And("user click on all filters and should click on this week")
     public void user_click_on_all_filters_and_should_click_on_this_week() {
         try {
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
             this.driver.getWebDriver().findElement(By.id("event-filtre")).click();
-            Thread.sleep(2000);
+            
             this.driver.getWebDriver().findElement(By.id("eventDateFilter")).click();
-            Thread.sleep(1000);
+            // Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("test_This Week")).click();
-            Thread.sleep(1000);
+            // Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("eventDateFilterOK")).click();
-            Thread.sleep(1000);
+            // Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
-            Thread.sleep(1000);
+            Thread.sleep(10);
 
 
         } catch (InterruptedException e) {
@@ -489,18 +504,20 @@ public class filter_steps {
     @And("user click on all filters and should click on this month")
     public void user_click_on_all_filters_and_should_click_on_this_month() {
         try {
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
             this.driver.getWebDriver().findElement(By.id("event-filtre")).click();
-            Thread.sleep(2000);
+            // Thread.sleep(2000);
             this.driver.getWebDriver().findElement(By.id("eventDateFilter")).click();
-            Thread.sleep(1000);
+            // Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("test_This Month")).click();
-            Thread.sleep(1000);
+            // Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("eventDateFilterOK")).click();
-            Thread.sleep(1000);
+            // Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
-            Thread.sleep(1000);
+            Thread.sleep(10);
 
 
         } catch (InterruptedException e) {
@@ -525,8 +542,8 @@ public class filter_steps {
                 for (int i = 0; i < eventNames.size(); i++) {
                     String dateevent = eventDate.get(i).getText();
                     String names = eventNames.get(i).getText();
-                    System.out.println(names);
-                    System.out.println(dateevent);
+                    // System.out.println(names);
+                    // System.out.println(dateevent);
                     LocalDate today = LocalDate.parse(dateevent);
                     LocalDate firstday = LocalDate.parse(today.withDayOfMonth(1).toString());
                     LocalDate lastday = LocalDate.parse(today.withDayOfMonth(today.lengthOfMonth()).toString());
@@ -541,7 +558,7 @@ public class filter_steps {
                 }
             }
             Assert.assertTrue(find);
-            Thread.sleep(100);
+            Thread.sleep(10);
             this.driver.getWebDriver().quit();
 
 
@@ -554,18 +571,20 @@ public class filter_steps {
     @And("user click on all filters and should click on this year")
     public void user_click_on_all_filters_and_should_click_on_this_year() {
         try {
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
             this.driver.getWebDriver().findElement(By.id("event-filtre")).click();
-            Thread.sleep(2000);
+            // Thread.sleep(2000);
             this.driver.getWebDriver().findElement(By.id("eventDateFilter")).click();
-            Thread.sleep(1000);
+            // Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("test_This Year")).click();
-            Thread.sleep(1000);
+            // Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("eventDateFilterOK")).click();
-            Thread.sleep(1000);
+            // Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
-            Thread.sleep(1000);
+            Thread.sleep(10);
 
 
         } catch (InterruptedException e) {
@@ -606,7 +625,7 @@ public class filter_steps {
                 }
             }
             Assert.assertTrue(find);
-            Thread.sleep(100);
+            Thread.sleep(10);
             this.driver.getWebDriver().quit();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -616,24 +635,26 @@ public class filter_steps {
     @And("user click on all filters and fill the name of event as {string} , the location of event as {string}, and the status of event as {string} and the date of event today")
     public void user_click_on_all_filters_and_fill_the_name_of_event_the_location_of_event_and_the_status_of_event_and_the_date_of_event_today(String name_of_event, String location_of_event, String status_of_event){
         try {
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
             this.driver.getWebDriver().findElement(By.id("event-filtre")).click();
-            Thread.sleep(2000);
+            // Thread.sleep(2000);
             this.driver.getWebDriver().findElement(By.id("eventName")).sendKeys(name_of_event);
-            Thread.sleep(1000);
+            // Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("eventLocation")).sendKeys(location_of_event);
-            Thread.sleep(1000);
+            // Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("eventFilterInProgress")).click();
-            Thread.sleep(1000);
+            // Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("eventDateFilter")).click();
-            Thread.sleep(1000);
+            // Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("test_Today")).click();
-            Thread.sleep(1000);
+            // Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("eventDateFilterOK")).click();
-            Thread.sleep(1000);
+            // Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
-            Thread.sleep(1000);
+            Thread.sleep(10);
         }catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -659,10 +680,10 @@ public class filter_steps {
                     String names = eventNames.get(i).getText();
                     String status = eventstatus.get(i).getText();
                     String location = eventlocation.get(i).getText();
-                    System.out.println(names);
-                    System.out.println(location);
-                    System.out.println(dateevent);
-                    System.out.println(status);
+                    // System.out.println(names);
+                    // System.out.println(location);
+                    // System.out.println(dateevent);
+                    // System.out.println(status);
                     boolean name_boolean = names.toUpperCase().contains(name_of_event.toUpperCase());
                     boolean date_boolean = dateevent.contentEquals(date.toString());
                     boolean status_boolean = status.contentEquals(status_of_event);
@@ -688,6 +709,8 @@ public class filter_steps {
     @And("user click on all filters and should click on viewed events")
     public void user_click_on_all_filters_and_should_click_on_viewed_events (){
         try {
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
             List<WebElement> List = this.driver.getWebDriver().findElements(By.className("ant-dropdown-menu-title-content"));
@@ -724,7 +747,7 @@ public class filter_steps {
             }
 
             Assert.assertTrue(find);
-            Thread.sleep(100);
+            Thread.sleep(10);
             this.driver.getWebDriver().quit();
 
         }catch (InterruptedException e) {

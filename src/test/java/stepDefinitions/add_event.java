@@ -139,9 +139,7 @@ public class add_event {
     @Then("title of event as {string} event in location of event as {string} at the date of event as {string} is created")
     public void title_of_event_in_location_at_date_is_created(String title_of_event, String location_of_event, String date_of_event) {
         try {
-            Thread.sleep(10);
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("event-name")));
+            Thread.sleep(3000);
             boolean found = false;
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
             List<WebElement> eventLocation = this.driver.getWebDriver().findElements(By.id("event-location"));
@@ -163,13 +161,10 @@ public class add_event {
                 }
             }
             if (found) {
-                Assert.assertTrue(true);
+                Assert.assertTrue(found);
                 System.out.println("test pass");
             }
-            else {
-                Assert.assertFalse(false);
-                System.out.println("test fail");
-            }
+        
 
             Thread.sleep(100);
             this.driver.getWebDriver().quit();
@@ -222,10 +217,7 @@ public class add_event {
                 Assert.assertTrue(found);
                 System.out.println("test pass");
             }
-            else {
-                Assert.assertFalse(found);
-                System.out.println("test fail");
-            }
+            
 
             Thread.sleep(100);
             this.driver.getWebDriver().quit();
@@ -251,16 +243,7 @@ public class add_event {
                 Assert.assertTrue(find);
                 System.out.println("test pass");
             }
-            else {
-                Assert.assertFalse(find);
-
-
-
-
-                
-                System.out.println("test fail");
-            }
-
+          
             Thread.sleep(10);
             this.driver.getWebDriver().quit();
 

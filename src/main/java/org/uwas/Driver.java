@@ -66,7 +66,7 @@ public class Driver {
             options.addArguments("--remote-allow-origins=*");
             this.webDriver = new FirefoxDriver(options);
             this.webDriver.manage().window().maximize();
-            this.webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+            // this.webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         }
         else {
             if (driverType.equals("chrome")){
@@ -78,8 +78,8 @@ public class Driver {
                 this.webDriver = new ChromeDriver(options);
                 this.webDriver.manage().window().maximize();
 
-                
-                this.webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+
+                // this.webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 
             }
             else if (driverType.equals("local")){
@@ -87,6 +87,8 @@ public class Driver {
                 options.addArguments("--remote-allow-origins=*");
                 this.webDriver = new ChromeDriver(options);
                 this.webDriver.manage().window().maximize();
+                // this.webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+
 
                 
              

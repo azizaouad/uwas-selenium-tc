@@ -4,10 +4,14 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import java.time.Duration;
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.uwas.Driver;
 
 import java.time.LocalDate;
@@ -29,13 +33,14 @@ public class add_event {
         try {
 
             this.driver.getWebDriver().get(this.driver.getBaseUrl()+"/login");
-            Thread.sleep(10);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
             this.driver.getWebDriver().findElement(By.id("email")).sendKeys("azizaouadi12@gmail.com");
             Thread.sleep(10);
             this.driver.getWebDriver().findElement(By.id("password")).sendKeys("Admin123!");
             Thread.sleep(10);
             this.driver.getWebDriver().findElement(By.id("testLogin")).click();
-            Thread.sleep(2000);
+            Thread.sleep(20);
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -45,7 +50,8 @@ public class add_event {
     @When("photographer should click on the button of add event")
     public void photographer_should_click_on_the_button_of_add_event() {
         try {
-            Thread.sleep(5000);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.visibilityOfElementLocated(By.id("dropdown-event-link")));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
             Thread.sleep(500);
@@ -60,7 +66,9 @@ public class add_event {
     @And("photographer should fill the title of event as {string}")
     public void photographer_should_fill_the_title_of_event(String title_of_event) {
         try {
-            Thread.sleep(10000);
+            Thread.sleep(10);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.visibilityOfElementLocated(By.id("event-title")));
             WebElement title = this.driver.getWebDriver().findElement(By.id("event-title"));
             title.sendKeys(title_of_event);
 
@@ -72,7 +80,9 @@ public class add_event {
     @And("photographer should fill the location of event as {string}")
     public void photographer_should_fill_the_location_of_event(String location_of_event) {
         try {
-            Thread.sleep(5000);
+            Thread.sleep(50);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.visibilityOfElementLocated(By.id("location")));
             this.driver.getWebDriver().findElement(By.id("location")).sendKeys(location_of_event);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -102,7 +112,7 @@ public class add_event {
     @And("photographer put an image for the event")
     public void photographer_put_an_image_for_the_event() {
         try {
-            Thread.sleep(3000);
+            Thread.sleep(30);
             WebElement source = this.driver.getWebDriver().findElement(By.id("upload"));
             source.sendKeys("C://Users/Lenovo/Desktop/traditions-noel-europe-1024x683.jpg");
 
@@ -117,9 +127,9 @@ public class add_event {
     @And("photographer should click on the button ok")
     public void photographer_should_click_on_the_button_ok() {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(10);
             this.driver.getWebDriver().findElement(By.id("test123")).click();
-            Thread.sleep(1000);
+            
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -129,7 +139,9 @@ public class add_event {
     @Then("title of event as {string} event in location of event as {string} at the date of event as {string} is created")
     public void title_of_event_in_location_at_date_is_created(String title_of_event, String location_of_event, String date_of_event) {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(10);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.visibilityOfElementLocated(By.id("event-name")));
             boolean found = false;
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
             List<WebElement> eventLocation = this.driver.getWebDriver().findElements(By.id("event-location"));

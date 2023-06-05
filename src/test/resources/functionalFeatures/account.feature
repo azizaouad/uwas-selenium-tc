@@ -2,7 +2,7 @@ Feature: test fields validation
 
   Scenario: user want to edit his first name
     Given  user should navigate to the website of uwas
-    When user fill email as "azizaouadi12@gmail.com" and password as "Aziz1919!" and click on the button of login
+    When user fill email as "azizaouadi12@gmail.com" and password as "Admin123!" and click on the button of login
     And user should click on account
     And user edit his first name "testeur"
     And user click on edit button
@@ -10,7 +10,7 @@ Feature: test fields validation
 
   Scenario Outline: user fill the first name fields without respecting the conditions of this field
     Given  user should navigate to the website of uwas
-    When user fill email as "azizaouadi12@gmail.com" and password as "Aziz1919!" and click on the button of login
+    When user fill email as "azizaouadi12@gmail.com" and password as "Admin123!" and click on the button of login
     And user should click on account
     And user edit his first name "<first_name>"
     And user click on edit button
@@ -26,7 +26,7 @@ Feature: test fields validation
 
   Scenario: user want to edit his last name
     Given  user should navigate to the website of uwas
-    When user fill email as "azizaouadi12@gmail.com" and password as "Aziz1919!" and click on the button of login
+    When user fill email as "azizaouadi12@gmail.com" and password as "Admin123!" and click on the button of login
     And user should click on account
     And user edit his last name "testeur"
     And user click on edit button
@@ -34,7 +34,7 @@ Feature: test fields validation
 
   Scenario Outline: user fill the last name fields without respecting the conditions of this field
     Given  user should navigate to the website of uwas
-    When user fill email as "azizaouadi12@gmail.com" and password as "Aziz1919!" and click on the button of login
+    When user fill email as "azizaouadi12@gmail.com" and password as "Admin123!" and click on the button of login
     And user should click on account
     And user edit his last name "<last_name>"
     And user click on edit button
@@ -50,15 +50,15 @@ Feature: test fields validation
       | li         |
   Scenario: user want to edit his password
     Given  user should navigate to the website of uwas
-    When user fill email as "azizaouadi12@gmail.com" and password as "Aziz1919!" and click on the button of login
+    When user fill email as "a@gmail.com" and password as "Admin123!" and click on the button of login
     And user should click on account
     And user click on change password
-    And user fill his actuel password "Aziz1919!"
-    And user fill his new password "Admin123!"
-    And user confirm password "Admin123!" 
+    And user fill his actuel password "Admin123!"
+    And user fill his new password "Admin123!!"
+    And user confirm password "Admin123!!" 
     And user click on confirm button
     And user logout
-    Then user can connect with new credentials email "azizaouadi12@gmail.com" and password "Admin123!"
+    Then user can connect with new credentials email "a@gmail.com" and password "Admin123!!"
 
 Scenario: user want to edit his password with filling miss actuel password
     Given  user should navigate to the website of uwas

@@ -15,7 +15,7 @@
 
       Examples:
         | email            | password  |
-        | qa@gmail.com     | Admin123! |
+        | b@gmail.com      | Amine123! |
         | aaaa@outlook.fr  | Aziz1996@ |
         | lllll@outlook.fr | Mo123!!   |
         |                  | Aziz1996@ |

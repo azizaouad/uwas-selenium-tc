@@ -1,20 +1,19 @@
 package org.uwas;
 
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.time.Duration;
+// import java.time.Duration;
 //import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeUnit;
+// import java.util.concurrent.TimeUnit;
 
 public class Driver {
     private WebDriver webDriver;

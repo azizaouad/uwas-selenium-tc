@@ -14,7 +14,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.uwas.Driver;
 
-import java.text.SimpleDateFormat;
+// import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDate;
@@ -100,7 +100,7 @@ public class filter_steps {
     public void the_user_must_find_the_events_in_the_period_from_start_date_to_finish_date(String start_date, String finish_date) {
         try {
             Thread.sleep(3000);
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             LocalDate startInterval = LocalDate.parse(start_date);
             LocalDate endInterval = LocalDate.parse(finish_date);
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
@@ -116,8 +116,8 @@ public class filter_steps {
                 for (int i = 0; eventNames.size() > i; i++) {
                     LocalDate date = LocalDate.parse(eventDate.get(i).getText());
                     String names = eventNames.get(i).getText();
-                    // System.out.println(names);
-                    // System.out.println(date);
+                    System.out.println(names);
+                    System.out.println(date);
                     if (date.isBefore(startInterval.minusDays(1)) || date.isAfter(endInterval.plusDays(1))) {
                         find = false;
                         break;
@@ -256,8 +256,8 @@ public class filter_steps {
                     String names = eventNames.get(i).getText();
                     String location = eventlocation.get(i).getText();
                     find = location.toUpperCase().contains(location_of_event.toUpperCase());
-                    // System.out.println(names);
-                    // System.out.println(location);
+                    System.out.println(names);
+                    System.out.println(location);
                     if (find) {
                         find = true;
                     } else {
@@ -340,8 +340,8 @@ public class filter_steps {
                     String names = eventNames.get(i).getText();
                     String status = eventstatus.get(i).getText();
                     find = status.toUpperCase().contentEquals(status_of_event.toUpperCase());
-                    // System.out.println(names);
-                    // System.out.println(status);
+                    System.out.println(names);
+                    System.out.println(status);
                     if (find) {
                         find = true ;
                     } else {
@@ -447,8 +447,8 @@ public class filter_steps {
                     String names =eventNames.get(i).getText();
                     String date = eventDate.get(i).getText();
                     find = date.contentEquals(localDate.toString());
-                    // System.out.println(names);
-                    // System.out.println(date);
+                    System.out.println(names);
+                    System.out.println(date);
                     if (find) {
                         find = true ;
                     } else {
@@ -592,7 +592,7 @@ public class filter_steps {
             Thread.sleep(2000);
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
             List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
-            LocalDate date = LocalDate.now();
+            // LocalDate date = LocalDate.now();
             boolean find = false;
             int no_event = eventNames.size();
             System.out.println("number of filtred events " + no_event);
@@ -604,8 +604,8 @@ public class filter_steps {
                 for (int i = 0; i < eventNames.size(); i++) {
                     String dateevent = eventDate.get(i).getText();
                     String names = eventNames.get(i).getText();
-                    // System.out.println(names);
-                    // System.out.println(dateevent);
+                    System.out.println(names);
+                    System.out.println(dateevent);
                     LocalDate today = LocalDate.parse(dateevent);
                     LocalDate firstday = LocalDate.parse(today.withDayOfMonth(1).toString());
                     LocalDate lastday = LocalDate.parse(today.withDayOfMonth(today.lengthOfMonth()).toString());

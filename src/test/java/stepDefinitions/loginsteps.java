@@ -61,7 +61,7 @@ public class loginsteps {
     public void user_should_navigate_to_home_page() {
         try {
 
-            Thread.sleep(10);
+           
             new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(10))
             .until(ExpectedConditions.visibilityOfElementLocated(By.id("dropdown-event-link")));
             boolean f = false ;
@@ -75,6 +75,7 @@ public class loginsteps {
                 f = true ;
             }
             Assert.assertTrue(f);
+            Thread.sleep(10);
             this.driver.getWebDriver().quit();
             }   catch (InterruptedException e) {
             throw new RuntimeException(e);

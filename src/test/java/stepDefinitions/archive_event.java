@@ -65,10 +65,10 @@ public class archive_event {
 
 //            WebElement ele = driver.findElement(By.className("ant-btn-icon-only"));
 //            Actions action = new Actions(driver);
-//            Thread.sleep(2000);
+           Thread.sleep(2000);
 //            action.moveToElement(ele).build().perform();
-           new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-           .until(ExpectedConditions.visibilityOfElementLocated(By.id("event-edit-dropdown")));
+        //    new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+        //    .until(ExpectedConditions.visibilityOfElementLocated(By.id("event-edit-dropdown")));
             //driver.findElement(By.xpath("/html/body/div[1]/div/main/section[2]/main/div[1]/div[2]/div/div/div[7]/div[2]/div[1]/button[2]/span/svg")).click();
            WebElement points=this.driver.getWebDriver().findElement(By.id("event-edit-dropdown"));
            points.click();
@@ -84,8 +84,9 @@ public class archive_event {
         }
     }
     @Then("the event as {string} is archived")
-    public void the_event_is_archived (String title) {
+    public void the_event_is_archived (String title) throws InterruptedException {
         boolean found = false;
+        Thread.sleep(2000);
         List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
         //List<WebElement> eventLocation = this.driver.getWebDriver().findElements(By.id("even-location"));
         List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
@@ -122,6 +123,8 @@ public class archive_event {
             .until(ExpectedConditions.visibilityOfElementLocated(By.id("dropdown-event-link")));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.visibilityOfElementLocated(By.id("event-archive")));
             WebElement List = this.driver.getWebDriver().findElement(By.id("event-archive"));
             List.click();
             Thread.sleep(1000);
@@ -153,6 +156,8 @@ public class archive_event {
                 if ((name)&&(date)){
                     Thread.sleep(100);
                     points.get(i).click();
+                    new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+                    .until(ExpectedConditions.visibilityOfElementLocated(By.id("testRestore")));
                     WebElement restore = this.driver.getWebDriver().findElement(By.id("testRestore"));
                     restore.click();
                     break;

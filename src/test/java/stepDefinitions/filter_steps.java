@@ -71,8 +71,12 @@ public class filter_steps {
 
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("event-filtre")));
             this.driver.getWebDriver().findElement(By.id("event-filtre")).click();
             Thread.sleep(10);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("eventDateFilter")));
             this.driver.getWebDriver().findElement(By.id("eventDateFilter")).sendKeys(star_date);
             Thread.sleep(10);
             this.driver.getWebDriver().findElement(By.xpath("/html/body/div[3]/div/div[3]/div/div/div[2]/form/div/div[3]/div/div[3]/input")).sendKeys(finish_date);
@@ -81,6 +85,8 @@ public class filter_steps {
             Thread.sleep(10);
             this.driver.getWebDriver().findElement(By.id("eventDateFilterOK")).click();
             Thread.sleep(10);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("eventFilterEventsBTN")));
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
             Thread.sleep(10);
 
@@ -93,6 +99,7 @@ public class filter_steps {
     @Then("the user must find the events in the period from start date as {string} to finish date as {string}")
     public void the_user_must_find_the_events_in_the_period_from_start_date_to_finish_date(String start_date, String finish_date) {
         try {
+            Thread.sleep(3000);
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             LocalDate startInterval = LocalDate.parse(start_date);
             LocalDate endInterval = LocalDate.parse(finish_date);
@@ -146,9 +153,14 @@ public class filter_steps {
             .until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("event-filtre")));
             this.driver.getWebDriver().findElement(By.id("event-filtre")).click();
-            
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("eventName")));
             this.driver.getWebDriver().findElement(By.id("eventName")).sendKeys(name_of_event);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("eventFilterEventsBTN")));
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
             Thread.sleep(10);
 
@@ -160,6 +172,7 @@ public class filter_steps {
     @Then("The user must find the events whose name of event as {string}")
     public void The_user_must_find_the_events_whose_name_of_event(String name_of_event) {
         try {
+            Thread.sleep(2000);
 
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
             boolean find = false;
@@ -206,9 +219,15 @@ public class filter_steps {
             .until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("event-filtre")));
             this.driver.getWebDriver().findElement(By.id("event-filtre")).click();
             Thread.sleep(20);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("eventLocation")));
             this.driver.getWebDriver().findElement(By.id("eventLocation")).sendKeys(location_of_event);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("eventFilterEventsBTN")));
 
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
             Thread.sleep(10);
@@ -221,6 +240,7 @@ public class filter_steps {
     @Then("The user must find the events whose location of event as {string}")
     public void The_user_must_find_the_events_whose_location_of_event(String location_of_event) {
         try {
+            Thread.sleep(2000);
 
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
             List<WebElement> eventlocation = this.driver.getWebDriver().findElements(By.id("event-location"));
@@ -263,8 +283,14 @@ public class filter_steps {
             .until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("event-filtre")));
             this.driver.getWebDriver().findElement(By.id("event-filtre")).click();
+            Thread.sleep(1000);
+
             this.driver.getWebDriver().findElement(By.id("eventFilterInProgress")).click();
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("eventFilterEventsBTN")));
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
             Thread.sleep(10);
 
@@ -280,9 +306,14 @@ public class filter_steps {
             .until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("event-filtre")));
             this.driver.getWebDriver().findElement(By.id("event-filtre")).click();
-            Thread.sleep(20);
+            Thread.sleep(1000);
+           
             this.driver.getWebDriver().findElement(By.id("eventFilterCompleted")).click();
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("eventFilterEventsBTN")));
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
             Thread.sleep(10);
 
@@ -294,8 +325,9 @@ public class filter_steps {
     @Then("The user must find the events whose status of event as {string}")
     public void The_user_must_find_the_events_whose_status_of_event(String status_of_event) {
         try {
+            Thread.sleep(2000);
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
-            List<WebElement> eventstatus = this.driver.getWebDriver().findElements(By.className("ant-tag-gold"));
+            List<WebElement> eventstatus = this.driver.getWebDriver().findElements(By.className("ant-tag"));
             boolean find = false;
             int no_event = eventNames.size();
             System.out.println("number of filtred events " + no_event);
@@ -329,8 +361,9 @@ public class filter_steps {
     @Then("The user must find the events whose have the status of event as {string}")
     public void The_user_must_find_the_events_whose_have_the_status_of_event(String status_of_event) {
         try {
+            Thread.sleep(2000);
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
-            List<WebElement> eventstatus = this.driver.getWebDriver().findElements(By.className("ant-tag-green"));
+            List<WebElement> eventstatus = this.driver.getWebDriver().findElements(By.className("ant-tag"));
             boolean find = false;
             
             int no_event = eventNames.size();
@@ -370,11 +403,21 @@ public class filter_steps {
             .until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("event-filtre")));
             this.driver.getWebDriver().findElement(By.id("event-filtre")).click();
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("eventDateFilter")));
             this.driver.getWebDriver().findElement(By.id("eventDateFilter")).click();
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("test_Today")));
             this.driver.getWebDriver().findElement(By.id("test_Today")).click();
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("eventDateFilterOK")));
             this.driver.getWebDriver().findElement(By.id("eventDateFilterOK")).click();
             Thread.sleep(10);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("eventFilterEventsBTN")));
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
             Thread.sleep(10);
 
@@ -387,6 +430,7 @@ public class filter_steps {
     @Then("The user must find the events of today")
     public void The_user_must_find_the_events_of_today() {
         try {
+            Thread.sleep(2000);
 
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
             List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
@@ -430,14 +474,21 @@ public class filter_steps {
             .until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("event-filtre")));
             this.driver.getWebDriver().findElement(By.id("event-filtre")).click();
-            
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("eventDateFilter")));
             this.driver.getWebDriver().findElement(By.id("eventDateFilter")).click();
             // Thread.sleep(1000);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("test_This Week")));
             this.driver.getWebDriver().findElement(By.id("test_This Week")).click();
-            // Thread.sleep(1000);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("eventDateFilterOK")));
             this.driver.getWebDriver().findElement(By.id("eventDateFilterOK")).click();
-            // Thread.sleep(1000);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("eventFilterEventsBTN")));
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
             Thread.sleep(10);
 
@@ -450,6 +501,7 @@ public class filter_steps {
     @Then("The user must find the events of this week")
     public void The_user_must_find_the_events_of_this_week() {
         try {
+            Thread.sleep(2000);
 
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
             List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
@@ -508,14 +560,23 @@ public class filter_steps {
             .until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("event-filtre")));
             this.driver.getWebDriver().findElement(By.id("event-filtre")).click();
-            // Thread.sleep(2000);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("eventDateFilter")));
             this.driver.getWebDriver().findElement(By.id("eventDateFilter")).click();
             // Thread.sleep(1000);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("test_This Month")));
             this.driver.getWebDriver().findElement(By.id("test_This Month")).click();
             // Thread.sleep(1000);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("eventDateFilterOK")));
             this.driver.getWebDriver().findElement(By.id("eventDateFilterOK")).click();
             // Thread.sleep(1000);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("eventFilterEventsBTN")));
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
             Thread.sleep(10);
 
@@ -528,6 +589,7 @@ public class filter_steps {
     @Then("The user must find the events of this month")
     public void The_user_must_find_the_events_of_this_month() {
         try {
+            Thread.sleep(2000);
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
             List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
             LocalDate date = LocalDate.now();
@@ -575,14 +637,24 @@ public class filter_steps {
             .until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("event-filtre")));
             this.driver.getWebDriver().findElement(By.id("event-filtre")).click();
             // Thread.sleep(2000);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("eventDateFilter")));
             this.driver.getWebDriver().findElement(By.id("eventDateFilter")).click();
             // Thread.sleep(1000);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("test_This Year")));
             this.driver.getWebDriver().findElement(By.id("test_This Year")).click();
             // Thread.sleep(1000);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("eventDateFilterOK")));
             this.driver.getWebDriver().findElement(By.id("eventDateFilterOK")).click();
             // Thread.sleep(1000);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("eventFilterEventsBTN")));
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
             Thread.sleep(10);
 
@@ -595,6 +667,7 @@ public class filter_steps {
     @Then("The user must find the events of this year")
     public void The_user_must_find_the_events_of_this_year() {
         try {
+            Thread.sleep(2000);
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
             List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
             LocalDate date = LocalDate.now();
@@ -639,20 +712,32 @@ public class filter_steps {
             .until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("event-filtre")));
             this.driver.getWebDriver().findElement(By.id("event-filtre")).click();
             // Thread.sleep(2000);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("eventName")));
             this.driver.getWebDriver().findElement(By.id("eventName")).sendKeys(name_of_event);
             // Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("eventLocation")).sendKeys(location_of_event);
             // Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("eventFilterInProgress")).click();
             // Thread.sleep(1000);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("eventDateFilter")));
             this.driver.getWebDriver().findElement(By.id("eventDateFilter")).click();
             // Thread.sleep(1000);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("test_Today")));
             this.driver.getWebDriver().findElement(By.id("test_Today")).click();
             // Thread.sleep(1000);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("eventDateFilterOK")));
             this.driver.getWebDriver().findElement(By.id("eventDateFilterOK")).click();
             // Thread.sleep(1000);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("eventFilterEventsBTN")));
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
             Thread.sleep(10);
         }catch (InterruptedException e) {
@@ -662,6 +747,7 @@ public class filter_steps {
     @Then("The user must find the events whoose name of event as {string} , location of event as {string}, status of event as {string} and the date of event today")
     public void The_user_must_find_the_events_whoose_name_of_event_location_of_event_status_of_event_and_the_date_of_event_today(String name_of_event, String location_of_event , String status_of_event ) {
         try {
+            Thread.sleep(2000);
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
             List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
             List<WebElement> eventstatus = this.driver.getWebDriver().findElements(By.className("ant-tag-gold"));
@@ -709,17 +795,21 @@ public class filter_steps {
     @And("user click on all filters and should click on viewed events")
     public void user_click_on_all_filters_and_should_click_on_viewed_events (){
         try {
+
             new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
             .until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
+            Thread.sleep(1000);
             List<WebElement> List = this.driver.getWebDriver().findElements(By.className("ant-dropdown-menu-title-content"));
             List.get(0).click();
-            Thread.sleep(2000);
+            Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("eventFilterViewed")).click();
             Thread.sleep(1000);
             List<WebElement> evnetViewed = this.driver.getWebDriver().findElements(By.className("viewed"));
             System.out.println("the events viewed " + evnetViewed.size());
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("eventFilterEventsBTN")));
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -730,6 +820,7 @@ public class filter_steps {
     @Then("the user must find the events he has consulted")
     public void the_user_must_find_the_events_he_has_consulted (){
         try {
+            Thread.sleep(2000);
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
             List<WebElement> evnetViewed = this.driver.getWebDriver().findElements(By.className("viewed"));
             System.out.println("the events viewed " + evnetViewed.size());
@@ -758,15 +849,19 @@ public class filter_steps {
     @And("user click on all filters and should click on not viewed events")
     public void user_click_on_all_filters_and_should_click_on_not_viewed_events(){
         try {
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
+            Thread.sleep(1000);
             List<WebElement> List = this.driver.getWebDriver().findElements(By.className("ant-dropdown-menu-title-content"));
             List.get(0).click();
-            Thread.sleep(2000);
+            Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("eventFilterNotViewed")).click();
             List<WebElement> evnetnotViewed = this.driver.getWebDriver().findElements(By.className("notViewed"));
             System.out.println("the events not viewed " + evnetnotViewed.size());
-
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("eventFilterEventsBTN")));    
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
 
         } catch (InterruptedException e) {
@@ -795,7 +890,7 @@ public class filter_steps {
             }
 
             Assert.assertTrue(find);
-            Thread.sleep(100);
+            Thread.sleep(10);
             this.driver.getWebDriver().quit();
 
         }catch (InterruptedException e) {

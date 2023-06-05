@@ -113,7 +113,9 @@ public class scenario_steps {
     @And("the photos are uploaded")
     public void the_photos_are_uploaded() {
         try {
-            Thread.sleep(10000);
+            Thread.sleep(10);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(20))
+            .until(ExpectedConditions.visibilityOfElementLocated(By.className("ant-divider-inner-text")));
             boolean upload = this.driver.getWebDriver().findElement(By.className("ant-divider-inner-text")).isDisplayed();
             if (upload) {
                 System.out.println("the photos are successfully uploaded");
@@ -133,6 +135,8 @@ public class scenario_steps {
             .until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
             this.driver.getWebDriver().findElement(By.id("dropdown-event-link")).click();
             Thread.sleep(20);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.elementToBeClickable(By.id("event-add")));
             this.driver.getWebDriver().findElement(By.id("event-add")).click();
 
         } catch (InterruptedException e) {
@@ -144,7 +148,7 @@ public class scenario_steps {
         try {
             Thread.sleep(20);
             new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("title_of_event")));
+            .until(ExpectedConditions.visibilityOfElementLocated(By.id("event-title")));
             this.driver.getWebDriver().findElement(By.id("event-title")).sendKeys(title_of_event);
 
         } catch (InterruptedException e) {
@@ -211,16 +215,19 @@ public class scenario_steps {
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
             List<WebElement> eventLocation = this.driver.getWebDriver().findElements(By.id("event-location"));
             List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
-            List<WebElement> eventStatus = this.driver.getWebDriver().findElements(By.className("ant-tag-gold"));
+            List<WebElement> eventStatus = this.driver.getWebDriver().findElements(By.className("ant-tag"));
 
 
             for (int i = 0; i < eventNames.size(); i++) {
                 String name_string =eventNames.get(i).getText();
                 String location_string = eventLocation.get(i).getText();
+                String date_string = eventDate.get(i).getText();
+                String status_string = eventStatus.get(i).getText();
                 boolean name = name_string.toUpperCase().equals(title_of_event.toUpperCase());
                 boolean location = location_string.toUpperCase().equals(location_of_event.toUpperCase());
                 boolean date = eventDate.get(i).getText().equals(date_of_event);
                 boolean status = eventStatus.get(i).getText().equals("In progress");
+                System.out.println(name_string+ location_string+ date_string+ status_string);
                 if ((name) && (date ) && (status)&& (location)) {
                     found = true;
                     break;

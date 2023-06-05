@@ -49,7 +49,7 @@ public class forget_password_steps {
         try {
             Thread.sleep(10);
             new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
+            .until(ExpectedConditions.visibilityOfElementLocated(By.id("normal_login_email")));
             this.driver.getWebDriver().findElement(By.id("normal_login_email")).sendKeys(email);
 
         } catch (InterruptedException e) {

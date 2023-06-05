@@ -43,22 +43,21 @@ Feature: test fields validation
     Examples:
       | last_name  |
       | 3li        |
-
       | @li        |
       | @3la       |
       |            |
       | li         |
   Scenario: user want to edit his password
     Given  user should navigate to the website of uwas
-    When user fill email as "a@gmail.com" and password as "Admin123!" and click on the button of login
+    When user fill email as "a@gmail.com" and password as "Admin123!!" and click on the button of login
     And user should click on account
     And user click on change password
-    And user fill his actuel password "Admin123!"
-    And user fill his new password "Admin123!!"
-    And user confirm password "Admin123!!" 
+    And user fill his actuel password "Admin123!!"
+    And user fill his new password "Admin123!"
+    And user confirm password "Admin123!" 
     And user click on confirm button
     And user logout
-    Then user can connect with new credentials email "a@gmail.com" and password "Admin123!!"
+    Then user can connect with new credentials email "a@gmail.com" and password "Admin123!"
 
 Scenario: user want to edit his password with filling miss actuel password
     Given  user should navigate to the website of uwas
@@ -83,7 +82,7 @@ Scenario Outline: user want to edit his password without accept validation crite
     Then an error message appear     
 
     Examples:  
-    | new_password| confirm_password   |
+    | new_password| confirm_password  |
     | admin6542!  | admin6542!        |
     | Edmin65412  | Edmi65412         |
     | ADMIN6542!  | ADMIN6542!        |

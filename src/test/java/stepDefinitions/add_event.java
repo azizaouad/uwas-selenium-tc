@@ -35,7 +35,7 @@ public class add_event {
             this.driver.getWebDriver().get(this.driver.getBaseUrl()+"/login");
             new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
             .until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
-            this.driver.getWebDriver().findElement(By.id("email")).sendKeys("azizaouadi12@gmail.com");
+            this.driver.getWebDriver().findElement(By.id("email")).sendKeys("b@gmail.com");
             Thread.sleep(10);
             this.driver.getWebDriver().findElement(By.id("password")).sendKeys("Admin123!");
             Thread.sleep(10);
@@ -55,6 +55,8 @@ public class add_event {
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
             Thread.sleep(500);
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.visibilityOfElementLocated(By.id("event-add")));
             this.driver.getWebDriver().findElement(By.id("event-add")).click();
 
 
@@ -195,6 +197,7 @@ public class add_event {
     @Then("title of event as {string} event in location of event as {string} is created with the date added")
     public void title_of_event_in_location_of_event_is_created_with_the_date_added(String title_of_event, String location_of_event) {
         try {
+            Thread.sleep(3000);
             boolean found = false;
             List<WebElement> eventNames =this.driver.getWebDriver().findElements(By.id("event-name"));
             List<WebElement> eventLocation =this.driver.getWebDriver().findElements(By.id("event-location"));

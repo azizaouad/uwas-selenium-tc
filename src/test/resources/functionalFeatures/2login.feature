@@ -4,7 +4,7 @@
   
     Scenario: user to login with valid email and valid password
       Given user should navigate to the website
-      When user write email as "a.aouadi@coral-io.fr" and password as "Admin123!" and click on login
+      When user write email as "azizaouadi12@gmail.com" and password as "Admin123!" and click on login
       Then user should navigate to home page
 
     

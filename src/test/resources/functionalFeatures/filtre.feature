@@ -3,8 +3,8 @@ Feature: filter test
   Scenario: photographer should choose two date the first is the start date and the second is the finish date
     Given  user should navigate to the website uwas
     When user write email as "azizaouadi12@gmail.com" and password as "Admin123!" and click on the button of login
-    And user click on all filters and should choose the start date as "2023-05-20" and the finish date as "2023-05-30"
-    Then the user must find the events in the period from start date as "2023-05-20" to finish date as "2023-05-30"
+    And user click on all filters and should choose the start date as "2023-05-20" and the finish date as "2023-06-30"
+    Then the user must find the events in the period from start date as "2023-05-20" to finish date as "2023-06-30"
   
   Scenario: photographer can filter by the name of event
     Given  user should navigate to the website uwas

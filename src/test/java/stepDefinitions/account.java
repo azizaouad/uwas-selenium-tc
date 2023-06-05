@@ -200,6 +200,8 @@ public class account {
     @And("user click on change password")
     public void user_click_on_change_password(){
         try{
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            .until(ExpectedConditions.visibilityOfElementLocated(By.id("changePwLink")));
             this.driver.getWebDriver().findElement(By.id("changePwLink")).click();
             Thread.sleep(50);
 

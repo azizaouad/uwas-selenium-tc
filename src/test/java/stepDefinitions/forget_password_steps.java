@@ -6,6 +6,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -137,14 +138,14 @@ public class forget_password_steps {
     @Then("the password is changed user can login with new password as {string} and email as {string}")
     public void the_password_is_changed_user_can_login_with_new_password_and_email(String password, String email) {
         try {
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(5))
             .until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
             this.driver.getWebDriver().findElement(By.id("email")).sendKeys(email);
             this.driver.getWebDriver().findElement(By.id("password")).sendKeys(password);
-            this.driver.getWebDriver().findElement(By.id("testLogin")).click();
-            Thread.sleep(10000);
+            this.driver.getWebDriver().findElement(By.id("password")).sendKeys(Keys.ENTER);
+            Thread.sleep(1);
             new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-            .until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
+            .until(ExpectedConditions.presenceOfElementLocated(By.id("dropdown-event-link")));
             String Current_url = this.driver.getWebDriver().getCurrentUrl() ;
             boolean login = false ;
             if (Current_url.contentEquals("https://recette.uwas.fr/login")){

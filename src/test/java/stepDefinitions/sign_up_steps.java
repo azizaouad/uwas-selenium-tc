@@ -118,7 +118,7 @@ public class sign_up_steps {
     @Then("user have an account he can login with this credentials email as {string} and password as {string}")
     public void user_have_an_account_he_can_login_with_this_credentials_email_and_password ( String email , String password) {
         try {
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(5))
             .until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
             this.driver.getWebDriver().findElement(By.id("email")).sendKeys(email);
             this.driver.getWebDriver().findElement(By.id("password")).sendKeys(password);

@@ -118,7 +118,7 @@ public class filter_steps {
                     String names = eventNames.get(i).getText();
                     System.out.println(names);
                     System.out.println(date);
-                    if (date.isBefore(startInterval.minusDays(1)) || date.isAfter(endInterval.plusDays(1))) {
+                    if (date.isBefore(startInterval) || date.isAfter(endInterval)) {
                         find = false;
                         break;
                     }else {
@@ -138,7 +138,7 @@ public class filter_steps {
             }
 
             Thread.sleep(10);
-            this.driver.getWebDriver().quit();
+            // this.driver.getWebDriver().quit();
 
         } catch (Exception e) {
             System.out.println("Erreur format");

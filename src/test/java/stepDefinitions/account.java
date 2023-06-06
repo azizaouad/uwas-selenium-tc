@@ -258,7 +258,7 @@ public class account {
             Thread.sleep(10);
             this.driver.getWebDriver().findElement(By.id("password")).sendKeys(password);
             Thread.sleep(10);
-            this.driver.getWebDriver().findElement(By.id("testLogin")).click();
+            this.driver.getWebDriver().findElement(By.id("password")).sendKeys(Keys.ENTER);
             new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
             .until(ExpectedConditions.visibilityOfElementLocated(By.id("user-dropdown")));
 

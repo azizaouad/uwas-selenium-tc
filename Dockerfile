@@ -14,8 +14,9 @@ WORKDIR /app
 RUN google-chrome-stable --headless --disable-gpu --print-to-pdf https://www.chromestatus.com --no-sandbox
 RUN mkdir -p /app/target
 RUN touch /app/target/failedrun.txt
+COPY pom.xml .
+RUN mvn clean package -DskipTests
 COPY . .
 ENV ENVIRONMENT="recette"
 ENV DRIVER="chrome"
-
-CMD mvn clean -Denvironment="${ENVIRONMENT}" -DwebDriver="${DRIVER}" test -q
+CMD mvn clean -Denvironment="${ENVIRONMENT}" -DwebDriver="${DRIVER}" test

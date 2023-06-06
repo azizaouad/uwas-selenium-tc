@@ -30,7 +30,7 @@ public class loginsteps {
             WebDriverManager.chromedriver().setup();
             /*this.driver = new ChromeDriver();
             this.driver.manage().window().maximize();*/
-            System.out.println(this.driver.getBaseUrl());
+            // System.out.println(this.driver.getBaseUrl());
             this.driver.getWebDriver().get(this.driver.getBaseUrl()+"/login");
             Thread.sleep(20);
 

@@ -5,9 +5,9 @@ Feature: test forget password functionality
     When user write email as "uwas01@qa.team"
     And user confirm the email
     And user visit the mail and click on the link
-    And user write password as "Curva2023@"
-    And user write confirm_password as "Curva2023@"
-    Then the password is changed user can login with new password as "Curva2023@" and email as "uwas01@qa.team"
+    And user write password as "Curva2023@!!"
+    And user write confirm_password as "Curva2023@!!"
+    Then the password is changed user can login with new password as "Curva2023@!!" and email as "uwas01@qa.team"
 
   Scenario: user try to reset his password without having an account
     Given user open the website and click on forget password

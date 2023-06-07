@@ -114,8 +114,8 @@
                 <version>2.22.0</version>
                 <configuration>
                 <configuration>
-                    <forkCount>12</forkCount>
-                    <reuseForks>true</reuseForks>
+                    <forkCount>4</forkCount>
+                    <parallel>methods</parallel>
                     <argLine>-Xmx4096m</argLine> <!-- Adjust the memory allocation as needed -->
                 </configuration>
                 </configuration>

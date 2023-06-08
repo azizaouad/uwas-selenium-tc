@@ -26,6 +26,9 @@ import static java.time.temporal.TemporalAdjusters.lastDayOfYear;
 public class filter_steps {
 
     Driver driver;
+    public filter_steps() {
+        // Public no-argument constructor
+    }
 
     public filter_steps(Driver driver) {
         this.driver = driver;

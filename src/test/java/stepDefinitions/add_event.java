@@ -20,6 +20,10 @@ import java.util.List;
 public class add_event {
     Driver driver;
 
+    public add_event() {
+        // Public no-argument constructor
+    }
+
     public add_event(Driver driver) {
         System.out.println(System.getProperty("environment"));
         this.driver = driver;

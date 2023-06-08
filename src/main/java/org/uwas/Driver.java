@@ -11,6 +11,8 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+// import io.github.bonigarcia.wdm.WebDriverManager;
+
 // import java.time.Duration;
 //import java.util.concurrent.TimeUnit;
 // import java.util.concurrent.TimeUnit;
@@ -63,29 +65,29 @@ public class Driver {
             options.addArguments("no-sandbox");
             options.addArguments("start-maximized");
             options.addArguments("--remote-allow-origins=*");
+            // WebDriverManager.firefoxdriver().setup();
             this.webDriver = new FirefoxDriver(options);
             this.webDriver.manage().window().maximize();
-            // this.webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         }
         else {
             if (driverType.equals("chrome")){
                 ChromeOptions options = new ChromeOptions();
-                // options.addArguments("headless");
-                // options.addArguments("no-sandbox");
-                // options.addArguments("start-maximized");
+                options.addArguments("headless");
+                options.addArguments("no-sandbox");
+                options.addArguments("start-maximized");
                 options.addArguments("--remote-allow-origins=*");
+                // WebDriverManager.chromedriver().setup();
                 this.webDriver = new ChromeDriver(options);
                 this.webDriver.manage().window().maximize();
 
 
-                // this.webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 
             }
-            else if (driverType.equals("local")){
-                ChromeOptions options = new ChromeOptions();
-                options.addArguments("--remote-allow-origins=*");
-                this.webDriver = new ChromeDriver(options);
-                this.webDriver.manage().window().maximize();
+            // else if (driverType.equals("local")){
+            //     ChromeOptions options = new ChromeOptions();
+            //     options.addArguments("--remote-allow-origins=*");
+            //     this.webDriver = new ChromeDriver(options);
+            //     this.webDriver.manage().window().maximize();
                 // this.webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 
 
@@ -94,10 +96,10 @@ public class Driver {
  
 
             }
-            else {
-                logger.error("driver type is not chrome or firefox");
-            }
-        }
+            // else {
+            //     logger.error("driver type is not chrome or firefox");
+            // }
+        // }
 
 
         if (System.getProperty("environment").equals("recette")){

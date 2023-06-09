@@ -15,14 +15,24 @@ import org.uwas.Driver;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Random;
 
 public class archive_event {
     Driver driver;
+    // String title ;
 
     public archive_event(Driver driver) {
         this.driver = driver;
         this.driver.setupController();
+        // this.title = addRandomCharacter("test-archive");
     }
+    //     private String addRandomCharacter(String title) {
+    // Random random = new Random();
+    // char randomChar = (char) (random.nextInt(26) + 'a'); // Generate a random lowercase letter
+
+    // String modifiedTitle = title + randomChar; // Append the random character to the title
+    // return modifiedTitle;
+// }
     @Given("photographer should login with his credentials email as {string} and password as {string} and create an event title as {string}")
     public void photographer_should_login_with_his_credentials_email_and_password ( String email , String password, String title) {
         try {
@@ -65,7 +75,7 @@ public class archive_event {
 
 //            WebElement ele = driver.findElement(By.className("ant-btn-icon-only"));
 //            Actions action = new Actions(driver);
-           Thread.sleep(2000);
+           Thread.sleep(1000);
 //            action.moveToElement(ele).build().perform();
         //    new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
         //    .until(ExpectedConditions.visibilityOfElementLocated(By.id("event-edit-dropdown")));
@@ -78,40 +88,46 @@ public class archive_event {
            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
            .until(ExpectedConditions.elementToBeClickable(By.id("testOKArchive")));
            driver.getWebDriver().findElement(By.id("testOKArchive")).click();
-           Thread.sleep(20);
+           Thread.sleep(2000);
         }catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
     @Then("the event as {string} is archived")
     public void the_event_is_archived (String title) throws InterruptedException {
+        // System.out.println(this.title);
+
+        this.driver.getWebDriver().findElement(By.id("dropdown-event-link")).click();
+        new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(3))
+           .until(ExpectedConditions.elementToBeClickable(By.id("event-archive")));
+        this.driver.getWebDriver().findElement(By.id("event-archive")).click();;   
         boolean found = false;
         Thread.sleep(2000);
+        // String CurrentUrl = this.driver.getWebDriver().getCurrentUrl(); 
+        // System.out.println(CurrentUrl);
         List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
         //List<WebElement> eventLocation = this.driver.getWebDriver().findElements(By.id("even-location"));
         List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
         //List<WebElement> eventStatus = this.driver.getWebDriver().findElements(By.className("ant-tag"));
         LocalDate localDate = LocalDate.now();
-        System.out.println(localDate.toString());
+        // System.out.println(localDate.toString());
         for (int i = 0; i < eventNames.size(); i++) {
             String name_string = eventNames.get(i).getText() ;
             String date_string = eventDate.get(i).getText();
-            System.out.println(name_string);
-            System.out.println(date_string);
+            // System.out.println(name_string);
+            // System.out.println(date_string);
             boolean name = name_string.toUpperCase().equals(title.toUpperCase());
             boolean date = date_string.equals(localDate.toString());
-            if ((name) && (date) ) {
+            // boolean url = CurrentUrl.equals("https://recette.uwas.fr/photographer/events/archive");
+            if ((name) && (date)) {
                 found = true;
                 break;
             }
         }
         if (found) {
-            System.out.println("test fail");
+            Assert.assertTrue(found);
         }
-        else {
-            Assert.assertFalse(found);
-            System.out.println("test pass");
-        }
+        
 
         this.driver.getWebDriver().quit();
     }
@@ -147,8 +163,11 @@ public class archive_event {
             //List<WebElement> eventLocation = this.driver.getWebDriver().findElements(By.id("event-location"));
             List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
             LocalDate localDate = LocalDate.now();
-
-            for ( int i =0 ; i<eventNames.size() ; i++ ) {
+            if (eventNames.size() == 0){
+                System.out.println("no event for restore ");
+            }
+            else {
+                for ( int i =0 ; i<eventNames.size() ; i++ ) {
                 String name_string = eventNames.get(i).getText() ;
                 String date_string = eventDate.get(i).getText();
                 boolean name = name_string.toUpperCase().equals(event.toUpperCase());
@@ -164,6 +183,11 @@ public class archive_event {
                     }
                 }
 
+            }
+            Thread.sleep(1000);
+
+            
+
 
 
 
@@ -174,9 +198,12 @@ public class archive_event {
     @Then("the title of event as {string} is restored")
     public void the_event_is_restored (String title) {
         try {
-            this.driver.getWebDriver().findElement(By.xpath("/html/body/div[1]/div/main/div/section/main/div[1]/button")).click();
+            this.driver.getWebDriver().findElement(By.xpath("/html/body/div/div/main/div/section/main/div[1]/button")).click();
             Thread.sleep(3000);
             boolean found = false;
+            // System.out.println(this.title);
+            // String currentUrl = this.driver.getWebDriver().getCurrentUrl();
+            // System.out.println(currentUrl);
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
             //List<WebElement> eventLocation = this.driver.getWebDriver().findElements(By.id("event-location"));
             List<WebElement> eventDate =this.driver.getWebDriver().findElements(By.id("event-date"));
@@ -189,11 +216,11 @@ public class archive_event {
                 for (int i = 0; i < eventNames.size(); i++) {
                     String name_string = eventNames.get(i).getText() ;
                     String date_string = eventDate.get(i).getText();
-                    System.out.println(name_string);
                     boolean name = name_string.toUpperCase().equals(title.toUpperCase());
                     boolean date = date_string.equals(localDate.toString());
                     if ((name) && (date) ) {
                         found = true;
+                        System.out.println(name_string);
                         break;
                     }
                 }

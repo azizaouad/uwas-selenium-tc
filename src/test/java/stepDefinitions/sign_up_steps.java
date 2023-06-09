@@ -71,27 +71,27 @@ public class sign_up_steps {
         }
 
     }
-    @And("user fill password as {string}")
-    public void user_fill_password ( String password ) {
-        try {
-            Thread.sleep(1);
-            this.driver.getWebDriver().findElement(By.id("password")).sendKeys(password);
+//     @And("user fill password as {string}")
+//     public void user_fill_password ( String password ) {
+//         try {
+//             Thread.sleep(1);
+//             this.driver.getWebDriver().findElement(By.id("password")).sendKeys(password);
 
-        }catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+//         }catch (InterruptedException e) {
+//             throw new RuntimeException(e);
+//         }
 
-}
-    @And("user fill confirm_password as {string}")
-    public void user_fill_confirm_password ( String confirm_password ) {
-        try {
-            Thread.sleep(1);
-            this.driver.getWebDriver().findElement(By.id("confirmPassword")).sendKeys(confirm_password);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+// }
+//     @And("user fill confirm_password as {string}")
+//     public void user_fill_confirm_password ( String confirm_password ) {
+//         try {
+//             Thread.sleep(1);
+//             this.driver.getWebDriver().findElement(By.id("confirmPassword")).sendKeys(confirm_password);
+//         } catch (InterruptedException e) {
+//             throw new RuntimeException(e);
 
-        }
-    }
+//         }
+//     }
     @And("user click on the captcha")
     public void user_click_on_the_captcha (  ) {
         try {

@@ -67,8 +67,8 @@ public class loginsteps {
     public void user_should_navigate_to_home_page() {
         try {
 
-            new WebDriverWait(driver.getWebDriver(), Duration.ofSeconds(10))
-                    .until(ExpectedConditions.visibilityOfElementLocated(By.id("dropdown-event-link")));
+            new WebDriverWait(driver.getWebDriver(), Duration.ofSeconds(15))
+                    .until(ExpectedConditions.visibilityOfElementLocated(By.id("user-dropdown")));
             boolean f = false;
 
             String current_url = this.driver.getWebDriver().getCurrentUrl();

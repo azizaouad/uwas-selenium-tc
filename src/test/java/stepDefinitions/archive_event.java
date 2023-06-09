@@ -32,7 +32,7 @@ public class archive_event {
 
     // String modifiedTitle = title + randomChar; // Append the random character to the title
     // return modifiedTitle;
-}
+// }
     @Given("photographer should login with his credentials email as {string} and password as {string} and create an event title as {string}")
     public void photographer_should_login_with_his_credentials_email_and_password ( String email , String password, String title) {
         try {

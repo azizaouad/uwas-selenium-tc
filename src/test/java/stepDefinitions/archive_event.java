@@ -88,15 +88,21 @@ public class archive_event {
            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
            .until(ExpectedConditions.elementToBeClickable(By.id("testOKArchive")));
            driver.getWebDriver().findElement(By.id("testOKArchive")).click();
-           Thread.sleep(20);
+           Thread.sleep(2000);
         }catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
     @Then("the event as {string} is archived")
     public void the_event_is_archived (String title) throws InterruptedException {
+
+        this.driver.getWebDriver().findElement(By.id("dropdown-event-link")).click();
+        new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(3))
+           .until(ExpectedConditions.elementToBeClickable(By.id("event-archive")));
+        this.driver.getWebDriver().findElement(By.id("event-archive")).click();;   
         boolean found = false;
         Thread.sleep(2000);
+        String CurrentUrl = this.driver.getWebDriver().getCurrentUrl(); 
         List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
         //List<WebElement> eventLocation = this.driver.getWebDriver().findElements(By.id("even-location"));
         List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
@@ -110,7 +116,8 @@ public class archive_event {
             System.out.println(date_string);
             boolean name = name_string.toUpperCase().equals(this.title.toUpperCase());
             boolean date = date_string.equals(localDate.toString());
-            if ((name) && (date) ) {
+            boolean url = CurrentUrl.equals("https://recette.uwas.fr/photographer/events/archive");
+            if ((name) && (date) && (url)) {
                 found = true;
                 break;
             }
@@ -184,9 +191,10 @@ public class archive_event {
     @Then("the title of event as {string} is restored")
     public void the_event_is_restored (String title) {
         try {
-            this.driver.getWebDriver().findElement(By.xpath("/html/body/div[1]/div/main/div/section/main/div[1]/button")).click();
+            this.driver.getWebDriver().findElement(By.xpath("/html/body/div/div/main/div/section/main/div[1]/button")).click();
             Thread.sleep(3000);
             boolean found = false;
+            String currentUrl = this.driver.getWebDriver().getCurrentUrl();
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
             //List<WebElement> eventLocation = this.driver.getWebDriver().findElements(By.id("event-location"));
             List<WebElement> eventDate =this.driver.getWebDriver().findElements(By.id("event-date"));
@@ -202,7 +210,8 @@ public class archive_event {
                     System.out.println(name_string);
                     boolean name = name_string.toUpperCase().equals(this.title.toUpperCase());
                     boolean date = date_string.equals(localDate.toString());
-                    if ((name) && (date) ) {
+                    boolean url = currentUrl.equals("https://recette.uwas.fr/photographer/events");
+                    if ((name) && (date) && (url)) {
                         found = true;
                         break;
                     }

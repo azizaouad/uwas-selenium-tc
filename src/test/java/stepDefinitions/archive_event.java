@@ -19,19 +19,19 @@ import java.util.Random;
 
 public class archive_event {
     Driver driver;
-    String title ;
+    // String title ;
 
     public archive_event(Driver driver) {
         this.driver = driver;
         this.driver.setupController();
-        this.title = addRandomCharacter("test-archive");
+        // this.title = addRandomCharacter("test-archive");
     }
-        private String addRandomCharacter(String title) {
-    Random random = new Random();
-    char randomChar = (char) (random.nextInt(26) + 'a'); // Generate a random lowercase letter
+    //     private String addRandomCharacter(String title) {
+    // Random random = new Random();
+    // char randomChar = (char) (random.nextInt(26) + 'a'); // Generate a random lowercase letter
 
-    String modifiedTitle = title + randomChar; // Append the random character to the title
-    return modifiedTitle;
+    // String modifiedTitle = title + randomChar; // Append the random character to the title
+    // return modifiedTitle;
 }
     @Given("photographer should login with his credentials email as {string} and password as {string} and create an event title as {string}")
     public void photographer_should_login_with_his_credentials_email_and_password ( String email , String password, String title) {
@@ -52,7 +52,7 @@ public class archive_event {
             this.driver.getWebDriver().findElement(By.id("event-add")).click();
             new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
             .until(ExpectedConditions.visibilityOfElementLocated(By.id("event-title")));
-            this.driver.getWebDriver().findElement(By.id("event-title")).sendKeys(this.title);
+            this.driver.getWebDriver().findElement(By.id("event-title")).sendKeys(title);
             Thread.sleep(10);
 
             this.driver.getWebDriver().findElement(By.id("test123")).click();
@@ -116,7 +116,7 @@ public class archive_event {
             String date_string = eventDate.get(i).getText();
             // System.out.println(name_string);
             // System.out.println(date_string);
-            boolean name = name_string.toUpperCase().equals(this.title.toUpperCase());
+            boolean name = name_string.toUpperCase().equals(title.toUpperCase());
             boolean date = date_string.equals(localDate.toString());
             // boolean url = CurrentUrl.equals("https://recette.uwas.fr/photographer/events/archive");
             if ((name) && (date)) {
@@ -170,7 +170,7 @@ public class archive_event {
                 for ( int i =0 ; i<eventNames.size() ; i++ ) {
                 String name_string = eventNames.get(i).getText() ;
                 String date_string = eventDate.get(i).getText();
-                boolean name = name_string.toUpperCase().equals(this.title.toUpperCase());
+                boolean name = name_string.toUpperCase().equals(event.toUpperCase());
                 boolean date = date_string.equals(localDate.toString());
                 if ((name)&&(date)){
                     Thread.sleep(100);
@@ -216,7 +216,7 @@ public class archive_event {
                 for (int i = 0; i < eventNames.size(); i++) {
                     String name_string = eventNames.get(i).getText() ;
                     String date_string = eventDate.get(i).getText();
-                    boolean name = name_string.toUpperCase().equals(this.title.toUpperCase());
+                    boolean name = name_string.toUpperCase().equals(title.toUpperCase());
                     boolean date = date_string.equals(localDate.toString());
                     if ((name) && (date) ) {
                         found = true;

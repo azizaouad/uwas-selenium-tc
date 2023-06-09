@@ -14,12 +14,11 @@ import org.junit.runner.RunWith;
 
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "src/test/resources/functionalFeatures/"
+@CucumberOptions(features = "src/test/resources/functionalFeatures/4add_event.feature"
 
                 , glue = "stepDefinitions",
 
-                plugin = { "pretty", "html:target/reports/report.html",
-                                "json:target/reports/report.json" }, monochrome = true
+                plugin = { "pretty", "html:target/reports/report.html","json:target/reports/report.json" }
 
 )
 

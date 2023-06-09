@@ -16,7 +16,7 @@ import org.uwas.Driver;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+// import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -139,12 +139,10 @@ public class forget_password_steps {
     @Then("the password is changed user can login with new password as {string} and email as {string}")
     public void the_password_is_changed_user_can_login_with_new_password_and_email(String password, String email) {
         try {
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(4))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("password")));
+            Thread.sleep(4000);
             this.driver.getWebDriver().findElement(By.id("email")).sendKeys(email);
             this.driver.getWebDriver().findElement(By.id("password")).sendKeys(password);
             this.driver.getWebDriver().findElement(By.id("password")).sendKeys(Keys.ENTER);
-            Thread.sleep(1);
             new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
             .until(ExpectedConditions.presenceOfElementLocated(By.id("dropdown-event-link")));
             String Current_url = this.driver.getWebDriver().getCurrentUrl() ;

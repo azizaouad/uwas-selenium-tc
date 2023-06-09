@@ -16,6 +16,7 @@ import org.uwas.Driver;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Random;
 
 public class add_event {
     Driver driver;
@@ -30,8 +31,6 @@ public class add_event {
         this.driver.setupController();
 
     }
-
-
     @Given("photographer should login")
     public void photographer_should_login() {
         try {
@@ -70,18 +69,25 @@ public class add_event {
     }
 
     @And("photographer should fill the title of event as {string}")
-    public void photographer_should_fill_the_title_of_event(String title_of_event) {
+    public void photographer_should_fill_the_title_of_event(String title) {
         try {
             Thread.sleep(10);
             new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
             .until(ExpectedConditions.visibilityOfElementLocated(By.id("event-title")));
-            WebElement title = this.driver.getWebDriver().findElement(By.id("event-title"));
-            title.sendKeys(title_of_event);
+            WebElement titles = this.driver.getWebDriver().findElement(By.id("event-title"));
+            titles.sendKeys(title);
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
+    private String addRandomCharacter(String title) {
+    Random random = new Random();
+    char randomChar = (char) (random.nextInt(26) + 'a'); // Generate a random lowercase letter
+
+    String modifiedTitle = title + randomChar; // Append the random character to the title
+    return modifiedTitle;
+}
 
     @And("photographer should fill the location of event as {string}")
     public void photographer_should_fill_the_location_of_event(String location_of_event) {

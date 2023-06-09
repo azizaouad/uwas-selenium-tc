@@ -94,7 +94,7 @@ public class scenario_steps {
             // Thread.sleep(5000);
             WebElement source = this.driver.getWebDriver().findElement(By.id("upload-photos"));
             Thread.sleep(30);
-            source.sendKeys("C:/Users/Lenovo/Downloads/wetransfer_20230109_161332-jpg_2023-01-09_1514/12345678 (24).jpg");
+            source.sendKeys("traditions-noel-europe-1024x683.jpg");
             this.driver.getWebDriver().findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[2]/form/div[2]/div/div/div/div/button")).click();
 
 
@@ -188,7 +188,7 @@ public class scenario_steps {
         try {
             Thread.sleep(10);
             WebElement source = this.driver.getWebDriver().findElement(By.id("upload"));
-            source.sendKeys("C://Users/Lenovo/Desktop/traditions-noel-europe-1024x683.jpg");
+            source.sendKeys("traditions-noel-europe-1024x683.jpg");
 
 
         } catch (InterruptedException e) {

@@ -126,7 +126,7 @@ public class add_event {
         try {
             Thread.sleep(30);
             WebElement source = this.driver.getWebDriver().findElement(By.id("upload"));
-            source.sendKeys("C://Users/Lenovo/Desktop/traditions-noel-europe-1024x683.jpg");
+            source.sendKeys("traditions-noel-europe-1024x683.jpg");
 
 
         } catch (InterruptedException e) {
@@ -271,7 +271,7 @@ public class add_event {
         try {
             Thread.sleep(10);
             WebElement source = this.driver.getWebDriver().findElement(By.id("upload"));
-            source.sendKeys("C://Users/Lenovo/Desktop/CORAL IO_Rescrit_JEI_2021 2022 2023_v1.0 (1) - Copie.docx");
+            source.sendKeys("CORAL IO_Rescrit_JEI_2021 2022 2023_v1.0 (1).docx");
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

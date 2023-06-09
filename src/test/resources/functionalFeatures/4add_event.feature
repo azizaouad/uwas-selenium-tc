@@ -3,12 +3,12 @@ Feature: test add event functionality
   Scenario: photographer can login and add event
     Given photographer should login
     When photographer should click on the button of add event
-    And photographer should fill the title of event as "ggggogo"
+    And photographer should fill the title of event as "ggo"
     And photographer should fill the location of event as "tunisia"
     And photographer should fill the date of event as "2023-06-09"
     And photographer put an image for the event
     And photographer should click on the button ok
-    Then title of event as "ggggogo" event in location of event as "tunisia" at the date of event as "2023-06-09" is created
+    Then title of event as "ggo" event in location of event as "tunisia" at the date of event as "2023-06-09" is created
  
   Scenario Outline: photographer can login and can't add event without filling the title of event
     Given photographer should login
@@ -29,29 +29,29 @@ Feature: test add event functionality
  Scenario: photographer can login and add event without filling the location of event
    Given photographer should login
    When photographer should click on the button of add event
-   And photographer should fill the title of event as "localisation"
+   And photographer should fill the title of event as "localisations"
    And photographer should fill the location of event as ""
    And photographer should fill the date of event as "2023-05-31"
    And photographer should click on the button ok
-   Then title of event as "localisation" event in location of event as "Not defined" at the date of event as "2023-05-31" is created
+   Then title of event as "localisations" event in location of event as "Not defined" at the date of event as "2023-05-31" is created
 
 
 
  Scenario: photographer can login and add event without filling the date of event
    Given photographer should login
    When photographer should click on the button of add event
-   And photographer should fill the title of event as "woreking"
+   And photographer should fill the title of event as "working"
    And photographer should fill the location of event as "bruxelle"
    And photographer put an image for the event
    And photographer should click on the button ok
-   Then title of event as "woreking" event in location of event as "bruxelle" is created with the date added
+   Then title of event as "working" event in location of event as "bruxelle" is created with the date added
 
-#  Scenario: photographer can login and can't add event with filling a file not image type in the image field
-#    Given photographer should login
-#    When photographer should click on the button of add event
-#    And photographer should fill the title of event as "siamo"
-#    And photographer should fill the location of event as "rades"
-#    And photographer should fill the date of event as "2022-06-19"
-#    And photographer put a file in the image field for the event
-#    And photographer should click on the button ok
-#    Then an error message appear and the event is created without image
+ Scenario: photographer can login and can't add event with filling a file not image type in the image field
+   Given photographer should login
+   When photographer should click on the button of add event
+   And photographer should fill the title of event as "siamonoi"
+   And photographer should fill the location of event as "rades"
+   And photographer should fill the date of event as "2022-06-19"
+   And photographer put a file in the image field for the event
+   And photographer should click on the button ok
+   Then an error message appear and the event is created without image

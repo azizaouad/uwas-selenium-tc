@@ -18,7 +18,7 @@
 #    And user fill last_name as "<last_name>"
 #    And user fill email as "<email>"
 #    And user fill password as "<password>"
-#    And user fill confirm_password as "<confirm_password>"
+#    And user fil confirm_password as "<confirm_password>"
 #    And user click on the captcha
 #    And user click on sign up
 #    Then user fail to create an account

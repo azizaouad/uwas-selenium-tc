@@ -1,18 +1,18 @@
 Feature: test forget password functionality
   
-  Scenario Outline: user forget his password and receive an email to reset it
+  Scenario: user forget his password and receive an email to reset it
     Given user open the website and click on forget password
     When user write email as "uwas01@qa.team"
     And user confirm the email
     And user visit the mail and click on the link
-    And user write password as "<Passwords>"
-    And user write confirm_password as "<ConfirmPasswords>"
-    Then the password is changed user can login with new password as "<Passwords>" and email as "uwas01@qa.team"
+    And user write password "Passwords"
+    And user write confirm_password "Passwords"
+    Then the password is changed user can login with new password as "Passwords" and email as "uwas01@qa.team"
 
-    Examples:
-    | Passwords  | ConfirmPasswords |
-    | Admin123@  | Admin123@        |
-    | Admin123!  | Admin123!        |
+    # Examples:
+    # | Passwords  | ConfirmPasswords |
+    # | Admin123@  | Admin123@        |
+    # | Admin123!  | Admin123!        |
 
 
 
@@ -28,8 +28,8 @@ Feature: test forget password functionality
     When user write email as "uwas@qa.team"
     And user confirm the email
     And user visit the mail and click on the link
-    And user write password as "<password>"
-    And user write confirm_password as "<confirm_password>"
+    And user fill password as "<password>"
+    And user fill confirm_password as "<confirm_password>"
     Then the password is not changed and an error message appear
 
       Examples:

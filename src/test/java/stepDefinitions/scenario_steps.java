@@ -5,6 +5,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
+// import net.bytebuddy.asm.Advice.This;
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -15,14 +17,24 @@ import org.uwas.Driver;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Random;
 
 public class scenario_steps {
     Driver driver;
+    String title;
 
     public scenario_steps(Driver driver) {
         this.driver = driver;
         this.driver.setupController();
+        this.title = addRandomCharacter("test-scenario");
     }
+    private String addRandomCharacter(String title) {
+    Random random = new Random();
+    char randomChar = (char) (random.nextInt(26) + 'a'); // Generate a random lowercase letter
+
+    String modifiedTitle = title + randomChar; // Append the random character to the title
+    return modifiedTitle;
+}
 
     @Then("photographer should logout")
     public void photographer_should_logout() {
@@ -149,7 +161,7 @@ public class scenario_steps {
             Thread.sleep(20);
             new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
             .until(ExpectedConditions.visibilityOfElementLocated(By.id("event-title")));
-            this.driver.getWebDriver().findElement(By.id("event-title")).sendKeys(title_of_event);
+            this.driver.getWebDriver().findElement(By.id("event-title")).sendKeys(this.title);
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -223,7 +235,7 @@ public class scenario_steps {
                 String location_string = eventLocation.get(i).getText();
                 String date_string = eventDate.get(i).getText();
                 String status_string = eventStatus.get(i).getText();
-                boolean name = name_string.toUpperCase().equals(title_of_event.toUpperCase());
+                boolean name = name_string.toUpperCase().equals(this.title.toUpperCase());
                 boolean location = location_string.toUpperCase().equals(location_of_event.toUpperCase());
                 boolean date = eventDate.get(i).getText().equals(date_of_event);
                 boolean status = eventStatus.get(i).getText().equals("In progress");

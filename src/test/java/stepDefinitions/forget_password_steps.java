@@ -87,7 +87,8 @@ public class forget_password_steps {
             this.driver.getWebDriver().switchTo().newWindow(WindowType.TAB);
             Thread.sleep(40);
             this.driver.getWebDriver().navigate().to("https://qa.team/inbox?utf8=%E2%9C%93&code=uwas01&locale=en&commit=go+%C2%BB");
-            // Thread.sleep(7000);
+            Thread.sleep(3000);
+            this.driver.getWebDriver().navigate().refresh();
 
             this.driver.getWebDriver().findElement(By.className("list-group-item")).click();
             WebElement corps_mail = this.driver.getWebDriver().findElement(By.className("col-xs-12"));
@@ -140,6 +141,7 @@ public class forget_password_steps {
             this.driver.getWebDriver().findElement(By.id("normal_login_confirmPassword")).sendKeys(this.new_pass);
             Thread.sleep(10);
             this.driver.getWebDriver().findElement(By.id("testChangePW")).click();
+            
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);

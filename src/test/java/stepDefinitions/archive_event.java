@@ -95,7 +95,7 @@ public class archive_event {
     }
     @Then("the event as {string} is archived")
     public void the_event_is_archived (String title) throws InterruptedException {
-        System.out.println(this.title);
+        // System.out.println(this.title);
 
         this.driver.getWebDriver().findElement(By.id("dropdown-event-link")).click();
         new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(3))
@@ -201,7 +201,7 @@ public class archive_event {
             this.driver.getWebDriver().findElement(By.xpath("/html/body/div/div/main/div/section/main/div[1]/button")).click();
             Thread.sleep(3000);
             boolean found = false;
-            System.out.println(this.title);
+            // System.out.println(this.title);
             // String currentUrl = this.driver.getWebDriver().getCurrentUrl();
             // System.out.println(currentUrl);
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));

@@ -11,14 +11,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.uwas.Driver;
-
+//    import java.util.Random;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Random;
+
 
 public class archive_event {
     Driver driver;
+    // private String randomName;
     // String title ;
 
     public archive_event(Driver driver) {
@@ -26,6 +27,9 @@ public class archive_event {
         this.driver.setupController();
         // this.title = addRandomCharacter("test-archive");
     }
+
+
+
     //     private String addRandomCharacter(String title) {
     // Random random = new Random();
     // char randomChar = (char) (random.nextInt(26) + 'a'); // Generate a random lowercase letter
@@ -46,12 +50,15 @@ public class archive_event {
             new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
             .until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
+
             drp.click();
             new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
             .until(ExpectedConditions.visibilityOfElementLocated(By.id("event-add")));
             this.driver.getWebDriver().findElement(By.id("event-add")).click();
             new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            
             .until(ExpectedConditions.visibilityOfElementLocated(By.id("event-title")));
+
             this.driver.getWebDriver().findElement(By.id("event-title")).sendKeys(title);
             Thread.sleep(10);
 

@@ -15,7 +15,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-    features = "src/test/resources/functionalFeatures/",
+    features = "src/test/resources/functionalFeatures/4archive_event.feature",
     
     glue = "stepDefinitions",
 

@@ -72,9 +72,9 @@ public class Driver {
         else {
             if (driverType.equals("chrome")){
                 ChromeOptions options = new ChromeOptions();
-                // options.addArguments("headless");
-                // options.addArguments("no-sandbox");
-                // options.addArguments("start-maximized");
+                options.addArguments("headless");
+                options.addArguments("no-sandbox");
+                options.addArguments("start-maximized");
                 options.addArguments("--remote-allow-origins=*");
                 // WebDriverManager.chromedriver().setup();
                 this.webDriver = new ChromeDriver(options);

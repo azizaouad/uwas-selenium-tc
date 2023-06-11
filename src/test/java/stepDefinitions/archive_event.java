@@ -19,8 +19,9 @@ import java.util.List;
 
 public class archive_event {
     Driver driver;
+    private String randomName = RandomNameGenerator.getConstantRandomName();
     // private String randomName;
-    // String title ;
+    // String title 
 
     public archive_event(Driver driver) {
         this.driver = driver;
@@ -30,13 +31,9 @@ public class archive_event {
 
 
 
-    //     private String addRandomCharacter(String title) {
-    // Random random = new Random();
-    // char randomChar = (char) (random.nextInt(26) + 'a'); // Generate a random lowercase letter
+        
 
-    // String modifiedTitle = title + randomChar; // Append the random character to the title
-    // return modifiedTitle;
-// }
+
     @Given("photographer should login with his credentials email as {string} and password as {string} and create an event title as {string}")
     public void photographer_should_login_with_his_credentials_email_and_password ( String email , String password, String title) {
         try {
@@ -59,10 +56,11 @@ public class archive_event {
             
             .until(ExpectedConditions.visibilityOfElementLocated(By.id("event-title")));
 
-            this.driver.getWebDriver().findElement(By.id("event-title")).sendKeys(title);
+            this.driver.getWebDriver().findElement(By.id("event-title")).sendKeys(randomName);
             Thread.sleep(10);
 
             this.driver.getWebDriver().findElement(By.id("test123")).click();
+            System.out.println(randomName);
     }catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -88,14 +86,35 @@ public class archive_event {
         //    .until(ExpectedConditions.visibilityOfElementLocated(By.id("event-edit-dropdown")));
             //driver.findElement(By.xpath("/html/body/div[1]/div/main/section[2]/main/div[1]/div[2]/div/div/div[7]/div[2]/div[1]/button[2]/span/svg")).click();
            WebElement points=this.driver.getWebDriver().findElement(By.id("event-edit-dropdown"));
-           points.click();
-           new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(3))
-           .until(ExpectedConditions.elementToBeClickable(By.id("testArchive")));
-           driver.getWebDriver().findElement(By.id("testArchive")).click();
-           new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-           .until(ExpectedConditions.elementToBeClickable(By.id("testOKArchive")));
-           driver.getWebDriver().findElement(By.id("testOKArchive")).click();
-           Thread.sleep(2000);
+           List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
+        //List<WebElement> eventLocation = this.driver.getWebDriver().findElements(By.id("even-location"));
+           List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
+           LocalDate localDate = LocalDate.now();
+           for (int i=0 ; i < eventNames.size(); i++){
+                String name_string = eventNames.get(i).getText() ;
+                String date_string = eventDate.get(i).getText();
+                // System.out.println(name_string);
+                // System.out.println(date_string);
+                boolean name = name_string.toUpperCase().equals(randomName.toUpperCase());
+                boolean date = date_string.equals(localDate.toString());
+                if ( (date)&&(name)){
+                    points.click();
+                     new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(3))
+                    .until(ExpectedConditions.elementToBeClickable(By.id("testArchive")));
+                    driver.getWebDriver().findElement(By.id("testArchive")).click();
+                    new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+                    .until(ExpectedConditions.elementToBeClickable(By.id("testOKArchive")));
+                    driver.getWebDriver().findElement(By.id("testOKArchive")).click();
+                    Thread.sleep(2000);
+                }
+                else {
+                    System.out.println("no event for archive");
+                }
+
+           }
+           
+           
+          
         }catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -123,7 +142,7 @@ public class archive_event {
             String date_string = eventDate.get(i).getText();
             // System.out.println(name_string);
             // System.out.println(date_string);
-            boolean name = name_string.toUpperCase().equals(title.toUpperCase());
+            boolean name = name_string.toUpperCase().equals(randomName.toUpperCase());
             boolean date = date_string.equals(localDate.toString());
             // boolean url = CurrentUrl.equals("https://recette.uwas.fr/photographer/events/archive");
             if ((name) && (date)) {
@@ -177,7 +196,7 @@ public class archive_event {
                 for ( int i =0 ; i<eventNames.size() ; i++ ) {
                 String name_string = eventNames.get(i).getText() ;
                 String date_string = eventDate.get(i).getText();
-                boolean name = name_string.toUpperCase().equals(event.toUpperCase());
+                boolean name = name_string.toUpperCase().equals(randomName.toUpperCase());
                 boolean date = date_string.equals(localDate.toString());
                 if ((name)&&(date)){
                     Thread.sleep(100);
@@ -223,7 +242,7 @@ public class archive_event {
                 for (int i = 0; i < eventNames.size(); i++) {
                     String name_string = eventNames.get(i).getText() ;
                     String date_string = eventDate.get(i).getText();
-                    boolean name = name_string.toUpperCase().equals(title.toUpperCase());
+                    boolean name = name_string.toUpperCase().equals(randomName.toUpperCase());
                     boolean date = date_string.equals(localDate.toString());
                     if ((name) && (date) ) {
                         found = true;
@@ -256,6 +275,7 @@ public class archive_event {
             this.driver.getWebDriver().findElement(By.id("password")).sendKeys(password);
             this.driver.getWebDriver().findElement(By.id("testLogin")).click();
             Thread.sleep(200);
+            System.out.println(randomName);
         }catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

@@ -82,14 +82,14 @@ public class archive_event {
 
 //            WebElement ele = driver.findElement(By.className("ant-btn-icon-only"));
 //            Actions action = new Actions(driver);
-           Thread.sleep(1000);
+           Thread.sleep(3000);
 //            action.moveToElement(ele).build().perform();
         //    new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
         //    .until(ExpectedConditions.visibilityOfElementLocated(By.id("event-edit-dropdown")));
             //driver.findElement(By.xpath("/html/body/div[1]/div/main/section[2]/main/div[1]/div[2]/div/div/div[7]/div[2]/div[1]/button[2]/span/svg")).click();
            WebElement points=this.driver.getWebDriver().findElement(By.id("event-edit-dropdown"));
            points.click();
-           new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+           new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(3))
            .until(ExpectedConditions.elementToBeClickable(By.id("testArchive")));
            driver.getWebDriver().findElement(By.id("testArchive")).click();
            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))

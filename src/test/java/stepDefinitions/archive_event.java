@@ -90,7 +90,12 @@ public class archive_event {
         //List<WebElement> eventLocation = this.driver.getWebDriver().findElements(By.id("even-location"));
            List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
            LocalDate localDate = LocalDate.now();
-           for (int i=0 ; i < eventNames.size(); i++){
+           if (eventNames.size() == 0 ){
+                System.out.println("no event for archive");
+
+
+           }else {
+                for (int i=0 ; i < eventNames.size(); i++){
                 String name_string = eventNames.get(i).getText() ;
                 String date_string = eventDate.get(i).getText();
                 // System.out.println(name_string);
@@ -107,11 +112,11 @@ public class archive_event {
                     driver.getWebDriver().findElement(By.id("testOKArchive")).click();
                     Thread.sleep(2000);
                 }
-                else {
-                    System.out.println("no event for archive");
-                }
+          
+           }
 
            }
+        
            
            
           

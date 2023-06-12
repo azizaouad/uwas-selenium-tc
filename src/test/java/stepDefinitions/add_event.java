@@ -29,7 +29,7 @@ public class add_event {
     public add_event(Driver driver) {
         System.out.println(System.getProperty("environment"));
         this.driver = driver;
-        this.title = addRandomCharacter("test-add");
+        this.title = addRandomCharacter("add");
         this.driver.setupController();
 
     }
@@ -83,6 +83,7 @@ public class add_event {
             throw new RuntimeException(e);
         }
     }
+    
     private String addRandomCharacter(String title) {
     Random random = new Random();
     char randomChar = (char) (random.nextInt(26) + 'a'); // Generate a random lowercase letter

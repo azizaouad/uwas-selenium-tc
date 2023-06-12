@@ -13,7 +13,6 @@ Feature: test add event functionality
   Scenario Outline: photographer can login and can't add event without filling the title of event
     Given photographer should login
     When photographer should click on the button of add event
-    And photographer should fill the title of event as "<title_of_event>"
     And photographer should fill the location of event as "<location_of_event>"
     And photographer should fill the date of event as "<date_of_event>"
     # And photographer put an image for the event
@@ -21,10 +20,10 @@ Feature: test add event functionality
     Then an error message appear under the title field
 
     Examples:
-      | title_of_event | location_of_event | date_of_event |
-      |                | lac               | 2022-12-28    |
-      |                | amesterdam        |               |
-      |                |                   | 2022-12-18    |
+                | location_of_event | date_of_event |
+                | lac               | 2022-12-28    |
+                | amesterdam        |               |
+                |                   | 2022-12-18    |
 
  Scenario: photographer can login and add event without filling the location of event
    Given photographer should login

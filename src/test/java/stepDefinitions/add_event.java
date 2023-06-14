@@ -55,7 +55,7 @@ public class add_event {
     @When("photographer should click on the button of add event")
     public void photographer_should_click_on_the_button_of_add_event() {
         try {
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(5))
             .until(ExpectedConditions.visibilityOfElementLocated(By.id("dropdown-event-link")));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();

@@ -166,11 +166,11 @@ public class archive_event {
     @When("photographer should go to the archive event")
     public void photographer_should_go_to_the_archive_event (){
         try {
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(5))
             .until(ExpectedConditions.visibilityOfElementLocated(By.id("dropdown-event-link")));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(5))
             .until(ExpectedConditions.visibilityOfElementLocated(By.id("event-archive")));
             WebElement List = this.driver.getWebDriver().findElement(By.id("event-archive"));
             List.click();

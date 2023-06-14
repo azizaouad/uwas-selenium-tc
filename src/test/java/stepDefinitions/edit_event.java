@@ -162,7 +162,8 @@ public void change_name_of_event (String newname){
     titles.sendKeys(Keys.CONTROL, "a");
     titles.sendKeys(Keys.DELETE);
     titles.sendKeys(this.new_title);
-    this.driver.getWebDriver().findElement(By.id("test123")).click();
+
+    // this.driver.getWebDriver().findElement(By.id("test123")).click();
 
 }
 @Then("title of event is updated")
@@ -173,9 +174,9 @@ public void title_is_updated(){
         LocalDate localDate = LocalDate.now();
         
         List<WebElement> eventNames =this.driver.getWebDriver().findElements(By.id("event-name"));
-        List<WebElement> eventLocation =this.driver.getWebDriver().findElements(By.id("event-location"));
+        // List<WebElement> eventLocation =this.driver.getWebDriver().findElements(By.id("event-location"));
         List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
-        List<WebElement> eventStatus = this.driver.getWebDriver().findElements(By.className("ant-tag"));
+        // List<WebElement> eventStatus = this.driver.getWebDriver().findElements(By.className("ant-tag"));
         
         for (int i = 0; i < eventNames.size(); i++) {
             String name_string = eventNames.get(i).getText();
@@ -210,7 +211,7 @@ public void title_is_updated(){
     public void photographer_should_fill_the_location_of_event() {
         try {
             Thread.sleep(50);
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(5))
             .until(ExpectedConditions.visibilityOfElementLocated(By.id("location")));
             this.driver.getWebDriver().findElement(By.id("location")).sendKeys(this.location);
         } catch (InterruptedException e) {
@@ -225,7 +226,7 @@ public void change_location_of_event (){
     titles.sendKeys(Keys.CONTROL, "a");
     titles.sendKeys(Keys.DELETE);
     titles.sendKeys(this.new_location);
-    this.driver.getWebDriver().findElement(By.id("test123")).click();
+    // this.driver.getWebDriver().findElement(By.id("test123")).click();
 
 }
 @Then("location of event is updated")
@@ -238,7 +239,7 @@ public void location_is_updated(){
         List<WebElement> eventNames =this.driver.getWebDriver().findElements(By.id("event-name"));
         List<WebElement> eventLocation =this.driver.getWebDriver().findElements(By.id("event-location"));
         List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
-        List<WebElement> eventStatus = this.driver.getWebDriver().findElements(By.className("ant-tag"));
+        // List<WebElement> eventStatus = this.driver.getWebDriver().findElements(By.className("ant-tag"));
         
         for (int i = 0; i < eventNames.size(); i++) {
             String name_string = eventNames.get(i).getText();
@@ -272,8 +273,8 @@ public void location_is_updated(){
 @And("photographer should change the date of event")
 public void change_date_of_event (){
 
-    RandomDateGenerator generateur=new RandomDateGenerator();
-    this.randomeDate=generateur.generateRandomDate(2023,2024);
+    RandomDateGenerator generateur = new RandomDateGenerator();
+    this.randomeDate = generateur.generateRandomDate(2023,2024);
     new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(4))
             .until(ExpectedConditions.visibilityOfElementLocated(By.id("testEventDate")));
     WebElement titles = this.driver.getWebDriver().findElement(By.id("testEventDate"));
@@ -282,20 +283,31 @@ public void change_date_of_event (){
     titles.sendKeys(this.randomeDate);
     titles.sendKeys(Keys.ENTER);
     System.out.println(this.randomeDate);
-    this.driver.getWebDriver().findElement(By.id("test123")).click();
+
+    // this.driver.getWebDriver().findElement(By.id("test123")).click();
 
 }
+    @And("photographer click on the button of ok")
+    public void photographer_should_click_on_the_button_ok() {
+        try {
+            Thread.sleep(1000);
+            this.driver.getWebDriver().findElement(By.id("test123")).click();
+            
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 @Then("date of event is updated")
 public void date_is_updated(){
     try{
         Thread.sleep(3000);
         boolean found = false;
-        LocalDate localDate = LocalDate.now();
+        // LocalDate localDate = LocalDate.now();
         
         List<WebElement> eventNames =this.driver.getWebDriver().findElements(By.id("event-name"));
         List<WebElement> eventLocation =this.driver.getWebDriver().findElements(By.id("event-location"));
         List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
-        List<WebElement> eventStatus = this.driver.getWebDriver().findElements(By.className("ant-tag"));
+        // List<WebElement> eventStatus = this.driver.getWebDriver().findElements(By.className("ant-tag"));
         System.out.println(this.randomeDate);
         for (int i = 0; i < eventNames.size(); i++) {
             String name_string = eventNames.get(i).getText();
@@ -327,5 +339,51 @@ public void date_is_updated(){
      
 
 }
+@Then("details of event is updated")
+public void details_is_updated(){
+    try{
+        Thread.sleep(3000);
+        boolean found = false;
+        // LocalDate localDate = LocalDate.now();
+        
+        List<WebElement> eventNames =this.driver.getWebDriver().findElements(By.id("event-name"));
+        List<WebElement> eventLocation =this.driver.getWebDriver().findElements(By.id("event-location"));
+        List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
+        // List<WebElement> eventStatus = this.driver.getWebDriver().findElements(By.className("ant-tag"));
+        System.out.println(this.randomeDate);
+        for (int i = 0; i < eventNames.size(); i++) {
+            String name_string = eventNames.get(i).getText();
+      
+            String location_string = eventLocation.get(i).getText();
+            boolean name = name_string.toUpperCase().equals(this.new_title.toUpperCase());
+            // boolean old_name = name_string.toUpperCase().equals(this.title.toUpperCase());
+            boolean location = location_string.toUpperCase().equals(this.new_location.toUpperCase());
+            boolean date = eventDate.get(i).getText().equals(this.randomeDate);
+            // boolean status = eventStatus.get(i).getText().equals("In progress");
+            if ((name) && (date) && (location)) {
+                found = true;
+                break;
+            }
+        }
+       
+       
+        Assert.assertTrue(found);
+        // System.out.println(found);
+        // System.out.println(randomeDate.toString());
+        // System.out.println("test pass");
+                        
+        
+        this.driver.getWebDriver().quit();
+
+    }catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+     
+
+}
+
+
+
+
 
 }

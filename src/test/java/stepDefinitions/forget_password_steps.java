@@ -181,7 +181,7 @@ public class forget_password_steps {
             this.driver.getWebDriver().findElement(By.id("email")).sendKeys(email);
             this.driver.getWebDriver().findElement(By.id("password")).sendKeys(this.new_pass);
             this.driver.getWebDriver().findElement(By.id("password")).sendKeys(Keys.ENTER);
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
+            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(5))
             .until(ExpectedConditions.presenceOfElementLocated(By.id("dropdown-event-link")));
             String Current_url = this.driver.getWebDriver().getCurrentUrl() ;
             boolean login = false ;

@@ -99,7 +99,7 @@ public class edit_event {
 
             // // Switch back to the main window
             // this.driver.getWebDriver().switchTo().window(currentWindowHandle);
-            WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(3));
+            WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(5));
             wait.pollingEvery(Duration.ofMillis(500));
             
 
@@ -171,6 +171,8 @@ public void title_is_updated(){
     try{
         Thread.sleep(3000);
         boolean found = false;
+        int obtainedresult = 0 ;
+        int expectedresult = 1 ;
         LocalDate localDate = LocalDate.now();
         
         List<WebElement> eventNames =this.driver.getWebDriver().findElements(By.id("event-name"));
@@ -188,13 +190,13 @@ public void title_is_updated(){
             boolean date = eventDate.get(i).getText().equals(localDate.toString());
             // boolean status = eventStatus.get(i).getText().equals("In progress");
             if ((name) && (date) && (!old_name)) {
-                found = true;
+                obtainedresult = 1;
                 break;
             }
         }
        
        
-        Assert.assertTrue(found);
+        Assert.assertEquals(expectedresult, obtainedresult);
         // System.out.println(found);
         // System.out.println("test pass");
                         
@@ -234,6 +236,8 @@ public void location_is_updated(){
     try{
         Thread.sleep(3000);
         boolean found = false;
+        int obtainedresult = 0 ;
+        int expectedresult = 1 ;
         LocalDate localDate = LocalDate.now();
         
         List<WebElement> eventNames =this.driver.getWebDriver().findElements(By.id("event-name"));
@@ -251,13 +255,13 @@ public void location_is_updated(){
             boolean date = eventDate.get(i).getText().equals(localDate.toString());
             // boolean status = eventStatus.get(i).getText().equals("In progress");
             if ((name) && (date) && (location)) {
-                found = true;
+                obtainedresult = 1 ;
                 break;
             }
         }
        
        
-        Assert.assertTrue(found);
+        Assert.assertEquals(expectedresult, obtainedresult);
         // System.out.println(found);
         // System.out.println("test pass");
                         
@@ -302,6 +306,8 @@ public void date_is_updated(){
     try{
         Thread.sleep(3000);
         boolean found = false;
+        int obtainedresult = 0 ;
+        int expectedresult = 1 ;
         // LocalDate localDate = LocalDate.now();
         
         List<WebElement> eventNames =this.driver.getWebDriver().findElements(By.id("event-name"));
@@ -319,13 +325,13 @@ public void date_is_updated(){
             boolean date = eventDate.get(i).getText().equals(this.randomeDate);
             // boolean status = eventStatus.get(i).getText().equals("In progress");
             if ((name) && (date) && (location)) {
-                found = true;
+                obtainedresult = 1 ;
                 break;
             }
         }
        
        
-        Assert.assertTrue(found);
+        Assert.assertEquals(expectedresult, obtainedresult);
         // System.out.println(found);
         // System.out.println(randomeDate.toString());
         // System.out.println("test pass");
@@ -344,6 +350,8 @@ public void details_is_updated(){
     try{
         Thread.sleep(3000);
         boolean found = false;
+        int obtainedresult = 0 ;
+        int expectedresult = 1 ;
         // LocalDate localDate = LocalDate.now();
         
         List<WebElement> eventNames =this.driver.getWebDriver().findElements(By.id("event-name"));
@@ -361,13 +369,13 @@ public void details_is_updated(){
             boolean date = eventDate.get(i).getText().equals(this.randomeDate);
             // boolean status = eventStatus.get(i).getText().equals("In progress");
             if ((name) && (date) && (location)) {
-                found = true;
+                obtainedresult = 1 ;
                 break;
             }
         }
        
        
-        Assert.assertTrue(found);
+        Assert.assertEquals(expectedresult, obtainedresult);
         // System.out.println(found);
         // System.out.println(randomeDate.toString());
         // System.out.println("test pass");

@@ -50,8 +50,9 @@ public class account {
     @When("user fill email as {string} and password as {string} and click on the button of login")
     public void user_fill_email_and_password_and_click_on_login(String email , String password) {
         try {
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
+            WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
+            wait.pollingEvery(Duration.ofMillis(500));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
 
             this.driver.getWebDriver().findElement(By.id("email")).sendKeys(email);
             Thread.sleep(10);
@@ -68,13 +69,14 @@ public class account {
     @And("user should click on account")
     public void user_should_click_on_account (){
         try {
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(20))
-            .until(ExpectedConditions.elementToBeClickable(By.id("user-dropdown")));
+            WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
+            wait.pollingEvery(Duration.ofMillis(500));
+            wait.until(ExpectedConditions.elementToBeClickable(By.id("user-dropdown")));
 
             this.driver.getWebDriver().findElement(By.id("user-dropdown")).click();
             Thread.sleep(10);
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(20))
-            .until(ExpectedConditions.elementToBeClickable(By.id("account-nav")));
+            wait.pollingEvery(Duration.ofMillis(500));
+            wait.until(ExpectedConditions.elementToBeClickable(By.id("account-nav")));
             this.driver.getWebDriver().findElement(By.id("account-nav")).click();
 
         } catch (InterruptedException e) {
@@ -84,8 +86,9 @@ public class account {
 
     @And("user edit his first name {string}")
     public void user_edit_his_first_name(String first_name ){
-        new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(20))
-        .until(ExpectedConditions.visibilityOfElementLocated(By.id("firstName")));
+        WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
+        wait.pollingEvery(Duration.ofMillis(500));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("firstName")));
         WebElement First_name = this.driver.getWebDriver().findElement(By.id("firstName"));
         First_name.sendKeys(Keys.CONTROL, "a");
         First_name.sendKeys(Keys.DELETE);
@@ -109,8 +112,9 @@ public class account {
         try{
             this.driver.getWebDriver().navigate().refresh();
             Thread.sleep(20);
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("firstName")));
+            WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
+            wait.pollingEvery(Duration.ofMillis(500));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("firstName")));
 
             String newfirstname = driver.getWebDriver().findElement(By.id("firstName")).getAttribute("value");
 
@@ -130,8 +134,9 @@ public class account {
         try{
             this.driver.getWebDriver().navigate().refresh();
             Thread.sleep(20);
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("firstName")));
+            WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
+            wait.pollingEvery(Duration.ofMillis(500));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("firstName")));
             String newfirstname = driver.getWebDriver().findElement(By.id("firstName")).getAttribute("value");
             // System.out.println(first_name);
             // System.out.println(newfirstname);
@@ -147,8 +152,9 @@ public class account {
     }
     @And("user edit his last name {string}")
     public void user_edit_his_last_name (String last_name){
-        new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(20))
-        .until(ExpectedConditions.visibilityOfElementLocated(By.id("lastName")));
+        WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
+        wait.pollingEvery(Duration.ofMillis(500));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("lastName")));
         WebElement Lastname = this.driver.getWebDriver().findElement(By.id("lastName"));
         Lastname.sendKeys(Keys.CONTROL, "a");
         Lastname.sendKeys(Keys.DELETE);
@@ -159,8 +165,9 @@ public class account {
         try{
             this.driver.getWebDriver().navigate().refresh();
             Thread.sleep(20);
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("lastName")));
+            WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
+            wait.pollingEvery(Duration.ofMillis(500));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("lastName")));
 
             String newlastname = driver.getWebDriver().findElement(By.id("lastName")).getAttribute("value");
 
@@ -181,8 +188,9 @@ public class account {
             this.driver.getWebDriver().navigate().refresh();
             Thread.sleep(20);
             Thread.sleep(20);
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("lastName")));
+            WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
+            wait.pollingEvery(Duration.ofMillis(500));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("lastName")));
 
             String newlastname = driver.getWebDriver().findElement(By.id("lastName")).getAttribute("value");
             System.out.println(last_name);
@@ -201,8 +209,9 @@ public class account {
     @And("user click on change password")
     public void user_click_on_change_password(){
         try{
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("changePwLink")));
+            WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
+            wait.pollingEvery(Duration.ofMillis(500));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("changePwLink")));
             this.driver.getWebDriver().findElement(By.id("changePwLink")).click();
             Thread.sleep(50);
 
@@ -213,20 +222,25 @@ public class account {
     @And("user fill his actuel password {string}")
     public void user_fill_his_acutuel_password (String actuel_password ){
         
-        new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("oldPwd")));
+           
+        WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
+           
+        wait.pollingEvery(Duration.ofMillis(500));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("oldPwd")));
         this.driver.getWebDriver().findElement(By.id("oldPwd")).sendKeys(actuel_password);
     }
     @And ("user fill his new password {string}")
     public void user_fill_his_new_password(String new_password) {
-        new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("newPwd")));
+        WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
+        wait.pollingEvery(Duration.ofMillis(500));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("newPwd")));
         this.driver.getWebDriver().findElement(By.id("newPwd")).sendKeys(new_password);
     }
     @And("user confirm password {string}")
     public void user_confirm_password ( String confirm_password){
-        new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("confirmPwd")));
+        WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
+        wait.pollingEvery(Duration.ofMillis(500));            
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("confirmPwd")));
         this.driver.getWebDriver().findElement(By.id("confirmPwd")).sendKeys(confirm_password);
     }
     @And ("user click on confirm button")
@@ -237,11 +251,12 @@ public class account {
     public void  user_logout(){
          try{
             Thread.sleep(5000);
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-            .until(ExpectedConditions.elementToBeClickable(By.id("user-dropdown")));
+            WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
+            wait.pollingEvery(Duration.ofMillis(500));
+            wait.until(ExpectedConditions.elementToBeClickable(By.id("user-dropdown")));
             this.driver.getWebDriver().findElement(By.id("user-dropdown")).click();
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-            .until(ExpectedConditions.elementToBeClickable(By.id("testLogout")));
+            wait.pollingEvery(Duration.ofMillis(500));
+            wait.until(ExpectedConditions.elementToBeClickable(By.id("testLogout")));
             this.driver.getWebDriver().findElement(By.id("testLogout")).click();
             Thread.sleep(60);
 
@@ -253,15 +268,16 @@ public class account {
     @Then ("user can connect with new credentials email {string} and password {string}")
     public void user_can_connect_with_new_credentials ( String email , String password ){
          try {
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
+            WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
+            wait.pollingEvery(Duration.ofMillis(500));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
             this.driver.getWebDriver().findElement(By.id("email")).sendKeys(email);
             Thread.sleep(10);
             this.driver.getWebDriver().findElement(By.id("password")).sendKeys(password);
             Thread.sleep(10);
             this.driver.getWebDriver().findElement(By.id("password")).sendKeys(Keys.ENTER);
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("user-dropdown")));
+            wait.pollingEvery(Duration.ofMillis(500));            
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("user-dropdown")));
 
             boolean f = true ;
 

@@ -20,8 +20,8 @@ import org.junit.runner.RunWith;
     
     glue = "stepDefinitions",
 
-    plugin = { "pretty", "html:target/reports/report.html","json:target/reports/report.json" },
-    dryRun = true
+    plugin = { "pretty", "html:target/reports/report.html","json:target/reports/report.json" }
+    
 
 )
 

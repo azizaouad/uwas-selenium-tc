@@ -29,7 +29,7 @@ public class add_event {
     public add_event(Driver driver) {
         System.out.println(System.getProperty("environment"));
         this.driver = driver;
-        this.title = addRandomCharacter("add");
+        this.title = addRandomCharacter("adder");
         this.driver.setupController();
 
     }
@@ -38,14 +38,16 @@ public class add_event {
         try {
 
             this.driver.getWebDriver().get(this.driver.getBaseUrl()+"/login");
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
+            WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
+            wait.pollingEvery(Duration.ofMillis(500));            
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
             this.driver.getWebDriver().findElement(By.id("email")).sendKeys("k@gmail.com");
             Thread.sleep(10);
             this.driver.getWebDriver().findElement(By.id("password")).sendKeys("Admin123!");
             Thread.sleep(10);
             this.driver.getWebDriver().findElement(By.id("testLogin")).click();
             Thread.sleep(20);
+            
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -55,13 +57,14 @@ public class add_event {
     @When("photographer should click on the button of add event")
     public void photographer_should_click_on_the_button_of_add_event() {
         try {
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(5))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("dropdown-event-link")));
+            WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
+            wait.pollingEvery(Duration.ofMillis(500));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("dropdown-event-link")));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
             Thread.sleep(500);
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("event-add")));
+            wait.pollingEvery(Duration.ofMillis(500));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("event-add")));
             this.driver.getWebDriver().findElement(By.id("event-add")).click();
 
 
@@ -74,8 +77,9 @@ public class add_event {
     public void photographer_should_fill_the_title_of_event(String title) {
         try {
             Thread.sleep(10);
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("event-title")));
+            WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
+            wait.pollingEvery(Duration.ofMillis(500));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("event-title")));
             WebElement titles = this.driver.getWebDriver().findElement(By.id("event-title"));
             titles.sendKeys(this.title);
 
@@ -96,8 +100,9 @@ public class add_event {
     public void photographer_should_fill_the_location_of_event(String location_of_event) {
         try {
             Thread.sleep(50);
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("location")));
+            WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
+            wait.pollingEvery(Duration.ofMillis(500));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("location")));
             this.driver.getWebDriver().findElement(By.id("location")).sendKeys(location_of_event);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -157,6 +162,8 @@ public class add_event {
         try {
             Thread.sleep(3000);
             boolean found = false;
+            int obtainedresult = 0 ;
+            int expectedresult = 1 ;
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
             List<WebElement> eventLocation = this.driver.getWebDriver().findElements(By.id("event-location"));
             List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
@@ -172,14 +179,15 @@ public class add_event {
                 boolean date = date_string.equals(date_of_event);
                 boolean status = eventStatus.get(i).getText().equals("In progress");
                 if ((name) && (date ) && (status)&&(location)) {
-                    found = true;
+                    obtainedresult = 1;
                     break;
                 }
             }
-            if (found) {
-                Assert.assertTrue(found);
-                System.out.println("test pass");
-            }
+            
+            Assert.assertEquals(expectedresult, obtainedresult);;
+            // System.out.println("test pass");
+            
+        
         
 
             Thread.sleep(100);
@@ -217,6 +225,8 @@ public class add_event {
         try {
             Thread.sleep(3000);
             boolean found = false;
+            int obtainedresult = 0 ;
+            int expectedresult = 1 ;
             List<WebElement> eventNames =this.driver.getWebDriver().findElements(By.id("event-name"));
             List<WebElement> eventLocation =this.driver.getWebDriver().findElements(By.id("event-location"));
             List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
@@ -230,14 +240,14 @@ public class add_event {
                 boolean date = eventDate.get(i).getText().equals(localDate.toString());
                 boolean status = eventStatus.get(i).getText().equals("In progress");
                 if ((name) && (location) && (date) && (status)) {
-                    found = true;
+                    obtainedresult =  1 ;
                     break;
                 }
             }
-            if (found) {
-                Assert.assertTrue(found);
-                System.out.println("test pass");
-            }
+            
+            Assert.assertEquals(expectedresult,obtainedresult);
+            
+            
             
 
             Thread.sleep(100);

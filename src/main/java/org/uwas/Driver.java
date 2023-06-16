@@ -11,11 +11,6 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// import io.github.bonigarcia.wdm.WebDriverManager;
-
-// import java.time.Duration;
-//import java.util.concurrent.TimeUnit;
-// import java.util.concurrent.TimeUnit;
 
 public class Driver {
     private WebDriver webDriver;

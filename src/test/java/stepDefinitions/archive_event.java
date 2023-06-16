@@ -38,23 +38,23 @@ public class archive_event {
     public void photographer_should_login_with_his_credentials_email_and_password ( String email , String password, String title) {
         try {
             this.driver.getWebDriver().get(this.driver.getBaseUrl()+"/login");
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
+            WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
+            wait.pollingEvery(Duration.ofMillis(500));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
             this.driver.getWebDriver().findElement(By.id("email")).sendKeys(email);
 
             this.driver.getWebDriver().findElement(By.id("password")).sendKeys(password);
             this.driver.getWebDriver().findElement(By.id("testLogin")).click();
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-            .until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
+            wait.pollingEvery(Duration.ofMillis(500));
+            wait.until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
 
             drp.click();
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("event-add")));
+            wait.pollingEvery(Duration.ofMillis(500));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("event-add")));
             this.driver.getWebDriver().findElement(By.id("event-add")).click();
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-            
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("event-title")));
+            wait.pollingEvery(Duration.ofMillis(500));            
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("event-title")));
 
             this.driver.getWebDriver().findElement(By.id("event-title")).sendKeys(randomName);
             Thread.sleep(10);
@@ -104,11 +104,12 @@ public class archive_event {
                 boolean date = date_string.equals(localDate.toString());
                 if ( (date)&&(name)){
                     points.click();
-                     new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(3))
-                    .until(ExpectedConditions.elementToBeClickable(By.id("testArchive")));
+                    WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
+                    wait.pollingEvery(Duration.ofMillis(500));
+                    wait.until(ExpectedConditions.elementToBeClickable(By.id("testArchive")));
                     driver.getWebDriver().findElement(By.id("testArchive")).click();
-                    new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-                    .until(ExpectedConditions.elementToBeClickable(By.id("testOKArchive")));
+                    wait.pollingEvery(Duration.ofMillis(500));
+                    wait.until(ExpectedConditions.elementToBeClickable(By.id("testOKArchive")));
                     driver.getWebDriver().findElement(By.id("testOKArchive")).click();
                     Thread.sleep(2000);
                 }
@@ -129,10 +130,13 @@ public class archive_event {
         // System.out.println(this.title);
 
         this.driver.getWebDriver().findElement(By.id("dropdown-event-link")).click();
-        new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(3))
-           .until(ExpectedConditions.elementToBeClickable(By.id("event-archive")));
+        WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
+        wait.pollingEvery(Duration.ofMillis(500));            
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("event-archive")));
         this.driver.getWebDriver().findElement(By.id("event-archive")).click();;   
         boolean found = false;
+        int obtainedresult = 0 ;
+        int expectedresult = 1 ;
         Thread.sleep(2000);
         // String CurrentUrl = this.driver.getWebDriver().getCurrentUrl(); 
         // System.out.println(CurrentUrl);
@@ -151,13 +155,11 @@ public class archive_event {
             boolean date = date_string.equals(localDate.toString());
             // boolean url = CurrentUrl.equals("https://recette.uwas.fr/photographer/events/archive");
             if ((name) && (date)) {
-                found = true;
+                obtainedresult = 1 ;
                 break;
             }
         }
-        if (found) {
-            Assert.assertTrue(found);
-        }
+        Assert.assertEquals(expectedresult, obtainedresult);
         
 
         this.driver.getWebDriver().quit();
@@ -166,12 +168,13 @@ public class archive_event {
     @When("photographer should go to the archive event")
     public void photographer_should_go_to_the_archive_event (){
         try {
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(5))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("dropdown-event-link")));
+            WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
+            wait.pollingEvery(Duration.ofMillis(500));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("dropdown-event-link")));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(5))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("event-archive")));
+            wait.pollingEvery(Duration.ofMillis(500));            
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("event-archive")));
             WebElement List = this.driver.getWebDriver().findElement(By.id("event-archive"));
             List.click();
             Thread.sleep(1000);
@@ -206,8 +209,9 @@ public class archive_event {
                 if ((name)&&(date)){
                     Thread.sleep(100);
                     points.get(i).click();
-                    new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-                    .until(ExpectedConditions.visibilityOfElementLocated(By.id("testRestore")));
+                    WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
+                    wait.pollingEvery(Duration.ofMillis(500));                    
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("testRestore")));
                     WebElement restore = this.driver.getWebDriver().findElement(By.id("testRestore"));
                     restore.click();
                     break;
@@ -232,6 +236,8 @@ public class archive_event {
             this.driver.getWebDriver().findElement(By.xpath("/html/body/div/div/main/div/section/main/div[1]/button")).click();
             Thread.sleep(3000);
             boolean found = false;
+            int obtainedresult = 0 ;
+            int expectedresult = 1 ;
             // System.out.println(this.title);
             // String currentUrl = this.driver.getWebDriver().getCurrentUrl();
             // System.out.println(currentUrl);
@@ -241,7 +247,7 @@ public class archive_event {
             //List<WebElement> eventStatus = this.driver.getWebDriver().findElements(By.className("ant-tag"));
             LocalDate localDate = LocalDate.now();
             if (eventNames.size()==0){
-                found = true;
+                obtainedresult = 1 ;
             }
             else {
                 for (int i = 0; i < eventNames.size(); i++) {
@@ -250,17 +256,16 @@ public class archive_event {
                     boolean name = name_string.toUpperCase().equals(randomName.toUpperCase());
                     boolean date = date_string.equals(localDate.toString());
                     if ((name) && (date) ) {
-                        found = true;
-                        System.out.println(name_string);
+                        obtainedresult = 1 ;
+                        // System.out.println(name_string);
                         break;
                     }
                 }
             }
 
-            if (found) {
-                Assert.assertTrue(found);
-                System.out.println("test pass");
-            }
+            
+            Assert.assertEquals(expectedresult, obtainedresult);
+                
 
             Thread.sleep(10);
             this.driver.getWebDriver().quit();
@@ -274,8 +279,9 @@ public class archive_event {
         try {
 
             this.driver.getWebDriver().get(this.driver.getBaseUrl()+"/login");
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
+            WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
+            wait.pollingEvery(Duration.ofMillis(500));            
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
             this.driver.getWebDriver().findElement(By.id("email")).sendKeys(email);
             this.driver.getWebDriver().findElement(By.id("password")).sendKeys(password);
             this.driver.getWebDriver().findElement(By.id("testLogin")).click();

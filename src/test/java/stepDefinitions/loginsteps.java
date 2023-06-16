@@ -70,15 +70,20 @@ public class loginsteps {
             new WebDriverWait(driver.getWebDriver(), Duration.ofSeconds(15))
                     .until(ExpectedConditions.visibilityOfElementLocated(By.id("user-dropdown")));
             boolean f = false;
+            int resultobtained = 0  ;
+            int expectedresult = 1 ;
 
             String current_url = this.driver.getWebDriver().getCurrentUrl();
             if (current_url.contentEquals("https://recette.uwas.fr/login")) {
                 f = false;
                 System.out.println("test fail");
+                resultobtained = 0 ; 
             } else {
                 f = true;
+                resultobtained = 1 ;
             }
-            Assert.assertTrue(f);
+            System.out.println(resultobtained);
+            Assert.assertEquals(expectedresult, resultobtained);
             Thread.sleep(10);
             this.driver.getWebDriver().quit();
         } catch (InterruptedException e) {

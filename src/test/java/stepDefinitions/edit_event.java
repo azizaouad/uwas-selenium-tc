@@ -55,8 +55,9 @@ public class edit_event {
         try {
 
             this.driver.getWebDriver().get(this.driver.getBaseUrl()+"/login");
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
+            WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
+            wait.pollingEvery(Duration.ofMillis(500));            
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
             this.driver.getWebDriver().findElement(By.id("email")).sendKeys("k@gmail.com");
             Thread.sleep(10);
             this.driver.getWebDriver().findElement(By.id("password")).sendKeys("Admin123!");
@@ -71,13 +72,14 @@ public class edit_event {
     @When("photographer should click on the button of add-event")
     public void photographer_should_click_on_the_button_of_add_event() {
         try {
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("dropdown-event-link")));
+            WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
+            wait.pollingEvery(Duration.ofMillis(500));              
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("dropdown-event-link")));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
             Thread.sleep(500);
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(15))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("event-add")));
+            wait.pollingEvery(Duration.ofMillis(500));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("event-add")));
             this.driver.getWebDriver().findElement(By.id("event-add")).click();
 
 
@@ -150,14 +152,16 @@ public void three_buttons(){
 }
 @And("photographer choose edit")
 public void choose_edit(){
-        new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(4))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("testEdit")));
+        WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
+        wait.pollingEvery(Duration.ofMillis(500));              
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("testEdit")));
         this.driver.getWebDriver().findElement(By.id("testEdit")).click();;
 }
 @And("photographer should change the title of event as {string}")
 public void change_name_of_event (String newname){
-    new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(4))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("event-title")));
+    WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
+    wait.pollingEvery(Duration.ofMillis(500));              
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("event-title")));
     WebElement titles = this.driver.getWebDriver().findElement(By.id("event-title"));
     titles.sendKeys(Keys.CONTROL, "a");
     titles.sendKeys(Keys.DELETE);
@@ -213,8 +217,9 @@ public void title_is_updated(){
     public void photographer_should_fill_the_location_of_event() {
         try {
             Thread.sleep(50);
-            new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(5))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("location")));
+            WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
+            wait.pollingEvery(Duration.ofMillis(500));              
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("location")));
             this.driver.getWebDriver().findElement(By.id("location")).sendKeys(this.location);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -222,8 +227,9 @@ public void title_is_updated(){
     }
 @And("photographer should change the location of event")
 public void change_location_of_event (){
-    new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(4))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("location")));
+    WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
+    wait.pollingEvery(Duration.ofMillis(500));              
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("location")));
     WebElement titles = this.driver.getWebDriver().findElement(By.id("location"));
     titles.sendKeys(Keys.CONTROL, "a");
     titles.sendKeys(Keys.DELETE);
@@ -279,8 +285,9 @@ public void change_date_of_event (){
 
     RandomDateGenerator generateur = new RandomDateGenerator();
     this.randomeDate = generateur.generateRandomDate(2023,2024);
-    new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(4))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.id("testEventDate")));
+    WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
+    wait.pollingEvery(Duration.ofMillis(500));              
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("testEventDate")));
     WebElement titles = this.driver.getWebDriver().findElement(By.id("testEventDate"));
     titles.sendKeys(Keys.CONTROL, "a");
     titles.sendKeys(Keys.DELETE);

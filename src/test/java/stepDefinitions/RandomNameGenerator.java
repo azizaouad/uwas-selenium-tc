@@ -5,7 +5,7 @@ import java.util.Random;
 public class RandomNameGenerator  {
     private static final String RANDOM_NAME;
         static {
-        String[] names = {"Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Henry", "Ivy", "Jack"};
+        String[] names = {"Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Henry", "Ivy", "Jack", "test","qa","automation","code"};
         Random random = new Random();
         int index = random.nextInt(names.length);
         RANDOM_NAME = names[index];

@@ -34,8 +34,8 @@ public class archive_event {
         
 
 
-    @Given("photographer should login with his credentials email as {string} and password as {string} and create an event title as {string}")
-    public void photographer_should_login_with_his_credentials_email_and_password ( String email , String password, String title) {
+    @Given("photographer should login with his credentials email as {string} and password as {string} and create an event")
+    public void photographer_should_login( String email , String password ) {
         try {
             this.driver.getWebDriver().get(this.driver.getBaseUrl()+"/login");
             WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
@@ -74,8 +74,8 @@ public class archive_event {
 
     }
 
-    @And("Choose archive for the event name as {string}")
-    public void Choose_archive (String event_name){
+    @And("Choose archive the event")
+    public void Choose_archive (){
         try {
 
 //            WebElement ele = driver.findElement(By.className("ant-btn-icon-only"));
@@ -111,7 +111,7 @@ public class archive_event {
                     wait.pollingEvery(Duration.ofMillis(500));
                     wait.until(ExpectedConditions.elementToBeClickable(By.id("testOKArchive")));
                     driver.getWebDriver().findElement(By.id("testOKArchive")).click();
-                    Thread.sleep(2000);
+                    Thread.sleep(4000);
                 }
           
            }
@@ -125,8 +125,8 @@ public class archive_event {
             throw new RuntimeException(e);
         }
     }
-    @Then("the event as {string} is archived")
-    public void the_event_is_archived (String title) throws InterruptedException {
+    @Then("the event is archived")
+    public void the_event_is_archived () throws InterruptedException {
         // System.out.println(this.title);
 
         this.driver.getWebDriver().findElement(By.id("dropdown-event-link")).click();
@@ -188,8 +188,8 @@ public class archive_event {
 
 
     }
-    @And("Choose restore for the event {string}")
-    public void Choose_restore_for_the_event (String event) {
+    @And("Choose restore the event")
+    public void Choose_restore_for_the_event () {
         try {
 
             List <WebElement> points = this.driver.getWebDriver().findElements(By.id("event-edit-dropdown"));
@@ -230,8 +230,8 @@ public class archive_event {
             throw new RuntimeException(e);
         }
     }
-    @Then("the title of event as {string} is restored")
-    public void the_event_is_restored (String title) {
+    @Then("the event is restored")
+    public void the_event_is_restored () {
         try {
             this.driver.getWebDriver().findElement(By.xpath("/html/body/div/div/main/div/section/main/div[1]/button")).click();
             Thread.sleep(3000);

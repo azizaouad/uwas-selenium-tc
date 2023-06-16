@@ -60,7 +60,7 @@ public class archive_event {
             Thread.sleep(10);
 
             this.driver.getWebDriver().findElement(By.id("test123")).click();
-            System.out.println(randomName);
+            // System.out.println(randomName);
     }catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -111,7 +111,7 @@ public class archive_event {
                     wait.pollingEvery(Duration.ofMillis(500));
                     wait.until(ExpectedConditions.elementToBeClickable(By.id("testOKArchive")));
                     driver.getWebDriver().findElement(By.id("testOKArchive")).click();
-                    Thread.sleep(4000);
+                    Thread.sleep(3000);
                 }
           
            }

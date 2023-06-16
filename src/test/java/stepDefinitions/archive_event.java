@@ -134,7 +134,7 @@ public class archive_event {
         wait.pollingEvery(Duration.ofMillis(500));            
         wait.until(ExpectedConditions.elementToBeClickable(By.id("event-archive")));
         this.driver.getWebDriver().findElement(By.id("event-archive")).click();;   
-        boolean found = false;
+        // boolean found = false;
         int obtainedresult = 0 ;
         int expectedresult = 1 ;
         Thread.sleep(2000);
@@ -177,7 +177,7 @@ public class archive_event {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("event-archive")));
             WebElement List = this.driver.getWebDriver().findElement(By.id("event-archive"));
             List.click();
-            Thread.sleep(1000);
+            Thread.sleep(3000);
 
 
 
@@ -235,7 +235,7 @@ public class archive_event {
         try {
             this.driver.getWebDriver().findElement(By.xpath("/html/body/div/div/main/div/section/main/div[1]/button")).click();
             Thread.sleep(3000);
-            boolean found = false;
+            // boolean found = false;
             int obtainedresult = 0 ;
             int expectedresult = 1 ;
             // System.out.println(this.title);

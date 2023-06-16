@@ -170,7 +170,7 @@ public void change_name_of_event (String newname){
 public void title_is_updated(){
     try{
         Thread.sleep(3000);
-        boolean found = false;
+        // boolean found = false;
         int obtainedresult = 0 ;
         int expectedresult = 1 ;
         LocalDate localDate = LocalDate.now();
@@ -235,7 +235,7 @@ public void change_location_of_event (){
 public void location_is_updated(){
     try{
         Thread.sleep(3000);
-        boolean found = false;
+        // boolean found = false;
         int obtainedresult = 0 ;
         int expectedresult = 1 ;
         LocalDate localDate = LocalDate.now();
@@ -305,7 +305,7 @@ public void change_date_of_event (){
 public void date_is_updated(){
     try{
         Thread.sleep(3000);
-        boolean found = false;
+        // boolean found = false;
         int obtainedresult = 0 ;
         int expectedresult = 1 ;
         // LocalDate localDate = LocalDate.now();
@@ -349,7 +349,7 @@ public void date_is_updated(){
 public void details_is_updated(){
     try{
         Thread.sleep(3000);
-        boolean found = false;
+        // boolean found = false;
         int obtainedresult = 0 ;
         int expectedresult = 1 ;
         // LocalDate localDate = LocalDate.now();

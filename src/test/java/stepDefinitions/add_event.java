@@ -161,7 +161,7 @@ public class add_event {
     public void title_of_event_in_location_at_date_is_created(String title_of_event, String location_of_event, String date_of_event) {
         try {
             Thread.sleep(3000);
-            boolean found = false;
+            // boolean found = false;
             int obtainedresult = 0 ;
             int expectedresult = 1 ;
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
@@ -224,7 +224,7 @@ public class add_event {
     public void title_of_event_in_location_of_event_is_created_with_the_date_added(String title_of_event, String location_of_event) {
         try {
             Thread.sleep(3000);
-            boolean found = false;
+            // boolean found = false;
             int obtainedresult = 0 ;
             int expectedresult = 1 ;
             List<WebElement> eventNames =this.driver.getWebDriver().findElements(By.id("event-name"));

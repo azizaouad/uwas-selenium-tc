@@ -377,7 +377,7 @@ public class filter_steps {
         try {
             Thread.sleep(2000);
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
-            List<WebElement> eventstatus = this.driver.getWebDriver().findElements(By.className("ant-tag"));
+            List<WebElement> eventstatus = this.driver.getWebDriver().findElements(By.className("ant-tag-green"));
             boolean find = false;
             
             int no_event = eventNames.size();

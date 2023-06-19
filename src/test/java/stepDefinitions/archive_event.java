@@ -112,7 +112,9 @@ public class archive_event {
                     wait.until(ExpectedConditions.elementToBeClickable(By.id("testOKArchive")));
                     driver.getWebDriver().findElement(By.id("testOKArchive")).click();
                     Thread.sleep(3000);
+                    break;
                 }
+                
           
            }
 

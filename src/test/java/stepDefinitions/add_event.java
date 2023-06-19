@@ -4,6 +4,8 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
+import java.io.File;
 import java.time.Duration;
 
 import org.junit.Assert;
@@ -129,21 +131,25 @@ public class add_event {
         }
     }
 
-    // @And("photographer put an image for the event")
-    // public void photographer_put_an_image_for_the_event() {
-    //     try {
-    //         Thread.sleep(30);
-    //         WebElement source = this.driver.getWebDriver().findElement(By.id("upload"));
+    @And("photographer put an image for the event")
+    public void photographer_put_an_image_for_the_event() {
+        try {
+            Thread.sleep(30);
+            String relativePath = "src/test/resources/data/traditions-noel-europe-1024x683.jpg";
+            File file = new File(relativePath);
+            String absolutePath = file.getAbsolutePath();
+            
+            WebElement source = this.driver.getWebDriver().findElement(By.id("upload"));
 
-    //         source.sendKeys("src/test/java/data/traditions-noel-europe-1024x683.jpg");
+            source.sendKeys(absolutePath);
 
 
-    //     } catch (InterruptedException e) {
-    //         throw new RuntimeException(e);
-    //     }
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 
 
-    // }
+    }
 
     @And("photographer should click on the button ok")
     public void photographer_should_click_on_the_button_ok() {
@@ -288,8 +294,11 @@ public class add_event {
     public void photographer_put_a_file_in_the_image_field_for_the_event() {
         try {
             Thread.sleep(10);
+            String relativePath = "src/test/resources/data/CORAL IO_Rescrit_JEI_2021 2022 2023_v1.0 (1).docx";
+            File file = new File(relativePath);
+            String absolutePath = file.getAbsolutePath();
             WebElement source = this.driver.getWebDriver().findElement(By.id("upload"));
-            source.sendKeys("src/data/CORAL IO_Rescrit_JEI_2021 2022 2023_v1.0 (1).docx");
+            source.sendKeys(absolutePath);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

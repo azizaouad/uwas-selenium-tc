@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.uwas.Driver;
 
+import java.io.File;
 import java.time.Duration;
 import java.util.List;
 import java.util.Random;
@@ -103,10 +104,13 @@ public class scenario_steps {
             WebElement upload_button = this.driver.getWebDriver().findElement(By.id("testUpload"));
             // Thread.sleep(2000);
             upload_button.click();
+            String relativePath = "src/test/resources/data/traditions-noel-europe-1024x683.jpg";
+            File file = new File(relativePath);
+            String absolutePath = file.getAbsolutePath();
             // Thread.sleep(5000);
             WebElement source = this.driver.getWebDriver().findElement(By.id("upload-photos"));
             Thread.sleep(30);
-            source.sendKeys("traditions-noel-europe-1024x683.jpg");
+            source.sendKeys(absolutePath);
             this.driver.getWebDriver().findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[2]/form/div[2]/div/div/div/div/button")).click();
 
 
@@ -199,8 +203,11 @@ public class scenario_steps {
     public void photographer_put_an_image_for_the_event() {
         try {
             Thread.sleep(10);
+            String relativePath = "src/test/resources/data/traditions-noel-europe-1024x683.jpg";
+            File file = new File(relativePath);
+            String absolutePath = file.getAbsolutePath();
             WebElement source = this.driver.getWebDriver().findElement(By.id("upload"));
-            source.sendKeys("traditions-noel-europe-1024x683.jpg");
+            source.sendKeys(absolutePath);
 
 
         } catch (InterruptedException e) {

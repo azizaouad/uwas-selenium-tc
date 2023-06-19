@@ -185,7 +185,7 @@ public class forget_password_steps {
     @Then("the password is changed user can login with new password as {string} and email as {string}")
     public void the_password_is_changed_user_can_login_with_new_password_and_email(String password, String email) {
         try {
-            Thread.sleep(40);
+            Thread.sleep(4000);
             WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
             wait.pollingEvery(Duration.ofMillis(500));            
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));            

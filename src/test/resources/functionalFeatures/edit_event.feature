@@ -51,7 +51,7 @@ Feature: edit event
     And photographer should fill the location of event
     # And photographer should fill the date of event as ""
     # And photographer put an image for the event
-    And photographer click on the ok button
+    # And photographer click on the ok button
     And photographer click on the ok button
     And photographer click on the three buttouns for updating
     And photographer choose edit

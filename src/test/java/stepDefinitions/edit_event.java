@@ -72,6 +72,7 @@ public class edit_event {
     @When("photographer should click on the button of add-event")
     public void photographer_should_click_on_the_button_of_add_event() {
         try {
+            Thread.sleep(4000);
             WebDriverWait wait = new  WebDriverWait (driver.getWebDriver(),Duration.ofSeconds(15));
             wait.pollingEvery(Duration.ofMillis(500));              
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("dropdown-event-link")));

@@ -251,7 +251,7 @@ public class filter_steps {
     @Then("The user must find the events whose location of event as {string}")
     public void The_user_must_find_the_events_whose_location_of_event(String location_of_event) {
         try {
-            Thread.sleep(2000);
+            Thread.sleep(3000);
 
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
             List<WebElement> eventlocation = this.driver.getWebDriver().findElements(By.id("event-location"));

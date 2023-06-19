@@ -15,7 +15,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-    features = "src/test/resources/functionalFeatures/scenario.feature",
+    features = "src/test/resources/functionalFeatures/",
     glue = "stepDefinitions",
     plugin = { "pretty", "html:target/reports/report.html","json:target/reports/report.json" }
 )

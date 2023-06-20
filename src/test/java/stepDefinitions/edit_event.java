@@ -32,7 +32,7 @@ public class edit_event {
     }
 
     public edit_event(Driver driver) {
-        System.out.println(System.getProperty("environment"));
+        // System.out.println(System.getProperty("environment"));
         this.driver = driver;
         this.title = addRandomCharacter("editer");
         this.new_title = addRandomCharacter(this.title);
@@ -294,7 +294,7 @@ public void change_date_of_event (){
     titles.sendKeys(Keys.DELETE);
     titles.sendKeys(this.randomeDate);
     titles.sendKeys(Keys.ENTER);
-    System.out.println(this.randomeDate);
+    // System.out.println(this.randomeDate);
 
     // this.driver.getWebDriver().findElement(By.id("test123")).click();
 
@@ -322,7 +322,7 @@ public void date_is_updated(){
         List<WebElement> eventLocation =this.driver.getWebDriver().findElements(By.id("event-location"));
         List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
         // List<WebElement> eventStatus = this.driver.getWebDriver().findElements(By.className("ant-tag"));
-        System.out.println(this.randomeDate);
+        // System.out.println(this.randomeDate);
         for (int i = 0; i < eventNames.size(); i++) {
             String name_string = eventNames.get(i).getText();
       
@@ -366,7 +366,7 @@ public void details_is_updated(){
         List<WebElement> eventLocation =this.driver.getWebDriver().findElements(By.id("event-location"));
         List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
         // List<WebElement> eventStatus = this.driver.getWebDriver().findElements(By.className("ant-tag"));
-        System.out.println(this.randomeDate);
+        // System.out.println(this.randomeDate);
         for (int i = 0; i < eventNames.size(); i++) {
             String name_string = eventNames.get(i).getText();
       

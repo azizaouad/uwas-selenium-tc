@@ -288,7 +288,7 @@ public class archive_event {
             this.driver.getWebDriver().findElement(By.id("password")).sendKeys(password);
             this.driver.getWebDriver().findElement(By.id("testLogin")).click();
             Thread.sleep(200);
-            System.out.println(randomName);
+            // System.out.println(randomName);
         }catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

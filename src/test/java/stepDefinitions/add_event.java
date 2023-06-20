@@ -29,7 +29,7 @@ public class add_event {
     }
 
     public add_event(Driver driver) {
-        System.out.println(System.getProperty("environment"));
+        // System.out.println(System.getProperty("environment"));
         this.driver = driver;
         this.title = addRandomCharacter("adder");
         this.driver.setupController();
@@ -209,13 +209,13 @@ public class add_event {
     public void an_error_message_appear_under_the_title_field() {
         try {
             Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("event-default-price")).isDisplayed());
-            System.out.println(1);
+            // System.out.println(1);
             Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("event-title")).isDisplayed());
-            System.out.println(2);
+            // System.out.println(2);
             Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("location")).isDisplayed());
-            System.out.println(3);
+            // System.out.println(3);
             Assert.assertTrue(this.driver.getWebDriver().findElement(By.id("testEventDate")).isDisplayed());
-            System.out.println(4);
+            // System.out.println(4);
             Thread.sleep(100);
             this.driver.getWebDriver().quit();
 
@@ -278,7 +278,7 @@ public class add_event {
             }
             if (find) {
                 Assert.assertTrue(find);
-                System.out.println("test pass");
+                // System.out.println("test pass");
             }
           
             Thread.sleep(10);

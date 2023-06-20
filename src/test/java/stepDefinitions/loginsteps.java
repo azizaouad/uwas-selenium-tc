@@ -76,13 +76,13 @@ public class loginsteps {
             String current_url = this.driver.getWebDriver().getCurrentUrl();
             if (current_url.contentEquals("https://recette.uwas.fr/login")) {
             
-                System.out.println("test fail");
+                // System.out.println("test fail");
                 resultobtained = 0 ; 
             } else {
             
                 resultobtained = 1 ;
             }
-            System.out.println(resultobtained);
+            // System.out.println(resultobtained);
             Assert.assertEquals(expectedresult, resultobtained);
             Thread.sleep(10);
             this.driver.getWebDriver().quit();

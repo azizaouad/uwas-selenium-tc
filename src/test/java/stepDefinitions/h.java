@@ -1,4 +1,4 @@
-// package stepDefinitions;
+package stepDefinitions;
 
 // import java.time.LocalDate;
 
@@ -12,9 +12,13 @@
 // // import com.github.dockerjava.api.model.Driver;
 
 // import io.github.bonigarcia.wdm.WebDriverManager;
+import static java.time.temporal.TemporalAdjusters.firstDayOfYear;
+import static java.time.temporal.TemporalAdjusters.lastDayOfYear ;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.temporal.TemporalAdjuster;
 
-
-// public class h  {
+public class h  {
 //     Driver driver;
 //     public h (Driver driver) {
 //         System.out.println(System.getProperty("environment"));
@@ -24,7 +28,32 @@
         
 
     
-//     // public static void main(String[] args) {
+    public static void main(String[] args) {
+             LocalDate today = LocalDate.parse("2024-01-01");
+             LocalDate date = LocalDate.now();
+        //    LocalDate today = LocalDate.parse(dateevent);
+            boolean find ;
+            LocalDate firstDay = date.with(firstDayOfYear());
+            LocalDate lastDay = date.with(lastDayOfYear());
+            System.out.println(firstDay);
+      
+            System.out.println(lastDay);
+            if (today.isBefore(firstDay) || today.isAfter(lastDay)) {
+                        // System.out.println("test fail");
+                        find = false;
+                        
+                    }
+                    else {
+                        find = true ;
+                    }
+                    System.out.println(find);
+                }
+
+
+
+            }
+ 
+    
 //         // try { 
 
 

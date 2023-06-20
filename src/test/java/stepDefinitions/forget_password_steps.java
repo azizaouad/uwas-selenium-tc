@@ -195,7 +195,7 @@ public class forget_password_steps {
             wait.pollingEvery(Duration.ofMillis(500));            
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("user-dropdown")));
             boolean display  = this.driver.getWebDriver().findElement(By.id("user-dropdown")).isDisplayed() ;
-            System.out.println(display);
+            // System.out.println(display);
             int obtainedresult = 0 ;
             int expectedresult = 1 ;
             if (display){

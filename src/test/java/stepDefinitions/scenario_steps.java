@@ -68,7 +68,7 @@ public class scenario_steps {
             WebDriverManager.chromedriver().setup();
             /*this.driver = new ChromeDriver();
             this.driver.manage().window().maximize();*/
-            System.out.println(this.driver.getBaseUrl());
+            // System.out.println(this.driver.getBaseUrl());
             this.driver.getWebDriver().get(this.driver.getBaseUrl()+"/login");
             Thread.sleep(20);
 
@@ -246,7 +246,7 @@ public class scenario_steps {
                 boolean location = location_string.toUpperCase().equals(location_of_event.toUpperCase());
                 boolean date = eventDate.get(i).getText().equals(date_of_event);
                 boolean status = eventStatus.get(i).getText().equals("In progress");
-                System.out.println(name_string+ location_string+ date_string+ status_string);
+                // System.out.println(name_string+ location_string+ date_string+ status_string);
                 if ((name) && (date ) && (status)&& (location)) {
                     found = true;
                     break;

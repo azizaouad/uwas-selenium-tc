@@ -24,7 +24,7 @@ public class account {
 
 
     public account(Driver driver) {
-        System.out.println(System.getProperty("environment"));
+        // System.out.println(System.getProperty("environment"));
         this.driver = driver;
         this.driver.setupController();
         
@@ -39,7 +39,7 @@ public class account {
             WebDriverManager.chromedriver().setup();
             /*this.driver = new ChromeDriver();
             this.driver.manage().window().maximize();*/
-            System.out.println(this.driver.getBaseUrl());
+            // System.out.println(this.driver.getBaseUrl());
             this.driver.getWebDriver().get(this.driver.getBaseUrl()+"/login");
             Thread.sleep(10);
 
@@ -193,8 +193,8 @@ public class account {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("lastName")));
 
             String newlastname = driver.getWebDriver().findElement(By.id("lastName")).getAttribute("value");
-            System.out.println(last_name);
-            System.out.println(newlastname);
+            // System.out.println(last_name);
+            // System.out.println(newlastname);
 
             boolean change = (last_name.toUpperCase()).contentEquals(newlastname.toUpperCase());
             Assert.assertFalse(change);

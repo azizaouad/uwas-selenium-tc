@@ -25,7 +25,7 @@ Feature: test forget password functionality
 
   Scenario Outline: user forget his password and receive an email to reset it but doesn't accept the password conditions
     Given user open the website and click on forget password
-    When user write email as "uwas@qa.team"
+    When user write email as "uwas01@qa.team"
     And user confirm the email
     And user visit the mail and click on the link
     And user fill password as "<password>"

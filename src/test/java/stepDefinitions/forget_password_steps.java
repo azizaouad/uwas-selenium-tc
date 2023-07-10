@@ -192,8 +192,7 @@ public class forget_password_steps {
             this.driver.getWebDriver().findElement(By.id("email")).sendKeys(email);
             this.driver.getWebDriver().findElement(By.id("password")).sendKeys(this.new_pass);
             this.driver.getWebDriver().findElement(By.id("password")).sendKeys(Keys.ENTER);
-            wait.pollingEvery(Duration.ofMillis(500));            
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("user-dropdown")));
+            Thread.sleep(5000);
             boolean display  = this.driver.getWebDriver().findElement(By.id("user-dropdown")).isDisplayed() ;
             // System.out.println(display);
             int obtainedresult = 0 ;

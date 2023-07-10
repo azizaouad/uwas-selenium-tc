@@ -244,8 +244,8 @@ public class scenario_steps {
                 String status_string = eventStatus.get(i).getText();
                 boolean name = name_string.toUpperCase().equals(this.title.toUpperCase());
                 boolean location = location_string.toUpperCase().equals(location_of_event.toUpperCase());
-                boolean date = eventDate.get(i).getText().equals(date_of_event);
-                boolean status = eventStatus.get(i).getText().equals("In progress");
+                boolean date = date_string.equals(date_of_event);
+                boolean status = status_string.equals("In progress");
                 // System.out.println(name_string+ location_string+ date_string+ status_string);
                 if ((name) && (date ) && (status)&& (location)) {
                     found = true;

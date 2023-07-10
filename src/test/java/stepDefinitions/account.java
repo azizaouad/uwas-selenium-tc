@@ -7,6 +7,7 @@ import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 import java.time.Duration;
+import java.util.Random;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -20,17 +21,28 @@ import org.uwas.Driver;
 
 public class account {
     Driver driver;
+    String firstname ;
+    String lastname ;
    
 
 
     public account(Driver driver) {
         // System.out.println(System.getProperty("environment"));
         this.driver = driver;
+        this.firstname = addRandomCharacter("firstname");
+        this.lastname = addRandomCharacter("lastname");
         this.driver.setupController();
         
 
     }
-    
+    private String addRandomCharacter(String title) {
+    Random random = new Random();
+    char randomChar = (char) (random.nextInt(26) + 'a'); // Generate a random lowercase letter
+
+    String modifiedTitle = title + randomChar; // Append the random character to the title
+    return modifiedTitle ;
+}
+ 
 
 
     @Given("user should navigate to the website of uwas")
@@ -92,7 +104,7 @@ public class account {
         WebElement First_name = this.driver.getWebDriver().findElement(By.id("firstName"));
         First_name.sendKeys(Keys.CONTROL, "a");
         First_name.sendKeys(Keys.DELETE);
-        First_name.sendKeys(first_name);
+        First_name.sendKeys(this.firstname);
 
 
     }
@@ -118,7 +130,7 @@ public class account {
 
             String newfirstname = driver.getWebDriver().findElement(By.id("firstName")).getAttribute("value");
 
-            boolean change = (first_name.toUpperCase()).contentEquals(newfirstname.toUpperCase());
+            boolean change = (this.firstname.toUpperCase()).contentEquals(newfirstname.toUpperCase());
             Assert.assertTrue(change);
 
 
@@ -158,7 +170,7 @@ public class account {
         WebElement Lastname = this.driver.getWebDriver().findElement(By.id("lastName"));
         Lastname.sendKeys(Keys.CONTROL, "a");
         Lastname.sendKeys(Keys.DELETE);
-        Lastname.sendKeys(last_name);
+        Lastname.sendKeys(this.lastname);
     }
     @Then("last name should be changed to {string}")
     public void last_name_should_be_changed (String last_name){
@@ -171,7 +183,7 @@ public class account {
 
             String newlastname = driver.getWebDriver().findElement(By.id("lastName")).getAttribute("value");
 
-            boolean change = (last_name.toUpperCase()).contentEquals(newlastname.toUpperCase());
+            boolean change = (this.lastname.toUpperCase()).contentEquals(newlastname.toUpperCase());
             Assert.assertTrue(change);
 
 

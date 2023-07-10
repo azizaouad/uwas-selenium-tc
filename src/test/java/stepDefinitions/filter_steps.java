@@ -105,36 +105,39 @@ public class filter_steps {
     public void the_user_must_find_the_events_in_the_period_from_start_date_to_finish_date(String start_date, String finish_date) {
         try {
             Thread.sleep(3000);
+
+            int expectedresult = 1 ;
+            int obtainedresult = 0 ;
             // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             LocalDate startInterval = LocalDate.parse(start_date);
             LocalDate endInterval = LocalDate.parse(finish_date);
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
             List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
-            boolean find = false;
+            // boolean find = false;
             int no_event = eventNames.size();
             // System.out.println("number of filtred events " + no_event);
             if (no_event==0) {
-                find = true;
+                obtainedresult = 1 ;
                 System.out.println("no event in this period");
             }
             else {
                 for (int i = 0; eventNames.size() > i; i++) {
                     LocalDate date = LocalDate.parse(eventDate.get(i).getText());
-                    String names = eventNames.get(i).getText();
+                    // String names = eventNames.get(i).getText();
                     // System.out.println(names);
                     // System.out.println(date);
                     if (date.isBefore(startInterval) || date.isAfter(endInterval)) {
-                        find = false;
+                        obtainedresult = 0;
                         break;
                     }else {
-                        find = true ;
+                        obtainedresult = 1 ;
                     }
                 }
             }
 
 
      
-            Assert.assertTrue(find);
+            Assert.assertEquals(expectedresult, obtainedresult);;
             
             
 
@@ -178,23 +181,25 @@ public class filter_steps {
     public void The_user_must_find_the_events_whose_name_of_event(String name_of_event) {
         try {
             Thread.sleep(2000);
+            int expectedresult = 1 ;
+            int obtainedresult = 0 ;
 
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
-            boolean find = false;
+            // boolean find = false;
             int no_event = eventNames.size();
             System.out.println("number of filtred events " + no_event);
             if (no_event==0) {
-                find = true;
+                obtainedresult = 1;
                 System.out.println("no event with this name");
             }
             else {
                 for (int i = 0; i < eventNames.size(); i++) {
                     String Name = eventNames.get(i).getText();
-                    find = Name.toUpperCase().contains(name_of_event.toUpperCase());
+                    boolean find = Name.toUpperCase().contains(name_of_event.toUpperCase());
                     if (find) {
-                        find = true ;
+                        obtainedresult = 1 ;
                     } else {
-                        find = false;
+                        obtainedresult = 0 ;
                         break;
 
                     }
@@ -202,7 +207,7 @@ public class filter_steps {
             }
 
             
-            Assert.assertTrue(find);
+            Assert.assertEquals(expectedresult, obtainedresult);
                 // System.out.println("test pass");
          
 
@@ -231,6 +236,7 @@ public class filter_steps {
 
             wait.until(ExpectedConditions.elementToBeClickable(By.id("eventLocation")));
             this.driver.getWebDriver().findElement(By.id("eventLocation")).sendKeys(location_of_event);
+            Thread.sleep(1000);
 
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
             Thread.sleep(10);
@@ -244,34 +250,36 @@ public class filter_steps {
     public void The_user_must_find_the_events_whose_location_of_event(String location_of_event) {
         try {
             Thread.sleep(3000);
+            int expectedresult = 1 ;
+            int obtainedresult = 0 ;            
 
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
             List<WebElement> eventlocation = this.driver.getWebDriver().findElements(By.id("event-location"));
-            boolean find = false;
+            // boolean find = false;
             int no_event = eventNames.size();
             System.out.println("number of filtred events " + no_event);
             if (no_event==0) {
-                find = true;
+                obtainedresult = 1;
                 System.out.println("no event with this location");
             }
             else {
                 for (int i = 0; i < eventNames.size(); i++) {
-                    String names = eventNames.get(i).getText();
+                    // String names = eventNames.get(i).getText();
                     String location = eventlocation.get(i).getText();
-                    find = location.toUpperCase().contains(location_of_event.toUpperCase());
+                    boolean find = location.toUpperCase().contains(location_of_event.toUpperCase());
                     // System.out.println(names);
                     // System.out.println(location);
                     if (find) {
-                        find = true;
+                        obtainedresult= 1;
                     } else {
                         // System.out.println("test fail");
-                        find = false;
+                        obtainedresult = 0 ;
                         break;
 
                     }
                 }
             }
-            Assert.assertTrue(find);
+            Assert.assertEquals(expectedresult, obtainedresult);
             Thread.sleep(500);
             this.driver.getWebDriver().quit();
         } catch (InterruptedException e) {
@@ -332,32 +340,34 @@ public class filter_steps {
     public void The_user_must_find_the_events_whose_status_of_event(String status_of_event) {
         try {
             Thread.sleep(2000);
+            int expectedresult = 1 ;
+            int obtainedresult = 0 ;
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
             List<WebElement> eventstatus = this.driver.getWebDriver().findElements(By.className("ant-tag"));
-            boolean find = false;
+            // boolean find = false;
             int no_event = eventNames.size();
             System.out.println("number of filtred events " + no_event);
             if (no_event==0) {
-                find = true;
+                obtainedresult=1;
                 System.out.println("no event with this status");
             }
             else {
                 for (int i = 0; i < eventNames.size(); i++) {
-                    String names = eventNames.get(i).getText();
+                    // String names = eventNames.get(i).getText();
                     String status = eventstatus.get(i).getText();
-                    find = status.toUpperCase().contentEquals(status_of_event.toUpperCase());
+                    boolean find = status.toUpperCase().contentEquals(status_of_event.toUpperCase());
                     // System.out.println(names);
                     // System.out.println(status);
                     if (find) {
-                        find = true ;
+                        obtainedresult = 1 ; 
                     } else {
                         // System.out.println("test fail");
-                        find = false;
+                        obtainedresult = 0 ;
                         break;
                     }
                 }
             }
-            Assert.assertTrue(find);
+            Assert.assertEquals(expectedresult, obtainedresult);
             Thread.sleep(10);
             this.driver.getWebDriver().quit();
         } catch (InterruptedException e) {
@@ -368,33 +378,35 @@ public class filter_steps {
     public void The_user_must_find_the_events_whose_have_the_status_of_event(String status_of_event) {
         try {
             Thread.sleep(2000);
+            int expectedresult = 1 ;
+            int obtainedresult = 0 ;                 
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
             List<WebElement> eventstatus = this.driver.getWebDriver().findElements(By.className("ant-tag-green"));
-            boolean find = false;
+            // boolean find = false;
             
             int no_event = eventNames.size();
             System.out.println("number of filtred events " + no_event);
             if (no_event==0) {
-                find = true;
+                obtainedresult = 1 ;
                 System.out.println("no event with this status");
             }
             else {
                 for (int i = 0; i < eventNames.size(); i++) {
-                    String names = eventNames.get(i).getText();
+                    // String names = eventNames.get(i).getText();
                     String status = eventstatus.get(i).getText();
-                    find = status.toUpperCase().contentEquals(status_of_event.toUpperCase());
+                    boolean find = status.toUpperCase().contentEquals(status_of_event.toUpperCase());
                     // System.out.println(names);
                     // System.out.println(status);
                     if (find) {
-                        find = true ;
+                        obtainedresult =1  ;
                     } else {
                         // System.out.println("test fail");
-                        find = false;
+                        obtainedresult = 0;
                         break;
                     }
                 }
             }
-            Assert.assertTrue(find);
+            Assert.assertEquals(expectedresult, obtainedresult);
             Thread.sleep(10);
             this.driver.getWebDriver().quit();
         } catch (InterruptedException e) {
@@ -441,34 +453,35 @@ public class filter_steps {
     public void The_user_must_find_the_events_of_today() {
         try {
             Thread.sleep(2000);
-
+            int expectedresult = 1 ;
+            int obtainedresult = 0 ;
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
             List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
             LocalDate localDate = LocalDate.now();
-            boolean find = false;
+            // boolean find = false;
             int no_event = eventNames.size();
             System.out.println("number of filtred events " + no_event);
             if (no_event==0) {
-                find = true;
+                obtainedresult = 1;
                 System.out.println("no event today");
             }
             else {
                 for (int i = 0; i < eventNames.size(); i++) {
-                    String names =eventNames.get(i).getText();
+                    // String names =eventNames.get(i).getText();
                     String date = eventDate.get(i).getText();
-                    find = date.contentEquals(localDate.toString());
+                    boolean found = date.contentEquals(localDate.toString());
                     // System.out.println(names);
                     // System.out.println(date);
-                    if (find) {
-                        find = true ;
+                    if (found) {
+                        obtainedresult = 1 ;
                     } else {
                         // System.out.println("test fail");
-                        find = false;
+                        obtainedresult = 0 ;
                         break;
                     }
                 }
             }
-            Assert.assertTrue(find);
+            Assert.assertEquals(expectedresult, obtainedresult);
             Thread.sleep(10);
             this.driver.getWebDriver().quit();
 
@@ -512,7 +525,8 @@ public class filter_steps {
     public void The_user_must_find_the_events_of_this_week() {
         try {
             Thread.sleep(2000);
-
+            int expectedresult = 1 ;
+            int obtainedresult = 0 ;
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
             List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
             LocalDate date = LocalDate.now();
@@ -529,32 +543,32 @@ public class filter_steps {
             }
             // System.out.println("End of the Week = " + endweek);
 
-            boolean find = false;
+            // boolean find = false;
             int no_event = eventNames.size();
             System.out.println("number of filtred events " + no_event);
             if (no_event==0) {
-                find = true;
+                obtainedresult = 1 ;
                 System.out.println("no event this week");
             }
             else {
                 for (int i = 0; i < eventNames.size(); i++) {
                     String dateevent = eventDate.get(i).getText();
-                    String names = eventNames.get(i).getText();
+                    // String names = eventNames.get(i).getText();
                     // System.out.println(names);
                     // System.out.println(dateevent);
                     LocalDate today = LocalDate.parse(dateevent);
 
                     if ((today.isBefore(startweek)) || (today.isAfter(endweek))) {
                         System.out.println("test fail");
-                        find = false;
+                        obtainedresult = 0 ;
                         break;
                     }else {
-                        find = true ;
+                        obtainedresult = 1 ;
                     }
                 }
             }
 
-            Assert.assertTrue(find);
+            Assert.assertEquals(expectedresult, obtainedresult);
             Thread.sleep(100);
             this.driver.getWebDriver().quit();
 
@@ -600,20 +614,22 @@ public class filter_steps {
     public void The_user_must_find_the_events_of_this_month() {
         try {
             Thread.sleep(2000);
+            int expectedresult = 1 ;
+            int obtainedresult = 0 ;
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
             List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
             LocalDate date = LocalDate.now();
-            boolean find = false;
+            // boolean find = false;
             int no_event = eventNames.size();
             System.out.println("number of filtred events " + no_event);
             if (no_event==0) {
-                find = true;
+                obtainedresult = 1;
                 System.out.println("no event this month");
             }
             else {
                 for (int i = 0; i < eventNames.size(); i++) {
                     String dateevent = eventDate.get(i).getText();
-                    String names = eventNames.get(i).getText();
+                    // String names = eventNames.get(i).getText();
                     // System.out.println(names);
                     // System.out.println(dateevent);
                     LocalDate today = LocalDate.parse(dateevent);
@@ -621,15 +637,15 @@ public class filter_steps {
                     LocalDate lastday = LocalDate.parse(date.withDayOfMonth(date.lengthOfMonth()).toString());
                     if (today.isBefore(firstday) || today.isAfter(lastday)) {
                         // System.out.println("test fail");
-                        find = false;
+                        obtainedresult = 0 ;
                         break;
                     }
                     else {
-                        find = true ;
+                        obtainedresult = 1 ;
                     }
                 }
             }
-            Assert.assertTrue(find);
+            Assert.assertEquals(expectedresult, obtainedresult);
             Thread.sleep(10);
             this.driver.getWebDriver().quit();
 
@@ -678,20 +694,22 @@ public class filter_steps {
     public void The_user_must_find_the_events_of_this_year() {
         try {
             Thread.sleep(2000);
+            int expectedresult = 1 ;
+            int obtainedresult = 0 ;
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
             List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
             LocalDate date = LocalDate.now();
-            boolean find = false;
+            // boolean find = false;
             int no_event = eventNames.size();
             System.out.println("number of filtred events " + no_event);
             if (no_event==0) {
-                find = true;
+                obtainedresult = 1;
                 System.out.println("no event this year");
             }
             else {
                 for (int i = 0; i < eventNames.size(); i++) {
                     String dateevent = eventDate.get(i).getText();
-                    String names = eventNames.get(i).getText();
+                    // String names = eventNames.get(i).getText();
                     // System.out.println(names);
                     // System.out.println(dateevent);
                     LocalDate today = LocalDate.parse(dateevent);
@@ -699,15 +717,15 @@ public class filter_steps {
                     LocalDate lastDay = date.with(lastDayOfYear());
                     if (today.isBefore(firstDay) || today.isAfter(lastDay)) {
                         // System.out.println("test fail");
-                        find = false;
+                        obtainedresult = 0 ;
                         break;
                     }
                     else {
-                        find = true ;
+                        obtainedresult = 1 ;
                     }
                 }
             }
-            Assert.assertTrue(find);
+            Assert.assertEquals(expectedresult, obtainedresult);
             Thread.sleep(10);
             this.driver.getWebDriver().quit();
         } catch (InterruptedException e) {
@@ -757,16 +775,18 @@ public class filter_steps {
     public void The_user_must_find_the_events_whoose_name_of_event_location_of_event_status_of_event_and_the_date_of_event_today(String name_of_event, String location_of_event , String status_of_event ) {
         try {
             Thread.sleep(2000);
+            int expectedresult = 1 ;
+            int obtainedresult = 0 ;
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
             List<WebElement> eventDate = this.driver.getWebDriver().findElements(By.id("event-date"));
             List<WebElement> eventstatus = this.driver.getWebDriver().findElements(By.className("ant-tag-gold"));
             List<WebElement> eventlocation = this.driver.getWebDriver().findElements(By.id("event-location"));
             LocalDate date = LocalDate.now();
-            boolean find = false;
+            // boolean find = false;
             int no_event = eventNames.size();
             System.out.println("number of filtred events " + no_event);
             if (no_event==0) {
-                find = true;
+                obtainedresult = 1 ;
                 System.out.println("no event with this filter");
             }
             else {
@@ -784,16 +804,16 @@ public class filter_steps {
                     boolean status_boolean = status.contentEquals(status_of_event);
                     boolean location_boolean = location.contains(location_of_event);
                     if ((name_boolean) && (date_boolean) && (status_boolean) && (location_boolean)) {
-                        System.out.println("filter is okay");
-                        find = true ;
+                        // System.out.println("filter is okay");
+                        obtainedresult = 1 ; 
                     } else {
                         // System.out.println("test fail");
-                        find = false;
+                        obtainedresult = 0 ;
                         break;
                     }
                 }
             }
-            Assert.assertTrue(find);
+            Assert.assertEquals(expectedresult, obtainedresult);
             Thread.sleep(100);
             this.driver.getWebDriver().quit();
         } catch (InterruptedException e) {
@@ -818,7 +838,7 @@ public class filter_steps {
             this.driver.getWebDriver().findElement(By.id("eventFilterViewed")).click();
             Thread.sleep(1000);
             List<WebElement> evnetViewed = this.driver.getWebDriver().findElements(By.className("viewed"));
-            // System.out.println("the events viewed " + evnetViewed.size());
+            System.out.println("the events viewed " + evnetViewed.size());
 
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
             Thread.sleep(1000);
@@ -831,12 +851,13 @@ public class filter_steps {
     public void the_user_must_find_the_events_he_has_consulted (){
         try {
             Thread.sleep(2000);
+
             List<WebElement> eventNames = this.driver.getWebDriver().findElements(By.id("event-name"));
             List<WebElement> evnetViewed = this.driver.getWebDriver().findElements(By.className("viewed"));
-            System.out.println("the events viewed " + evnetViewed.size());
+            // System.out.println("the events viewed " + evnetViewed.size());
             boolean find = false;
             int no_event = eventNames.size();
-            System.out.println("number of filtred events " + no_event);
+            // System.out.println("number of filtred events " + no_event);
             if (no_event==0) {
                 find = true;
                 System.out.println("no event consulted");
@@ -871,7 +892,7 @@ public class filter_steps {
             Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("eventFilterNotViewed")).click();
             List<WebElement> evnetnotViewed = this.driver.getWebDriver().findElements(By.className("notViewed"));
-            // System.out.println("the events not viewed " + evnetnotViewed.size());  
+            System.out.println("the events not viewed " + evnetnotViewed.size());  
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
 
         } catch (InterruptedException e) {

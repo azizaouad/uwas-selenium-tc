@@ -1,14 +1,10 @@
 // package stepDefinitions;
 
-// import java.io.IOException;
-// // import java.util.List;
 
-// // import org.openqa.selenium.chrome.ChromeDriver;
-// // import org.openqa.selenium.remote.RemoteWebDriver;
+
 // import org.uwas.Driver;
 
 // import io.cucumber.java.After;
-// import io.cucumber.java.Before;
 // import io.cucumber.java.Scenario;
 
 // public class Hooks {
@@ -20,112 +16,22 @@
 //         this.driver.setupController();
 
 //     }
-
-//     @Before   
-//     public void RunBeforeAnyScenario()  {
-//         System.out.println("before");}
-// // // //         try {
-// //             // String processName = "chromedriver.exe";
-// //             // ProcessBuilder processBuilder = new ProcessBuilder("taskkill", "/F", "/IM", processName + "*");
-// //             // Process process = processBuilder.start();
-// //             // process.waitFor();
-
-// //             // System.out.println("ChromeDriver process has been terminated.");}
-// // // //         } catch (IOException | InterruptedException e) {
-// // // //             e.printStackTrace();
-// // // //         }
-       
-// // // //         //  try {
-// // // //         //     ProcessBuilder processBuilder = new ProcessBuilder("pgrep", "chromedriver");
-// // // //         //     Process process = processBuilder.start();
-// // // //         //     process.waitFor();
-
-// // // //         //     java.io.InputStream inputStream = process.getInputStream();
-// // // //         //     java.util.Scanner scanner = new java.util.Scanner(inputStream).useDelimiter("\\A");
-// // // //         //     String output = scanner.hasNext() ? scanner.next() : "";
-
-// // // //         //     String[] pids = output.split("\\r?\\n");
-
-// // // //         //     for (String pid : pids) {
-// // // //         //         Process killProcess = Runtime.getRuntime().exec("kill -9 " + pid);
-// // // //         //         killProcess.waitFor();
-// // // //         //     }
-
-// // // //         //     System.out.println("ChromeDriver processes killed successfully.");
-// // // //         // } catch (IOException | InterruptedException e) {
-// // // //         //     e.printStackTrace();
-// // // //         // }
-// // // //     }
-          
-        
-        
-        
     
-    
-    // @After
-    // public void RunAfterAnyScenario() throws IOException, InterruptedException {
-    //     System.out.println("after");
-    //          // Perform cleanup logic here
-    //     if (Scenario.isFailed()) {
+//     @After
+//     public void teardown(Scenario scenario) {
+//         // Code to execute after each scenario
+//         System.out.println("Executing teardown for scenario: " + scenario.getName());
+        
+//         // Close the chromedriver.exe process
+//         try {
+//             String os = System.getProperty("os.name").toLowerCase();
 
-    //             // Perform additional actions for failed scenarios, if needed
-    //         System.out.println("Scenario failed: " + Scenario.getName());
-    //         }
-    
-    //        driver.getWebDriver().quit();
-    //     }
-
-
-
-
-
-
-
-
-
-// // // //         try {
-// //             // String processName = "chromedriver.exe";
-// //             // ProcessBuilder processBuilder = new ProcessBuilder("taskkill", "/F", "/IM", processName + "*");
-// //             // Process process = processBuilder.start();
-// //             // process.waitFor();
-
-// //             // System.out.println("ChromeDriver process has been terminated.");
-               
-            
-
-// // // //             // // Check if ChromeDriver is open
-// // // //             // boolean isChromeDriverOpen = ((Process) driver.getWebDriver()).isAlive();
-
-// // // //             // // Output the result
-// // // //             // if (isChromeDriverOpen) {
-// // // //             //     System.out.println("ChromeDriver is open.");
-// // // //             //     driver.getWebDriver().quit();
-// // // //             // } else {
-// // // //             //     System.out.println("ChromeDriver is not open.");
-// // // //             // }
-
-// // // //                 } catch (IOException | InterruptedException e) {
-// // // //                     e.printStackTrace();
-// // // //                 }
-// // // // //         try {
-// // // // //             ProcessBuilder processBuilder = new ProcessBuilder("pgrep", "chromedriver");
-// // // // //             Process process = processBuilder.start();
-// // // // //             process.waitFor();
-
-// // // // //             java.io.InputStream inputStream = process.getInputStream();
-// // // // //             java.util.Scanner scanner = new java.util.Scanner(inputStream).useDelimiter("\\A");
-// // // // //             String output = scanner.hasNext() ? scanner.next() : "";
-
-// // // // //             String[] pids = output.split("\\r?\\n");
-
-// // // // //             for (String pid : pids) {
-// // // // //                 Process killProcess = Runtime.getRuntime().exec("kill -9 " + pid);
-// // // // //                 killProcess.waitFor();
-// // // // //             }
-
-// // // // //             System.out.println("ChromeDriver processes killed successfully.");
-// // // // //         } catch (IOException | InterruptedException e) {
-// // // // //             e.printStackTrace();
-// // // // //         }
-// //     }
-// //  }
+//             if (os.contains("win")) {
+//                 // For Windows
+//                 Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe /T");
+//             } 
+//         } catch (Exception e) {
+//             e.printStackTrace();
+//         }
+//     }
+// }

@@ -7,6 +7,8 @@
     <artifactId>CucumberQA_UWAS</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+
+
     <dependencies>
             <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-devtools-v86
         <dependency>
@@ -102,6 +104,10 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    
+
+
+
     <build>
         <testSourceDirectory>src/test/java</testSourceDirectory>
         <plugins>
@@ -115,7 +121,7 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
-            <plugin>
+            <!-- <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.0</version>
@@ -123,7 +129,7 @@
                      <parallel>methods</parallel>
                      <useUnlimitedThreads>true</useUnlimitedThreads>
                 </configuration>
-            </plugin>
+            </plugin> -->
         </plugins>
     </build>
 </project>

@@ -2,7 +2,7 @@ pipeline {
     agent any 
     stages ('compile stage') {
         steps{
-            withMaven(maven: 'maven_3_8_0'){
+            withMaven(maven: 'maven_3_8_1'){
                 sh 'mvn clean install'
             }
         }
@@ -10,8 +10,8 @@ pipeline {
     }
     stages ('test stage') {
         steps{
-            withMaven(maven: 'maven_3_8_0'){
-                sh 'mvn test'
+            withMaven(maven: 'maven_3_8_1'){
+                sh 'mvn clean test '
             }
         }
 

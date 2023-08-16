@@ -56,7 +56,7 @@ Feature: filter test
 
   Scenario: photographer can filter the events according to their names, locations, status and dates simultaneously
     Given  user should navigate to the website uwas
-    When user write email as "azizaouadi12@gmail.com" and password as "Admin123!" and click on the button of login
+    When user write email as "k@gmail.com" and password as "Admin123!" and click on the button of login
     And user click on all filters and fill the name of event as "koura" , the location of event as "tunis", and the status of event as "In progress" and the date of event today
     Then The user must find the events whoose name of event as "koura" , location of event as "tunis", status of event as "In progress" and the date of event today
  

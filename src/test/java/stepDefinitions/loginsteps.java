@@ -1,6 +1,5 @@
 package stepDefinitions;
 
-
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -10,6 +9,7 @@ import java.time.Duration;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.uwas.Driver;
@@ -27,7 +27,6 @@ public class loginsteps {
         this.driver.setupController();
 
     }
-
 
     @Given("user should navigate to the website")
     public void user_should_navigate_to_the_website() {
@@ -69,18 +68,18 @@ public class loginsteps {
 
             new WebDriverWait(driver.getWebDriver(), Duration.ofSeconds(15))
                     .until(ExpectedConditions.visibilityOfElementLocated(By.id("user-dropdown")));
-            
-            int resultobtained = 0  ;
-            int expectedresult = 1 ;
+
+            int resultobtained = 0;
+            int expectedresult = 1;
 
             String current_url = this.driver.getWebDriver().getCurrentUrl();
             if (current_url.contentEquals("https://recette.uwas.fr/login")) {
-            
+
                 // System.out.println("test fail");
-                resultobtained = 0 ; 
+                resultobtained = 0;
             } else {
-            
-                resultobtained = 1 ;
+
+                resultobtained = 1;
             }
             // System.out.println(resultobtained);
             Assert.assertEquals(expectedresult, resultobtained);

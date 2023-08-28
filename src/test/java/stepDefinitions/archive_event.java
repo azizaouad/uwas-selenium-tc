@@ -235,6 +235,8 @@ public class archive_event {
             // this.driver.getWebDriver().findElements(By.className("ant-tag"));
             LocalDate localDate = LocalDate.now();
             if (eventNames.size() == 0) {
+                System.out.println("no event for restore ");
+
                 obtainedresult = 1;
             } else {
                 for (int i = 0; i < eventNames.size(); i++) {
@@ -243,11 +245,13 @@ public class archive_event {
                     boolean name = name_string.toUpperCase().equals(randomName.toUpperCase());
                     boolean date = date_string.equals(localDate.toString());
                     if ((name) && (date)) {
-                        obtainedresult = 1;
+                        obtainedresult = 0;
+                        // System.out.println("succes");
                         // System.out.println(name_string);
                         break;
                     } else {
-                        obtainedresult = 0;
+                        obtainedresult = 1;
+                        // System.out.println("fail");
 
                     }
                 }

@@ -22,15 +22,15 @@ qa_test:
   before_script:
     - google-chrome --headless --disable-gpu --print-to-pdf https://www.chromestatus.com/ --no-sandbox
   script:
-<<<<<<< HEAD
+    # <<<<<<< HEAD
     # - mvn clean test -Dtest=RunCucumberTest
     - mvn clean -Denvironment=$QA_ENVIRONMENT -DwebDriver=$WEB_DRIVER test
     # - mvn clean test
-=======
+    # =======
     #   - mvn clean test -Dtest=RunCucumberTest
     #- mvn clean -Denvironment=$QA_ENVIRONMENT -DwebDriver=$WEB_DRIVER test
     - mvn clean test
->>>>>>> a4e23c411b4e32e98a3af29d05e7aa2bf2e1afa1
+  # >>>>>>> a4e23c411b4e32e98a3af29d05e7aa2bf2e1afa1
   after_script:
     - ps aux | grep chrome | awk ' { print $2 } ' | xargs kill -9 || true
   artifacts:

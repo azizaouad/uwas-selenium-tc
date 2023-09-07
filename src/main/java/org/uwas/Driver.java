@@ -13,11 +13,11 @@ import org.slf4j.LoggerFactory;
 public class Driver {
     private WebDriver webDriver;
     private String baseUrl;
-    // <<<<<<< HEAD
+    // if you want to work local
     // private String chromeDriverPath = "src/main/java/org/uwas/chromedriver.exe";
-    // =======
 
-    private String chromeDriverPath = "chromedriver";
+    // if you want to push to gitlab
+    private String chromeDriverPath = "/root/chromedriver/chromedriver";
 
     final Logger logger = LoggerFactory.getLogger(Driver.class);
 

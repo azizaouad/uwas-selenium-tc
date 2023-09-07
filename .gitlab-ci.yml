@@ -22,9 +22,9 @@ qa_test:
   before_script:
     - google-chrome-stable --headless --disable-gpu --print-to-pdf https://www.chromestatus.com/ --no-sandbox
   script:
-    - mvn clean test -Dtest=RunCucumberTest
-      # - mvn clean -Denvironment=$QA_ENVIRONMENT -DwebDriver=$WEB_DRIVER test
-      # - mvn clean test
+    # - mvn clean test -Dtest=RunCucumberTest
+    - mvn clean -Denvironment=$QA_ENVIRONMENT -DwebDriver=$WEB_DRIVER test
+    # - mvn clean test
   after_script:
     - ps aux | grep chrome | awk ' { print $2 } ' | xargs kill -9 || true
   artifacts:

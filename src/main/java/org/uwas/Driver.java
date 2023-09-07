@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 public class Driver {
     private WebDriver webDriver;
     private String baseUrl;
-    private String chromeDriverPath = "/usr/bin/google-chrome-stable";
+    private String chromeDriverPath = "src/main/java/org/uwas/chromedriver.exe";
 
     final Logger logger = LoggerFactory.getLogger(Driver.class);
 

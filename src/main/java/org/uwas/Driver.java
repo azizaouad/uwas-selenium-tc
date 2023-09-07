@@ -16,7 +16,7 @@ public class Driver {
     // <<<<<<< HEAD
     // private String chromeDriverPath = "src/main/java/org/uwas/chromedriver.exe";
     // =======
-    private String chromeDriverPath = "src/test/java/chromedriver.exe";
+    private String chromeDriverPath = "/root/chromedriver";
 
     final Logger logger = LoggerFactory.getLogger(Driver.class);
 

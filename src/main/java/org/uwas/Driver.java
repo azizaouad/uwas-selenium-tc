@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 public class Driver {
     private WebDriver webDriver;
     private String baseUrl;
-    private String chromeDriverPath = "C://Users/Lenovo/Downloads/chromedriver-win64/chromedriver-win64/chromedriver.exe";
+    private String chromeDriverPath = "chromedriver.exe";
 
     final Logger logger = LoggerFactory.getLogger(Driver.class);
 

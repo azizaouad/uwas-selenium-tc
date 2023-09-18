@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Random;
 
+// import org.apache.commons.io.filefilter.WildcardFileFilter;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -49,14 +50,18 @@ public class edit_event {
         return modifiedTitle;
     }
 
+    private void waitForVisibilityOfElement(By locator) {
+        WebDriverWait wait = new WebDriverWait(driver.getWebDriver(), Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
     @Given("photographer should log-in")
     public void photographer_should_log_in() {
         try {
 
             this.driver.getWebDriver().get(this.driver.getBaseUrl() + "/login");
-            WebDriverWait wait = new WebDriverWait(driver.getWebDriver(), Duration.ofSeconds(15));
-            wait.pollingEvery(Duration.ofMillis(500));
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
+            waitForVisibilityOfElement(By.id("email"));
+
             this.driver.getWebDriver().findElement(By.id("email")).sendKeys("azizaouadi12@gmail.com");
             Thread.sleep(10);
             this.driver.getWebDriver().findElement(By.id("password")).sendKeys("Admin123!");
@@ -73,14 +78,13 @@ public class edit_event {
     public void photographer_should_click_on_the_button_of_add_event() {
         try {
             Thread.sleep(4000);
-            WebDriverWait wait = new WebDriverWait(driver.getWebDriver(), Duration.ofSeconds(15));
-            wait.pollingEvery(Duration.ofMillis(500));
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("dropdown-event-link")));
+            waitForVisibilityOfElement(By.id("dropdown-event-link"));
+
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
             Thread.sleep(500);
-            wait.pollingEvery(Duration.ofMillis(500));
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("event-add")));
+            waitForVisibilityOfElement(By.id("event-add"));
+
             this.driver.getWebDriver().findElement(By.id("event-add")).click();
 
         } catch (InterruptedException e) {
@@ -100,11 +104,8 @@ public class edit_event {
 
             // // Switch back to the main window
             // this.driver.getWebDriver().switchTo().window(currentWindowHandle);
-            WebDriverWait wait = new WebDriverWait(driver.getWebDriver(), Duration.ofSeconds(5));
-            wait.pollingEvery(Duration.ofMillis(500));
+            waitForVisibilityOfElement(By.id("event-title"));
 
-            // new WebDriverWait(driver.getWebDriver(),Duration.ofSeconds(5))
-            wait.until(ExpectedConditions.presenceOfElementLocated(By.id("event-title")));
             WebElement event = this.driver.getWebDriver().findElement(By.id("event-title"));
             event.sendKeys(this.title);
 
@@ -152,18 +153,16 @@ public class edit_event {
 
     @And("photographer choose edit")
     public void choose_edit() {
-        WebDriverWait wait = new WebDriverWait(driver.getWebDriver(), Duration.ofSeconds(15));
-        wait.pollingEvery(Duration.ofMillis(500));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("testEdit")));
+        waitForVisibilityOfElement(By.id("testEdit"));
+
         this.driver.getWebDriver().findElement(By.id("testEdit")).click();
         ;
     }
 
     @And("photographer should change the title of event as {string}")
     public void change_name_of_event(String newname) {
-        WebDriverWait wait = new WebDriverWait(driver.getWebDriver(), Duration.ofSeconds(15));
-        wait.pollingEvery(Duration.ofMillis(500));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("event-title")));
+        waitForVisibilityOfElement(By.id("event-title"));
+
         WebElement titles = this.driver.getWebDriver().findElement(By.id("event-title"));
         titles.sendKeys(Keys.CONTROL, "a");
         titles.sendKeys(Keys.DELETE);

@@ -36,6 +36,11 @@ public class filter_steps {
         this.driver.setupController();
     }
 
+    private void waitForVisibilityOfElement(By locator) {
+        WebDriverWait wait = new WebDriverWait(driver.getWebDriver(), Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
     @Given("user should navigate to the website uwas")
     public void user_should_navigate_to_the_website_uwas() {
         try {
@@ -56,9 +61,7 @@ public class filter_steps {
     @When("user write email as {string} and password as {string} and click on the button of login")
     public void user_write_email_and_password_and_click_on_the_button_of_login(String email, String password) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver.getWebDriver(), Duration.ofSeconds(15));
-            wait.pollingEvery(Duration.ofMillis(500));
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
+            waitForVisibilityOfElement(By.id("email"));
 
             this.driver.getWebDriver().findElement(By.id("email")).sendKeys(email);
 
@@ -75,20 +78,16 @@ public class filter_steps {
     public void user_click_on_all_filters_and_should_choose_the_start_date_and_the_finish_date(String star_date,
             String finish_date) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver.getWebDriver(), Duration.ofSeconds(15));
-            wait.pollingEvery(Duration.ofMillis(500));
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
+
+            waitForVisibilityOfElement(By.id("dropdown-event-link"));
 
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
-            wait.pollingEvery(Duration.ofMillis(500));
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("event-filtre")));
+            waitForVisibilityOfElement(By.id("event-filtre"));
             this.driver.getWebDriver().findElement(By.id("event-filtre")).click();
-            Thread.sleep(10);
-            wait.pollingEvery(Duration.ofMillis(500));
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("eventDateFilter")));
-            this.driver.getWebDriver().findElement(By.id("eventDateFilter")).sendKeys(star_date);
-            Thread.sleep(10);
+            Thread.sleep(1000);
+            this.driver.getWebDriver().findElement(By.xpath("//input[@id='eventDateFilter']")).sendKeys(star_date);
+            Thread.sleep(1000);
             this.driver.getWebDriver()
                     .findElement(
                             By.xpath("/html/body/div[3]/div/div[3]/div/div/div[2]/form/div/div[3]/div/div[3]/input"))
@@ -96,13 +95,11 @@ public class filter_steps {
             Thread.sleep(10);
             this.driver.getWebDriver()
                     .findElement(
-                            By.xpath("/html/body/div[3]/div/div[3]/div/div/div[2]/form/div/div[3]/div/div[3]/input"))
+                            By.xpath("//input[@id='eventDateFilter']"))
                     .sendKeys(Keys.ENTER);
             Thread.sleep(10);
             this.driver.getWebDriver().findElement(By.id("eventDateFilterOK")).click();
             Thread.sleep(10);
-            wait.pollingEvery(Duration.ofMillis(500));
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("eventFilterEventsBTN")));
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
             Thread.sleep(10);
 
@@ -160,22 +157,17 @@ public class filter_steps {
     @And("user click on all filters and should write the name of event as {string}")
     public void user_click_on_all_filters_and_should_write_the_name_of_event(String name_of_event) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver.getWebDriver(), Duration.ofSeconds(15));
-            wait.pollingEvery(Duration.ofMillis(500));
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
+
+            waitForVisibilityOfElement(By.id("dropdown-event-link"));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
-            wait.pollingEvery(Duration.ofMillis(500));
 
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("event-filtre")));
+            waitForVisibilityOfElement(By.id("event-filtre"));
             this.driver.getWebDriver().findElement(By.id("event-filtre")).click();
-            wait.pollingEvery(Duration.ofMillis(500));
 
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("eventName")));
+            waitForVisibilityOfElement(By.id("eventName"));
             this.driver.getWebDriver().findElement(By.id("eventName")).sendKeys(name_of_event);
-            wait.pollingEvery(Duration.ofMillis(500));
 
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("eventFilterEventsBTN")));
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
             Thread.sleep(10);
 
@@ -225,20 +217,16 @@ public class filter_steps {
     @And("user click on all filters and should write the location of event as {string}")
     public void user_click_on_all_filters_and_should_write_the_location_of_event(String location_of_event) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver.getWebDriver(), Duration.ofSeconds(15));
 
-            wait.pollingEvery(Duration.ofMillis(500));
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
+            waitForVisibilityOfElement(By.id("dropdown-event-link"));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
-            wait.pollingEvery(Duration.ofMillis(500));
 
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("event-filtre")));
+            waitForVisibilityOfElement(By.id("event-filtre"));
             this.driver.getWebDriver().findElement(By.id("event-filtre")).click();
             Thread.sleep(20);
-            wait.pollingEvery(Duration.ofMillis(500));
 
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("eventLocation")));
+            waitForVisibilityOfElement(By.id("eventLocation"));
             this.driver.getWebDriver().findElement(By.id("eventLocation")).sendKeys(location_of_event);
             Thread.sleep(1000);
 
@@ -293,15 +281,12 @@ public class filter_steps {
     @And("user click on all filters and should write the status of event")
     public void user_click_on_all_filters_and_should_write_the_status_of_event() {
         try {
-            WebDriverWait wait = new WebDriverWait(driver.getWebDriver(), Duration.ofSeconds(15));
 
-            wait.pollingEvery(Duration.ofMillis(500));
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
+            waitForVisibilityOfElement(By.id("dropdown-event-link"));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
-            wait.pollingEvery(Duration.ofMillis(500));
 
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("event-filtre")));
+            waitForVisibilityOfElement(By.id("event-filtre"));
             this.driver.getWebDriver().findElement(By.id("event-filtre")).click();
             Thread.sleep(1000);
 
@@ -319,14 +304,11 @@ public class filter_steps {
     @And("user click on all filters and should write the status of the event")
     public void user_click_on_all_filters_and_should_write_the_status_of_the_event() {
         try {
-            WebDriverWait wait = new WebDriverWait(driver.getWebDriver(), Duration.ofSeconds(15));
-
-            wait.pollingEvery(Duration.ofMillis(500));
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
+            waitForVisibilityOfElement(By.id("dropdown-event-link"));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
-            wait.pollingEvery(Duration.ofMillis(500));
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("event-filtre")));
+
+            waitForVisibilityOfElement(By.id("event-filtre"));
             this.driver.getWebDriver().findElement(By.id("event-filtre")).click();
             Thread.sleep(1000);
 
@@ -420,29 +402,25 @@ public class filter_steps {
     @And("user click on all filters and should click on today")
     public void user_click_on_all_filters_and_should_click_on_today() {
         try {
-            WebDriverWait wait = new WebDriverWait(driver.getWebDriver(), Duration.ofSeconds(15));
-
-            wait.pollingEvery(Duration.ofMillis(500));
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
+            waitForVisibilityOfElement(By.id("dropdown-event-link"));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
-            wait.pollingEvery(Duration.ofMillis(500));
 
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("event-filtre")));
+            waitForVisibilityOfElement(By.id("event-filtre"));
             this.driver.getWebDriver().findElement(By.id("event-filtre")).click();
-            wait.pollingEvery(Duration.ofMillis(500));
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("eventDateFilter")));
-            this.driver.getWebDriver().findElement(By.id("eventDateFilter")).click();
-            wait.pollingEvery(Duration.ofMillis(500));
+            Thread.sleep(1000);
 
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("test_Today")));
+            waitForVisibilityOfElement(By.id("eventDateFilter"));
+            this.driver.getWebDriver().findElement(By.id("eventDateFilter")).click();
+
+            waitForVisibilityOfElement(By.id("test_Today"));
             this.driver.getWebDriver().findElement(By.id("test_Today")).click();
-            wait.pollingEvery(Duration.ofMillis(500));
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("eventDateFilterOK")));
+
+            waitForVisibilityOfElement(By.id("eventDateFilterOK"));
             this.driver.getWebDriver().findElement(By.id("eventDateFilterOK")).click();
             Thread.sleep(10);
-            wait.pollingEvery(Duration.ofMillis(500));
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("eventFilterEventsBTN")));
+
+            waitForVisibilityOfElement(By.id("eventFilterEventsBTN"));
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
             Thread.sleep(10);
 
@@ -494,25 +472,22 @@ public class filter_steps {
     @And("user click on all filters and should click on this week")
     public void user_click_on_all_filters_and_should_click_on_this_week() {
         try {
-            WebDriverWait wait = new WebDriverWait(driver.getWebDriver(), Duration.ofSeconds(15));
-
-            wait.pollingEvery(Duration.ofMillis(500));
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
+            waitForVisibilityOfElement(By.id("dropdown-event-link"));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
-            wait.pollingEvery(Duration.ofMillis(500));
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("event-filtre")));
+
+            waitForVisibilityOfElement(By.id("event-filtre"));
             this.driver.getWebDriver().findElement(By.id("event-filtre")).click();
-            wait.pollingEvery(Duration.ofMillis(500));
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("eventDateFilter")));
+            Thread.sleep(1000);
+
+            waitForVisibilityOfElement(By.id("eventDateFilter"));
             this.driver.getWebDriver().findElement(By.id("eventDateFilter")).click();
             Thread.sleep(1000);
 
             this.driver.getWebDriver().findElement(By.id("test_This Week")).click();
 
             this.driver.getWebDriver().findElement(By.id("eventDateFilterOK")).click();
-            wait.pollingEvery(Duration.ofMillis(500));
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("eventFilterEventsBTN")));
+            waitForVisibilityOfElement(By.id("eventFilterEventsBTN"));
             this.driver.getWebDriver().findElement(By.id("eventFilterEventsBTN")).click();
             Thread.sleep(10);
 
@@ -579,21 +554,18 @@ public class filter_steps {
     @And("user click on all filters and should click on this month")
     public void user_click_on_all_filters_and_should_click_on_this_month() {
         try {
-            WebDriverWait wait = new WebDriverWait(driver.getWebDriver(), Duration.ofSeconds(15));
-
-            wait.pollingEvery(Duration.ofMillis(500));
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
+            waitForVisibilityOfElement(By.id("dropdown-event-link"));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
-            wait.pollingEvery(Duration.ofMillis(500));
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("event-filtre")));
+
+            waitForVisibilityOfElement(By.id("event-filtre"));
             this.driver.getWebDriver().findElement(By.id("event-filtre")).click();
-            wait.pollingEvery(Duration.ofMillis(500));
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("eventDateFilter")));
+            Thread.sleep(1000);
+
+            waitForVisibilityOfElement(By.id("eventDateFilter"));
             this.driver.getWebDriver().findElement(By.id("eventDateFilter")).click();
             // Thread.sleep(1000);
-            wait.pollingEvery(Duration.ofMillis(500));
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("test_This Month")));
+            waitForVisibilityOfElement(By.id("test_This Month"));
             this.driver.getWebDriver().findElement(By.id("test_This Month")).click();
             // Thread.sleep(1000);
 
@@ -654,23 +626,18 @@ public class filter_steps {
     @And("user click on all filters and should click on this year")
     public void user_click_on_all_filters_and_should_click_on_this_year() {
         try {
-            WebDriverWait wait = new WebDriverWait(driver.getWebDriver(), Duration.ofSeconds(15));
-
-            wait.pollingEvery(Duration.ofMillis(500));
-
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
+            waitForVisibilityOfElement(By.id("dropdown-event-link"));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
-            wait.pollingEvery(Duration.ofMillis(500));
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("event-filtre")));
+
+            waitForVisibilityOfElement(By.id("event-filtre"));
             this.driver.getWebDriver().findElement(By.id("event-filtre")).click();
-            // Thread.sleep(2000);
-            wait.pollingEvery(Duration.ofMillis(500));
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("eventDateFilter")));
+            Thread.sleep(1000);
+
+            waitForVisibilityOfElement(By.id("eventDateFilter"));
             this.driver.getWebDriver().findElement(By.id("eventDateFilter")).click();
             // Thread.sleep(1000);
-            wait.pollingEvery(Duration.ofMillis(500));
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("test_This Year")));
+            waitForVisibilityOfElement(By.id("test_This Year"));
             this.driver.getWebDriver().findElement(By.id("test_This Year")).click();
 
             this.driver.getWebDriver().findElement(By.id("eventDateFilterOK")).click();
@@ -730,18 +697,15 @@ public class filter_steps {
     public void user_click_on_all_filters_and_fill_the_name_of_event_the_location_of_event_and_the_status_of_event_and_the_date_of_event_today(
             String name_of_event, String location_of_event, String status_of_event) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver.getWebDriver(), Duration.ofSeconds(10));
-
-            wait.pollingEvery(Duration.ofMillis(500));
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
+            waitForVisibilityOfElement(By.id("dropdown-event-link"));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
-            wait.pollingEvery(Duration.ofMillis(500));
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("event-filtre")));
+
+            waitForVisibilityOfElement(By.id("event-filtre"));
             this.driver.getWebDriver().findElement(By.id("event-filtre")).click();
-            // Thread.sleep(2000);
-            wait.pollingEvery(Duration.ofMillis(500));
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("eventName")));
+            Thread.sleep(1000);
+
+            waitForVisibilityOfElement(By.id("eventName"));
             this.driver.getWebDriver().findElement(By.id("eventName")).sendKeys(name_of_event);
             // Thread.sleep(1000);
             this.driver.getWebDriver().findElement(By.id("eventLocation")).sendKeys(location_of_event);
@@ -751,8 +715,7 @@ public class filter_steps {
 
             this.driver.getWebDriver().findElement(By.id("eventDateFilter")).click();
             // Thread.sleep(1000);
-            wait.pollingEvery(Duration.ofMillis(500));
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("test_Today")));
+            waitForVisibilityOfElement(By.id("test_Today"));
             this.driver.getWebDriver().findElement(By.id("test_Today")).click();
             // Thread.sleep(1000);
 
@@ -821,10 +784,7 @@ public class filter_steps {
     public void user_click_on_all_filters_and_should_click_on_viewed_events() {
         try {
 
-            WebDriverWait wait = new WebDriverWait(driver.getWebDriver(), Duration.ofSeconds(15));
-            wait.pollingEvery(Duration.ofMillis(500));
-
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
+            waitForVisibilityOfElement(By.id("dropdown-event-link"));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
             Thread.sleep(1000);
@@ -877,10 +837,7 @@ public class filter_steps {
     @And("user click on all filters and should click on not viewed events")
     public void user_click_on_all_filters_and_should_click_on_not_viewed_events() {
         try {
-            WebDriverWait wait = new WebDriverWait(driver.getWebDriver(), Duration.ofSeconds(15));
-            wait.pollingEvery(Duration.ofMillis(500));
-
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("dropdown-event-link")));
+            waitForVisibilityOfElement(By.id("dropdown-event-link"));
             WebElement drp = this.driver.getWebDriver().findElement(By.id("dropdown-event-link"));
             drp.click();
             Thread.sleep(1000);

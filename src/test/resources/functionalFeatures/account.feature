@@ -62,8 +62,8 @@ Feature: test fields validation
 
   Examples:
   | actuel_password | new_password  | confirm_password |
-  | Admin123!!      | Admin123!     | Admin123!        |
   | Admin123!       | Admin123!!    | Admin123!!       |
+  | Admin123!!      | Admin123!     | Admin123!        |
 
 
 Scenario: user want to edit his password with filling miss actuel password

@@ -14,10 +14,10 @@ public class Driver {
     private WebDriver webDriver;
     private String baseUrl;
     // if you want to work local
-    private String chromeDriverPath = "chromedriver.exe";
+    // private String chromeDriverPath = "chromedriver.exe";
 
     // if you want to push to gitlab
-    // private String chromeDriverPath = "/root/chromedriver/chromedriver";
+    private String chromeDriverPath = "/root/chromedriver/chromedriver";
 
     final Logger logger = LoggerFactory.getLogger(Driver.class);
 

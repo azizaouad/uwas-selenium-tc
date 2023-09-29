@@ -4,9 +4,9 @@ Feature: test fields validation
     Given  user should navigate to the website of uwas
     When user fill email as "azizaouadi12@gmail.com" and password as "Admin123!" and click on the button of login
     And user should click on account
-    And user edit his first name "testeur"
+    And user edit his first name 
     And user click on edit button
-    Then first name should be changed to "testeur"
+    Then first name should be changed 
 
   Scenario Outline: user fill the first name fields without respecting the conditions of this field
     Given  user should navigate to the website of uwas
@@ -28,9 +28,9 @@ Feature: test fields validation
     Given  user should navigate to the website of uwas
     When user fill email as "azizaouadi12@gmail.com" and password as "Admin123!" and click on the button of login
     And user should click on account
-    And user edit his last name "testeur"
+    And user edit his last name
     And user click on edit button
-    Then last name should be changed to "testeur"
+    Then last name should be changed
 
   Scenario Outline: user fill the last name fields without respecting the conditions of this field
     Given  user should navigate to the website of uwas
@@ -62,8 +62,8 @@ Feature: test fields validation
 
   Examples:
   | actuel_password | new_password  | confirm_password |
-  | Admin123!       | Admin123!!    | Admin123!!       |
   | Admin123!!      | Admin123!     | Admin123!        |
+  | Admin123!       | Admin123!!    | Admin123!!       |
 
 
 Scenario: user want to edit his password with filling miss actuel password

@@ -36,6 +36,11 @@ public class account {
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
+    private void waitForElementToBeClickable(By locator) {
+        WebDriverWait wait = new WebDriverWait(driver.getWebDriver(), Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
     private String addRandomCharacter(String title) {
         Random random = new Random();
         char randomChar = (char) (random.nextInt(26) + 'a'); // Generate a random lowercase letter
@@ -93,14 +98,23 @@ public class account {
         }
     }
 
-    @And("user edit his first name {string}")
-    public void user_edit_his_first_name(String first_name) {
+    @And("user edit his first name")
+    public void user_edit_his_first_name() {
         waitForVisibilityOfElement(By.id("firstName"));
         WebElement First_name = this.driver.getWebDriver().findElement(By.id("firstName"));
         First_name.sendKeys(Keys.CONTROL, "a");
         First_name.sendKeys(Keys.DELETE);
         First_name.sendKeys(this.firstname);
 
+    }
+
+    @And("user edit his first name {string}")
+    public void user_edit_his_first_name(String first_name) {
+        waitForVisibilityOfElement(By.id("firstName"));
+        WebElement First_name = this.driver.getWebDriver().findElement(By.id("firstName"));
+        First_name.sendKeys(Keys.CONTROL, "a");
+        First_name.sendKeys(Keys.DELETE);
+        First_name.sendKeys(first_name);
     }
 
     @And("user click on edit button")
@@ -115,8 +129,8 @@ public class account {
         }
     }
 
-    @Then("first name should be changed to {string}")
-    public void first_name_should_be_changed(String first_name) {
+    @Then("first name should be changed")
+    public void first_name_should_be_changed() {
         try {
             this.driver.getWebDriver().navigate().refresh();
             Thread.sleep(20);
@@ -154,8 +168,8 @@ public class account {
         }
     }
 
-    @And("user edit his last name {string}")
-    public void user_edit_his_last_name(String last_name) {
+    @And("user edit his last name")
+    public void user_edit_his_last_name() {
 
         waitForVisibilityOfElement(By.id("lastName"));
 
@@ -165,8 +179,8 @@ public class account {
         Lastname.sendKeys(this.lastname);
     }
 
-    @Then("last name should be changed to {string}")
-    public void last_name_should_be_changed(String last_name) {
+    @Then("last name should be changed")
+    public void last_name_should_be_changed() {
         try {
             this.driver.getWebDriver().navigate().refresh();
             Thread.sleep(20);
@@ -182,6 +196,17 @@ public class account {
             throw new RuntimeException(e);
         }
 
+    }
+
+    @And("user edit his last name {string}")
+    public void user_edit_his_last_name(String last_name) {
+
+        waitForVisibilityOfElement(By.id("lastName"));
+
+        WebElement Lastname = this.driver.getWebDriver().findElement(By.id("lastName"));
+        Lastname.sendKeys(Keys.CONTROL, "a");
+        Lastname.sendKeys(Keys.DELETE);
+        Lastname.sendKeys(last_name);
     }
 
     @Then("the last name does not change to {string}")
@@ -200,7 +225,6 @@ public class account {
             Assert.assertFalse(change);
             this.driver.getWebDriver().quit();
 
-            this.driver.getWebDriver().quit();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -246,8 +270,8 @@ public class account {
     @And("user logout")
     public void user_logout() {
         try {
-            Thread.sleep(6000);
-            waitForVisibilityOfElement(By.id("user-dropdown"));
+            Thread.sleep(10000);
+            waitForElementToBeClickable(By.id("user-dropdown"));
             this.driver.getWebDriver().findElement(By.id("user-dropdown")).click();
             this.driver.getWebDriver().findElement(By.id("testLogout")).click();
             Thread.sleep(60);

@@ -93,7 +93,7 @@ public class forget_password_steps {
             Thread.sleep(40);
             this.driver.getWebDriver().navigate()
                     .to("https://qa.team/inbox?utf8=%E2%9C%93&code=uwas01&locale=en&commit=go+%C2%BB");
-            Thread.sleep(3000);
+            Thread.sleep(5000);
             this.driver.getWebDriver().navigate().refresh();
 
             this.driver.getWebDriver().findElement(By.className("list-group-item")).click();

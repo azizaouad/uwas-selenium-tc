@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
                 "html:target/reports/report.html", "json:target/reports/report.json" }
 
 )
+
 public class TestRunner {
 
 }

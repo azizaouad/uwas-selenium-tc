@@ -83,10 +83,10 @@ public class Base {
         // System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         System.setProperty("webdriver.chrome.driver", "/root/chromedriver/chromedriver");
         ChromeOptions options = new ChromeOptions();
-        // options.addArguments("headless");
-        // options.addArguments("no-sandbox");
-        // // options.addArguments("start-maximized");
-        // options.addArguments("--window-size=1920,1080");
+        options.addArguments("headless");
+        options.addArguments("no-sandbox");
+        // options.addArguments("start-maximized");
+        options.addArguments("--window-size=1920,1080");
 
         options.addArguments("--remote-allow-origins=*");
 

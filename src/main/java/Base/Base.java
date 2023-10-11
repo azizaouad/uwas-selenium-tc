@@ -8,21 +8,15 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.util.Properties;
 import java.util.Random;
-// import java.util.Scanner;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-// import org.openqa.selenium.edge.EdgeDriver;
-// import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
-// import net.bytebuddy.implementation.bytecode.Throw;
 
 public class Base {
 
@@ -86,7 +80,8 @@ public class Base {
 
     public static void initializeChromeDriver() {
         WebDriverManager.chromedriver().setup();
-        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+        // System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "/root/chromedriver/chromedriver");
         ChromeOptions options = new ChromeOptions();
         // options.addArguments("headless");
         // options.addArguments("no-sandbox");
@@ -94,10 +89,10 @@ public class Base {
         // options.addArguments("--window-size=1920,1080");
 
         options.addArguments("--remote-allow-origins=*");
-        // WebDriverManager.chromedriver().setup();
+
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
-        // System.out.println(props.getProperty("url"));
+
         driver.get(props.getProperty("url"));
         // driver.findElement(By.id("details-button")).click();
         // waitForVisibilityOfElement(By.linkText("Continuer vers le site www.uwas.fr
@@ -110,7 +105,7 @@ public class Base {
     private static void initializeFirefoxDriver() {
         WebDriverManager.firefoxdriver().setup();
         FirefoxOptions options = new FirefoxOptions();
-        // options.setHeadless(true);
+        options.setHeadless(true);
         driver = new FirefoxDriver(options);
         driver.manage().window().maximize();
         driver.get(props.getProperty("url"));

@@ -16,10 +16,10 @@ Feature: test fields validation
     Examples:
     | first_name |
     | 3li        |
-    # | @li        |
-    # | @3la       |
-    # |            |
-    # | li         |
+  #   # | @li        |
+  #   # | @3la       |
+  #   # |            |
+  #   # | li         |
   @scenarioAvecAccount
 
   Scenario: user want to edit his last name
@@ -38,10 +38,10 @@ Feature: test fields validation
     Examples:
       | last_name  |
       | 3li        |
-      # | @li        |
-      # | @3la       |
-      # |            |
-      # | li         |
+  #     | @li        |
+  #     | @3la       |
+  #     |            |
+  #     | li         |
 
   Scenario Outline: user want to edit his password
 
@@ -51,7 +51,7 @@ Feature: test fields validation
     And user confirm password "<confirm_password>" 
     And user click on confirm button
     And user logout
-    Then user can connect with new credentials email "azizaouadi12@gmail.com" and password "<new_password>"
+    Then user can connect with new credentials email and password "<new_password>"
 
   Examples:
   | actuel_password | new_password  | confirm_password |
@@ -83,12 +83,12 @@ Scenario Outline: user want to edit his password without accept validation crite
     Examples:  
     | new_password| confirm_password  |
     | admin6542!  | admin6542!        |
-    # | Edmin65412  | Edmi65412         |
-    # | ADMIN6542!  | ADMIN6542!        |
-    # | ADMINadmi!  | ADMINadmi!        |
-    # | Admin1!     | Admin1!           |
-    # | Admin1!     | Admin123!         |
-    # | Admin123!   | Admin123456!      |
-    # |             | Admin123!         |
-    # | Admin123!   |                   |
-    # |             |                   |
+#     | Edmin65412  | Edmi65412         |
+#     | ADMIN6542!  | ADMIN6542!        |
+#     | ADMINadmi!  | ADMINadmi!        |
+#     | Admin1!     | Admin1!           |
+#     | Admin1!     | Admin123!         |
+#     | Admin123!   | Admin123456!      |
+#     |             | Admin123!         |
+#     | Admin123!   |                   |
+#     |             |                   |

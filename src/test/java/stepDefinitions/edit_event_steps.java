@@ -1,4 +1,4 @@
-package StepDefinitions;
+package stepDefinitions;
 
 import java.time.LocalDate;
 import java.util.List;

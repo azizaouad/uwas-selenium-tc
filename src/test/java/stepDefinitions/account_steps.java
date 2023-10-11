@@ -1,4 +1,4 @@
-package StepDefinitions;
+package stepDefinitions;
 
 import java.util.Random;
 
@@ -6,15 +6,12 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-// import org.openqa.selenium.support.ui.ExpectedConditions;
-// import org.openqa.selenium.support.ui.WebDriverWait;
 
 import Base.Base;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-// import io.cucumber.java.lu.an;
 
 public class account_steps extends Base {
 
@@ -190,7 +187,7 @@ public class account_steps extends Base {
             WebElement passwordField = driver.findElement(By.id(
                     "password"));
             WebElement loginButton = driver.findElement(By.id("testLogin"));
-            emailField.sendKeys("azizaouadi12@gmail.com");
+            emailField.sendKeys(props.getProperty("emailphotographe"));
             passwordField.sendKeys(actual_password);
             loginButton.click();
             waitForVisibilityOfElement(By.id("user-dropdown"));
@@ -253,13 +250,13 @@ public class account_steps extends Base {
         }
     }
 
-    @Then("user can connect with new credentials email {string} and password {string}")
-    public void user_can_connect_with_new_credentials(String email, String password) {
+    @Then("user can connect with new credentials email and password {string}")
+    public void user_can_connect_with_new_credentials(String password) {
         try {
 
             waitForVisibilityOfElement(By.id("email"));
 
-            driver.findElement(By.id("email")).sendKeys(email);
+            driver.findElement(By.id("email")).sendKeys(props.getProperty("emailphotographe"));
             Thread.sleep(10);
             driver.findElement(By.id("password")).sendKeys(password);
             Thread.sleep(10);

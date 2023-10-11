@@ -1,4 +1,4 @@
-package StepDefinitions;
+package stepDefinitions;
 
 import java.io.File;
 import java.util.List;
@@ -143,7 +143,6 @@ public class scenario_steps extends Base {
                 boolean location = location_string.toUpperCase().equals(locationofevent.toUpperCase());
                 boolean date = date_string.equals(newdate);
                 boolean status = status_string.equals("In progress");
-                // System.out.println(name_string+ location_string+ date_string+ status_string);
                 if ((name) && (date) && (status) && (location)) {
                     found = true;
                     break;

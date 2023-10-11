@@ -1,4 +1,4 @@
-package StepDefinitions;
+package stepDefinitions;
 
 import java.util.List;
 import java.util.Random;
@@ -56,27 +56,6 @@ public class filterClient_steps extends Base {
             throw new RuntimeException(e);
 
         }
-
-        // waitForElementToBeClickable(By.className("ant-dropdown-menu-title-content"));
-        // List<WebElement> dropdownElements =
-        // driver.findElements(By.className("ant-dropdown-menu-title-content"));
-
-        // // Check if dropdown elements were found
-        // if (!dropdownElements.isEmpty()) {
-        // // Assuming you want to click on the first dropdown element in the list
-        // WebElement firstDropdownElement = dropdownElements.get(0);
-
-        // // Perform an action on the dropdown element (e.g., click)
-        // firstDropdownElement.click();
-
-        // // You can also perform other actions like selecting an option from the
-        // dropdown
-        // // For example, if it's a select element, you can use Select class:
-        // // Select select = new Select(firstDropdownElement);
-        // // select.selectByVisibleText("Option Text");
-        // } else {
-        // System.out.println("No dropdown elements found on the page.");
-        // }
 
     }
 

@@ -28,12 +28,12 @@ Feature: test forget password functionality
       Examples:
       | password    | confirm_password  |
       | admin6542!  | admin6542!        |
-      # | Edmin65412  | Edmi65412         |
-      # | ADMIN6542!  | ADMIN6542!        |
-      # | ADMINadmi!  | ADMINadmi!        |
-      # | Admin1!     | Admin1!           |
-      # | Admin1!     | Admin123!         |
-      # | Admin123!   | Admin123456!      |
-      # |             | Admin123!         |
-      # | Admin123!   |                   |
-      # |             |                   |
+      | Edmin65412  | Edmi65412         |
+      | ADMIN6542!  | ADMIN6542!        |
+      | ADMINadmi!  | ADMINadmi!        |
+      | Admin1!     | Admin1!           |
+      | Admin1!     | Admin123!         |
+      | Admin123!   | Admin123456!      |
+      |             | Admin123!         |
+      | Admin123!   |                   |
+      |             |                   |
